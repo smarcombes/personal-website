@@ -1,0 +1,32 @@
+<!--
+  COMPONENT: Accordion
+  Native <details>. Bold mono title, "+" text glyph (rotates to look like ×
+  when open via CSS below), hairline divider rows.
+-->
+<style>
+  details.ds-accordion > summary { list-style: none; }
+  details.ds-accordion > summary::-webkit-details-marker { display: none; }
+  details.ds-accordion[open] .ds-plus { transform: rotate(45deg); }
+</style>
+
+<div class="border-t border-divider">
+  <details class="ds-accordion border-b border-divider py-4">
+    <summary class="flex w-full items-start justify-between gap-2 py-0.5 text-left cursor-pointer">
+      <span class="block font-bold tracking-[-0.01em]">Software Engineering</span>
+      <span class="ds-plus text-lg leading-none text-foreground/50 transition-transform" aria-hidden="true">+</span>
+    </summary>
+    <div class="pt-3 text-muted-foreground">
+      Panel content. Mono 14px, muted. Keep it terse.
+    </div>
+  </details>
+
+  <details class="ds-accordion border-b border-divider py-4">
+    <summary class="flex w-full items-start justify-between gap-2 py-0.5 text-left cursor-pointer">
+      <span class="block font-bold tracking-[-0.01em]">Product</span>
+      <span class="ds-plus text-lg leading-none text-foreground/50 transition-transform" aria-hidden="true">+</span>
+    </summary>
+    <div class="pt-3 text-muted-foreground">
+      Second panel.
+    </div>
+  </details>
+</div>

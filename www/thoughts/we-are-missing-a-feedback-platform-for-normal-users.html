@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>We're Missing a Feedback Loop Platform for Normal Users — Séverin Marcombes</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AI researchers get RLHF pipelines and eval suites. The people who actually use AI all day get a thumbs-up icon. This asymmetry is a product gap, not a technical one." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            background: '#F5F4EF', 'background-hover': '#EBEAE5', foreground: '#000000',
+            muted: '#E5E4DC', 'muted-foreground': '#686868', link: '#595959',
+            button: { DEFAULT: '#D9D8D3', hover: '#C4C3BB', foreground: '#403E37' },
+            divider: '#E5E4DC', 'card-border': '#D4D3CB', 'card-border-hover': '#C0BDAD', highlight: '#FBD45B',
+          },
+          fontFamily: {
+            serif: ['Newsreader', 'Georgia', 'ui-serif', 'serif'],
+            mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
+            sans: ['"Source Sans 3"', 'system-ui', 'sans-serif'],
+          },
+          boxShadow: {
+            card: '3px 3px 0px #000000', 'card-hover': '5px 5px 0px #000000',
+            'card-soft': '3px 3px 0px #C0BDAD', btn: '2px 2px 0px #403E37',
+          },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="bg-background text-foreground font-mono text-sm leading-5 antialiased">
+  <div class="p-4 md:p-12 overflow-hidden">
+    <div class="w-full max-w-2xl">
+      <header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+        <span><a href="/index.html" class="text-3xl font-serif">Séverin Marcombes</a></span>
+        <nav class="flex gap-6">
+          <a href="/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Home</a>
+          <a href="/thoughts/index.html" class="underline underline-offset-8 decoration-2 hover:decoration-foreground hover:text-foreground">Thoughts</a>
+          <a href="/projects/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Projects</a>
+        </nav>
+      </header>
+
+      <article>
+        <h1 class="text-5xl md:text-6xl font-serif leading-tight text-balance mb-6 mt-12">We're Missing a Feedback Loop Platform for Normal Users</h1>
+        <div class="grid md:grid-cols-[120px_1fr] gap-0.5 font-mono text-sm mb-12">
+          <div class="text-muted-foreground">Published</div>
+          <div>June 25, 2026</div>
+          <div class="text-muted-foreground">Author</div>
+          <div>Séverin Marcombes</div>
+        </div>
+        <div class="font-sans text-lg leading-relaxed">
+<p class="mb-4">Inside AI labs, feedback is treated as the most precious substance in the world. Armies of annotators rank completions. Eval suites run on every checkpoint. RLHF pipelines turn human judgment into gradient updates. Entire careers exist to close the loop between "the model did something" and "the model does better next time."</p>
+<p class="mb-4">Outside the labs, here's the feedback interface we gave everyone else: 👍 👎</p>
+<p class="mb-4">That's it. That's the pipeline. The accountant who spends four hours a day with an assistant, the support team living inside a copilot, the founder whose agents run half the back office — their accumulated knowledge of exactly <em>where</em> the system fails and <em>what</em> it should have done goes into a thumbs-down icon that, as far as they can tell, falls into the void.</p>
+<h3 class="text-2xl font-normal mt-12 mb-4 font-sans">The people with the best data have no instrument</h3>
+<p class="mb-4">This is backwards in a specific way: the most valuable feedback signal doesn't come from researchers or annotators. It comes from domain experts using AI on their real work, every day. They know things no eval suite knows — that the model's tone is wrong for French business email, that it always mangles this vendor's invoice format, that step three of the workflow needs a confirmation.</p>
+<p class="mb-4">But that knowledge has no home. It can't be expressed (one bit of sentiment can't carry "wrong format, right idea"), it doesn't accumulate (each thumbs-down is an isolated event, not a growing case file), and it never comes back (the user can't see that their correction changed anything — so they rationally stop giving it).</p>
+<p class="mb-4">A feedback loop with no visible return leg isn't a loop. It's a suggestion box nailed shut.</p>
+<h3 class="text-2xl font-normal mt-12 mb-4 font-sans">What the missing platform looks like</h3>
+<p class="mb-4">Concretely, a feedback platform for non-researchers needs four properties:</p>
+<ul class="list-none space-y-3 my-6">
+<li class="flex gap-3"><span class="size-[7px] bg-gray-900 rounded-sm mt-2.5 shrink-0"></span><span><strong class="font-semibold">Rich capture at the point of failure.</strong> Not sentiment — corrections. "Here's what it produced, here's what it should have been," attached to full context, in one gesture.</span></li>
+<li class="flex gap-3"><span class="size-[7px] bg-gray-900 rounded-sm mt-2.5 shrink-0"></span><span><strong class="font-semibold">Accumulation into assets.</strong> Corrections should compile into something durable — a preference profile, a test case, a skill, a rule — owned by the user or team, not vaporized into a training queue they'll never hear from.</span></li>
+<li class="flex gap-3"><span class="size-[7px] bg-gray-900 rounded-sm mt-2.5 shrink-0"></span><span><strong class="font-semibold">Immediate local effect.</strong> The system should behave differently <em>for that user, that day</em>. Runtime learning — memory, skills, morphing behavior — makes this possible without touching a single weight. The loop can close in minutes, locally, even if the model never retrains.</span></li>
+<li class="flex gap-3"><span class="size-[7px] bg-gray-900 rounded-sm mt-2.5 shrink-0"></span><span><strong class="font-semibold">A visible ledger.</strong> Show people what their feedback changed. The return leg is what keeps humans participating; it's also what makes them <em>better</em> at giving feedback over time.</span></li>
+</ul>
+<h3 class="text-2xl font-normal mt-12 mb-4 font-sans">Why I keep circling this</h3>
+<p class="mb-4">Almost everything I build turns out to be a piece of this: runtime skill creation is feedback becoming capability; morphing UI is feedback becoming interface; context loops are feedback becoming memory. The pattern underneath is always the same — <strong class="font-semibold">normal users are the largest untapped training signal on earth</strong>, and they're being interviewed through a two-button survey.</p>
+<p class="mb-4">The lab loop made models smart. The user loop will make them <em>right</em> — right for this team, this workflow, this Tuesday. It doesn't exist yet. It's overdue.</p>
+        </div>
+      </article>
+      <div class="mt-16">
+        <a href="/thoughts/index.html" class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium px-3 py-1.5 bg-button text-button-foreground border border-button-foreground shadow-btn relative after:absolute after:inset-0.5 after:border after:border-dashed after:border-button-foreground after:pointer-events-none hover:bg-button-hover hover:text-black active:shadow-none active:translate-y-0.5 transition-colors font-mono">← All thoughts</a>
+      </div>
+
+      <footer>
+        <div class="w-full flex flex-col md:flex-row justify-between py-6 items-baseline gap-4 border-t border-black mt-16">
+          <p class="font-serif text-lg">Séverin Marcombes</p>
+          <div class="flex gap-4">
+            <a href="/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Home</a>
+            <a href="/thoughts/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Thoughts</a>
+            <a href="/projects/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Projects</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>

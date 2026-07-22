@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Security in the AI Era: Antivirus vs. Boundaries — Séverin Marcombes</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="One school inspects behavior and hunts for bad patterns. The other makes bad outcomes structurally impossible. We already ran this experiment once — and pattern-matching lost." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            background: '#F5F4EF', 'background-hover': '#EBEAE5', foreground: '#000000',
+            muted: '#E5E4DC', 'muted-foreground': '#686868', link: '#595959',
+            button: { DEFAULT: '#D9D8D3', hover: '#C4C3BB', foreground: '#403E37' },
+            divider: '#E5E4DC', 'card-border': '#D4D3CB', 'card-border-hover': '#C0BDAD', highlight: '#FBD45B',
+          },
+          fontFamily: {
+            serif: ['Newsreader', 'Georgia', 'ui-serif', 'serif'],
+            mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
+            sans: ['"Source Sans 3"', 'system-ui', 'sans-serif'],
+          },
+          boxShadow: {
+            card: '3px 3px 0px #000000', 'card-hover': '5px 5px 0px #000000',
+            'card-soft': '3px 3px 0px #C0BDAD', btn: '2px 2px 0px #403E37',
+          },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="bg-background text-foreground font-mono text-sm leading-5 antialiased">
+  <div class="p-4 md:p-12 overflow-hidden">
+    <div class="w-full max-w-2xl">
+      <header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+        <span><a href="/index.html" class="text-3xl font-serif">Séverin Marcombes</a></span>
+        <nav class="flex gap-6">
+          <a href="/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Home</a>
+          <a href="/thoughts/index.html" class="underline underline-offset-8 decoration-2 hover:decoration-foreground hover:text-foreground">Thoughts</a>
+          <a href="/projects/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Projects</a>
+        </nav>
+      </header>
+
+      <article>
+        <h1 class="text-5xl md:text-6xl font-serif leading-tight text-balance mb-6 mt-12">Security in the AI Era: Antivirus vs. Boundaries</h1>
+        <div class="grid md:grid-cols-[120px_1fr] gap-0.5 font-mono text-sm mb-12">
+          <div class="text-muted-foreground">Published</div>
+          <div>April 2, 2026</div>
+          <div class="text-muted-foreground">Author</div>
+          <div>Séverin Marcombes</div>
+        </div>
+        <div class="font-sans text-lg leading-relaxed">
+<p class="mb-4">The security industry has seen this exact fork in the road before, and it's worth remembering who won.</p>
+<p class="mb-4">For twenty years, the dominant answer to malware was the antivirus: watch everything, recognize known-bad patterns, quarantine on match. It was always one signature behind the attacker, by construction. What actually moved the needle was the other philosophy: sandboxes, permission systems, process isolation — <em>boundaries</em>. Don't try to recognize evil; make it structurally unable to reach anything that matters. Your phone doesn't run a virus scanner over every app. It runs every app in a box.</p>
+<p class="mb-4">Now agents arrive, and I watch the industry instinctively rebuild the antivirus: prompt-injection classifiers, output filters, LLM-judges watching other LLMs, "guardrail" models scoring every response for harmfulness.</p>
+<h3 class="text-2xl font-normal mt-12 mb-4 font-sans">Why the antivirus approach fails harder this time</h3>
+<p class="mb-4">Against malware, signatures at least targeted a finite set of binaries. Against language, the attack surface is <em>every possible way of saying anything</em>. Injection payloads don't have hashes. A model policing another model's text is a probabilistic filter over an infinite input space — and one clever paraphrase away from a miss. Worse, every new capability you give the agent multiplies what a single miss costs.</p>
+<p class="mb-4">Detection also carries a quieter tax: false positives. Tighten the filter until attacks reliably fail and you've usually neutered the agent for legitimate work too — the security teams' oldest dilemma, now at inference speed.</p>
+<h3 class="text-2xl font-normal mt-12 mb-4 font-sans">What boundaries look like for agents</h3>
+<p class="mb-4">The boundary school asks a different question. Not "is this behavior malicious?" but "what can this process reach, even on its worst day?" Concretely:</p>
+<ul class="list-none space-y-3 my-6">
+<li class="flex gap-3"><span class="size-[7px] bg-gray-900 rounded-sm mt-2.5 shrink-0"></span><span><strong class="font-semibold">Execution in sandboxes.</strong> Code runs in disposable, isolated environments with no default egress. (Agent One runs everything on Modal sandboxes for exactly this reason.)</span></li>
+<li class="flex gap-3"><span class="size-[7px] bg-gray-900 rounded-sm mt-2.5 shrink-0"></span><span><strong class="font-semibold">Credentials the agent never holds.</strong> A proxy injects secrets at request time; a fully compromised agent has nothing to exfiltrate. That's the keychains.dev design.</span></li>
+<li class="flex gap-3"><span class="size-[7px] bg-gray-900 rounded-sm mt-2.5 shrink-0"></span><span><strong class="font-semibold">Capability-scoped, expiring access.</strong> Permission for <em>this task, this resource, this hour</em> — not a standing key to the kingdom.</span></li>
+<li class="flex gap-3"><span class="size-[7px] bg-gray-900 rounded-sm mt-2.5 shrink-0"></span><span><strong class="font-semibold">Blast-radius budgets.</strong> Spend caps, rate limits, human sign-off above thresholds. Assume the agent goes insane; bound the damage arithmetic-ally.</span></li>
+</ul>
+<p class="mb-4">Notice none of these require deciding whether the model's intent was bad — no classifier in the loop, nothing to jailbreak. The prompt injection may fully succeed and it still can't do anything that the walls don't allow.</p>
+<h3 class="text-2xl font-normal mt-12 mb-4 font-sans">Both, but in the right order</h3>
+<p class="mb-4">Detection has a place — as telemetry, as the alarm system inside the walls. The failure mode is making it the <em>load-bearing</em> layer. History's verdict is clean: every platform that got secure did it with architecture, not vigilance.</p>
+<p class="mb-4">Don't scan for demons. Build rooms they can't leave.</p>
+        </div>
+      </article>
+      <div class="mt-16">
+        <a href="/thoughts/index.html" class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium px-3 py-1.5 bg-button text-button-foreground border border-button-foreground shadow-btn relative after:absolute after:inset-0.5 after:border after:border-dashed after:border-button-foreground after:pointer-events-none hover:bg-button-hover hover:text-black active:shadow-none active:translate-y-0.5 transition-colors font-mono">← All thoughts</a>
+      </div>
+
+      <footer>
+        <div class="w-full flex flex-col md:flex-row justify-between py-6 items-baseline gap-4 border-t border-black mt-16">
+          <p class="font-serif text-lg">Séverin Marcombes</p>
+          <div class="flex gap-4">
+            <a href="/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Home</a>
+            <a href="/thoughts/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Thoughts</a>
+            <a href="/projects/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Projects</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>

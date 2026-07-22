@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Design System — Component Gallery</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap"
+    rel="stylesheet"
+  />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            background: '#F5F4EF',
+            'background-hover': '#EBEAE5',
+            foreground: '#000000',
+            muted: '#E5E4DC',
+            'muted-foreground': '#686868',
+            link: '#595959',
+            button: { DEFAULT: '#D9D8D3', hover: '#C4C3BB', foreground: '#403E37' },
+            divider: '#E5E4DC',
+            'card-border': '#D4D3CB',
+            'card-border-hover': '#C0BDAD',
+            highlight: '#FBD45B',
+          },
+          fontFamily: {
+            serif: ['Newsreader', 'Georgia', 'ui-serif', 'serif'],
+            mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
+            sans: ['"Source Sans 3"', 'system-ui', 'sans-serif'],
+          },
+          boxShadow: {
+            card: '3px 3px 0px #000000',
+            'card-hover': '5px 5px 0px #000000',
+            'card-soft': '3px 3px 0px #C0BDAD',
+            btn: '2px 2px 0px #403E37',
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    details.ds-accordion > summary { list-style: none; }
+    details.ds-accordion > summary::-webkit-details-marker { display: none; }
+    details.ds-accordion[open] .ds-plus { transform: rotate(45deg); }
+  </style>
+</head>
+<body class="bg-background text-foreground font-mono text-sm leading-5 antialiased">
+  <div class="p-4 md:p-12">
+    <div class="w-full max-w-2xl">
+
+      <h1 class="text-5xl md:text-6xl font-serif leading-tight">Component Gallery</h1>
+      <p class="mt-8 mb-8 text-muted-foreground">Every component of the design system, live. Each block below also exists as a standalone .html file in this folder.</p>
+
+      <!-- ============ SITE HEADER ============ -->
+      <h2 class="font-bold tracking-[-0.01em] mt-16 mb-4 pb-2 border-b border-divider">site-header.html</h2>
+      <header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+        <span><a href="#" class="text-3xl font-serif">Séverin Marcombes</a></span>
+        <nav class="flex gap-6">
+          <a href="#" class="underline underline-offset-8 decoration-2 hover:decoration-foreground hover:text-foreground">Home</a>
+          <a href="#" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Thoughts</a>
+          <a href="#" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Projects</a>
+        </nav>
+      </header>
+
+      <!-- ============ TYPOGRAPHY ============ -->
+      <h2 class="font-bold tracking-[-0.01em] mt-16 mb-4 pb-2 border-b border-divider">typography.html</h2>
+      <div class="space-y-8">
+        <h1 class="text-5xl md:text-6xl font-serif leading-tight text-balance">The Quick Brown Fox</h1>
+        <span class="text-3xl font-serif block">Wordmark, serif 30px</span>
+        <h3 class="font-sans text-2xl font-normal">A Section Subhead (sans 24px)</h3>
+        <p class="font-sans text-lg leading-relaxed">Article body — Source Sans 3, 18px, relaxed leading. The only sans text on the site.</p>
+        <p>UI default — mono 14/20px. Emphasis is <span class="font-semibold">semibold</span>.</p>
+        <p class="text-xs text-muted-foreground">Meta — mono 12px muted. April 16, 2026</p>
+      </div>
+
+      <!-- ============ TIMELINE FEED ============ -->
+      <h2 class="font-bold tracking-[-0.01em] mt-16 mb-4 pb-2 border-b border-divider">timeline-feed.html</h2>
+      <div class="relative flex flex-col space-y-4 border-l border-gray-300 py-4 ml-4
+                  before:h-6 before:w-px before:bg-gradient-to-t before:from-transparent before:to-background before:absolute before:-left-px before:top-0
+                  after:h-6 after:w-px after:bg-gradient-to-b after:from-transparent after:to-background after:absolute after:-left-px after:bottom-0">
+        <a href="#" class="relative flex flex-col gap-2 px-3 py-2 ml-6 group cursor-pointer bg-white border border-black shadow-card hover:shadow-card-hover transition-all">
+          <div class="absolute size-[7px] bg-gray-900 rounded-sm -left-[37px] top-[15px] outline outline-2 outline-background"></div>
+          <div class="flex items-baseline gap-1.5 justify-between">
+            <div class="text-sm truncate font-semibold leading-5">Featured entry title</div>
+            <div class="text-xs text-muted-foreground shrink-0 ml-1">April 16, 2026</div>
+          </div>
+          <p class="text-xs text-muted-foreground">One-sentence description of the featured entry.</p>
+        </a>
+        <a href="#" class="relative flex flex-col gap-2 px-3 py-2 ml-6 group cursor-pointer bg-white/60 border border-card-border hover:border-card-border-hover hover:shadow-card-soft hover:bg-white transition-all">
+          <div class="absolute size-[7px] bg-gray-900 rounded-sm -left-[37px] top-[15px] outline outline-2 outline-background"></div>
+          <div class="flex items-baseline gap-1.5 justify-between">
+            <div class="text-xs truncate font-semibold leading-5">Boxed entry title</div>
+            <div class="text-xs text-muted-foreground shrink-0 ml-1">March 3, 2026</div>
+          </div>
+          <p class="text-xs text-muted-foreground">A notable-but-not-featured entry.</p>
+        </a>
+        <a href="#" class="relative flex flex-col gap-1 px-3 py-2 ml-6 group cursor-pointer hover:bg-background-hover">
+          <div class="absolute size-[7px] bg-gray-900 rounded-sm -left-[37px] top-[15px] outline outline-2 outline-background"></div>
+          <div class="flex items-baseline gap-1.5 justify-between">
+            <div class="text-xs truncate font-semibold leading-5">Plain entry title</div>
+            <div class="text-xs text-muted-foreground shrink-0 ml-1">December 22, 2025</div>
+          </div>
+          <p class="text-xs text-muted-foreground">The default row, tint on hover only.</p>
+        </a>
+      </div>
+
+      <!-- ============ BUTTONS ============ -->
+      <h2 class="font-bold tracking-[-0.01em] mt-16 mb-4 pb-2 border-b border-divider">buttons.html</h2>
+      <div class="flex flex-wrap gap-4">
+        <a href="#" class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium px-3 py-1.5 bg-button text-button-foreground border border-button-foreground shadow-btn relative after:absolute after:inset-0.5 after:border after:border-dashed after:border-button-foreground after:pointer-events-none hover:bg-button-hover hover:text-black active:shadow-none active:translate-y-0.5 transition-colors">Read the post</a>
+        <a href="#" class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium px-3 py-1.5 bg-button text-button-foreground border border-button-foreground shadow-btn relative after:absolute after:inset-0.5 after:border after:border-dashed after:border-button-foreground after:pointer-events-none hover:bg-button-hover hover:text-black active:shadow-none active:translate-y-0.5 transition-colors"><span aria-hidden="true">✉️</span> Email me</a>
+      </div>
+
+      <!-- ============ LINKS ============ -->
+      <h2 class="font-bold tracking-[-0.01em] mt-16 mb-4 pb-2 border-b border-divider">links.html</h2>
+      <div class="space-y-6">
+        <div>
+          <a href="#" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Nav link</a>
+          <a href="#" class="underline underline-offset-8 decoration-2 ml-6">Active nav link</a>
+        </div>
+        <p>Inline mono link: <a href="#" class="underline underline-offset-2 decoration-foreground/20 hover:decoration-foreground/5">&lt;insert-job-you-excel-at/&gt;</a></p>
+        <p class="font-sans text-lg leading-relaxed">Prose link: see the <a href="#" class="text-link underline hover:decoration-2">project repository</a> for details.</p>
+      </div>
+
+      <!-- ============ ACCORDION ============ -->
+      <h2 class="font-bold tracking-[-0.01em] mt-16 mb-4 pb-2 border-b border-divider">accordion.html</h2>
+      <div class="border-t border-divider">
+        <details class="ds-accordion border-b border-divider py-4">
+          <summary class="flex w-full items-start justify-between gap-2 py-0.5 text-left cursor-pointer">
+            <span class="block font-bold tracking-[-0.01em]">Software Engineering</span>
+            <span class="ds-plus text-lg leading-none text-foreground/50 transition-transform" aria-hidden="true">+</span>
+          </summary>
+          <div class="pt-3 text-muted-foreground">Panel content. Mono 14px, muted.</div>
+        </details>
+        <details class="ds-accordion border-b border-divider py-4">
+          <summary class="flex w-full items-start justify-between gap-2 py-0.5 text-left cursor-pointer">
+            <span class="block font-bold tracking-[-0.01em]">Product</span>
+            <span class="ds-plus text-lg leading-none text-foreground/50 transition-transform" aria-hidden="true">+</span>
+          </summary>
+          <div class="pt-3 text-muted-foreground">Second panel.</div>
+        </details>
+      </div>
+
+      <!-- ============ ARTICLE HEADER ============ -->
+      <h2 class="font-bold tracking-[-0.01em] mt-16 mb-4 pb-2 border-b border-divider">article-header.html</h2>
+      <article>
+        <h1 class="text-5xl md:text-6xl font-serif leading-tight text-balance mb-6">A Long-Form Article Title Goes Here</h1>
+        <div class="grid md:grid-cols-[120px_1fr] gap-0.5 font-mono text-sm">
+          <div class="text-muted-foreground">Published</div>
+          <div>January 16, 2026</div>
+          <div class="text-muted-foreground">Email</div>
+          <div><a href="#" class="underline underline-offset-2 decoration-foreground/20 hover:decoration-foreground/5">hello@example.com</a></div>
+        </div>
+        <div class="flex gap-3 mt-8">
+          <a href="#" class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium px-3 py-1.5 bg-button text-button-foreground border border-button-foreground shadow-btn relative after:absolute after:inset-0.5 after:border after:border-dashed after:border-button-foreground after:pointer-events-none hover:bg-button-hover hover:text-black active:shadow-none active:translate-y-0.5 transition-colors">Paper</a>
+          <a href="#" class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium px-3 py-1.5 bg-button text-button-foreground border border-button-foreground shadow-btn relative after:absolute after:inset-0.5 after:border after:border-dashed after:border-button-foreground after:pointer-events-none hover:bg-button-hover hover:text-black active:shadow-none active:translate-y-0.5 transition-colors">Code</a>
+        </div>
+      </article>
+
+      <!-- ============ ARTICLE BODY ============ -->
+      <h2 class="font-bold tracking-[-0.01em] mt-16 mb-4 pb-2 border-b border-divider">article-body.html</h2>
+      <div class="font-sans text-lg leading-relaxed">
+        <p class="mb-4">Article paragraphs in Source Sans 3, 18px. Inline links are <a href="#" class="text-link underline hover:decoration-2">muted gray and underlined</a>.</p>
+        <h3 class="text-2xl font-normal mt-12 mb-4">A Section Subhead</h3>
+        <figure class="my-10">
+          <div class="bg-[#E6E0CB] border border-button-foreground h-32 flex items-center justify-center text-xs font-mono text-button-foreground">[ diagram ]</div>
+          <figcaption class="text-xs italic font-mono px-2 mt-4 text-center text-muted-foreground">Figure captions are italic mono, centered.</figcaption>
+        </figure>
+        <pre class="relative w-full bg-white font-mono leading-relaxed border border-button-foreground my-4 p-4 text-sm overflow-x-auto"><code>tok = load("fast")
+tokens = tok(action_chunk)</code></pre>
+      </div>
+
+      <!-- ============ FOOTER ============ -->
+      <h2 class="font-bold tracking-[-0.01em] mt-16 mb-4 pb-2 border-b border-divider">footer.html</h2>
+      <footer>
+        <div class="w-full flex flex-col md:flex-row justify-between py-6 items-baseline gap-4 border-t border-black">
+          <p class="font-serif text-lg">Séverin Marcombes</p>
+          <div class="flex gap-4">
+            <a href="#" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Home</a>
+            <a href="#" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Thoughts</a>
+            <a href="#" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Projects</a>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+</body>
+</html>

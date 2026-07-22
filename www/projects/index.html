@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Projects — Séverin Marcombes</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Projects by Séverin Marcombes — agent infrastructure, self-evolving software, and fifteen years of shipped products." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            background: '#F5F4EF', 'background-hover': '#EBEAE5', foreground: '#000000',
+            muted: '#E5E4DC', 'muted-foreground': '#686868', link: '#595959',
+            button: { DEFAULT: '#D9D8D3', hover: '#C4C3BB', foreground: '#403E37' },
+            divider: '#E5E4DC', 'card-border': '#D4D3CB', 'card-border-hover': '#C0BDAD', highlight: '#FBD45B',
+          },
+          fontFamily: {
+            serif: ['Newsreader', 'Georgia', 'ui-serif', 'serif'],
+            mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
+            sans: ['"Source Sans 3"', 'system-ui', 'sans-serif'],
+          },
+          boxShadow: {
+            card: '3px 3px 0px #000000', 'card-hover': '5px 5px 0px #000000',
+            'card-soft': '3px 3px 0px #C0BDAD', btn: '2px 2px 0px #403E37',
+          },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="bg-background text-foreground font-mono text-sm leading-5 antialiased">
+  <div class="p-4 md:p-12 overflow-hidden">
+    <div class="w-full max-w-xl">
+
+      <header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+        <span><a href="/index.html" class="text-3xl font-serif">Séverin Marcombes</a></span>
+        <nav class="flex gap-6">
+          <a href="/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Home</a>
+          <a href="/thoughts/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Thoughts</a>
+          <a href="/projects/index.html" class="underline underline-offset-8 decoration-2 hover:decoration-foreground hover:text-foreground">Projects</a>
+        </nav>
+      </header>
+
+      <h1 class="text-5xl md:text-6xl font-serif leading-tight mt-12 mb-6">Projects</h1>
+      <p class="mt-8 mb-8 text-muted-foreground">Fifteen years of shipping — from a hardware personal cloud to infrastructure for AI agents. Everything below was built, not just imagined.</p>
+
+      <!-- ============ CURRENT WORK ============ -->
+      <h2 class="font-bold tracking-[-0.01em] mt-12 mb-4">Current work</h2>
+      <div class="space-y-4">
+        <a href="https://interagentic.dev" class="flex flex-col gap-2 px-3 py-2 group cursor-pointer bg-white border border-black shadow-card hover:shadow-card-hover transition-all">
+          <div class="flex items-baseline gap-1.5 justify-between">
+            <div class="text-sm font-semibold leading-5">🌐 Interagentic</div>
+            <div class="text-xs text-muted-foreground shrink-0 ml-1">2026</div>
+          </div>
+          <p class="text-xs text-muted-foreground">AWS for agents. Deploy sites, register domains, accept payments, spin up databases — all programmatic, no dashboards.</p>
+        </a>
+        <a href="https://skills.dev" class="flex flex-col gap-2 px-3 py-2 group cursor-pointer bg-white/60 border border-card-border hover:border-card-border-hover hover:shadow-card-soft hover:bg-white transition-all">
+          <div class="flex items-baseline gap-1.5 justify-between">
+            <div class="text-xs font-semibold leading-5">🧰 skills.dev</div>
+            <div class="text-xs text-muted-foreground shrink-0 ml-1">2025 —</div>
+          </div>
+          <p class="text-xs text-muted-foreground">App store for agent capabilities. Agents search, execute, or auto-generate TypeScript skills. First call: 6–90s. Every call after: instant.</p>
+        </a>
+        <a href="https://keychains.dev" class="flex flex-col gap-2 px-3 py-2 group cursor-pointer bg-white/60 border border-card-border hover:border-card-border-hover hover:shadow-card-soft hover:bg-white transition-all">
+          <div class="flex items-baseline gap-1.5 justify-between">
+            <div class="text-xs font-semibold leading-5">🔑 keychains.dev</div>
+            <div class="text-xs text-muted-foreground shrink-0 ml-1">2025 —</div>
+          </div>
+          <p class="text-xs text-muted-foreground">Credential proxy with OAuth detection and scope inference. 6,000+ APIs. Agents never touch raw secrets.</p>
+        </a>
+        <a href="https://github.com/smarcombes/botparty" class="flex flex-col gap-2 px-3 py-2 group cursor-pointer bg-white/60 border border-card-border hover:border-card-border-hover hover:shadow-card-soft hover:bg-white transition-all">
+          <div class="flex items-baseline gap-1.5 justify-between">
+            <div class="text-xs font-semibold leading-5">🎉 BotParty</div>
+            <div class="text-xs text-muted-foreground shrink-0 ml-1">2025 —</div>
+          </div>
+          <p class="text-xs text-muted-foreground">Framework for AI-operated companies. Agent employees, agent CEO, federated identity, bot-to-bot auth and payments.</p>
+        </a>
+      </div>
+
+      <!-- ============ OPEN SOURCE ============ -->
+      <h2 class="font-bold tracking-[-0.01em] mt-16 mb-4">Open source</h2>
+      <div class="border-t border-divider">
+        <a href="https://github.com/smarcombes/protean" class="flex flex-col gap-1 py-3 px-1 -mx-1 border-b border-divider hover:bg-background-hover">
+          <div class="flex items-baseline gap-1.5 justify-between">
+            <span class="font-semibold">🦠 protean</span>
+            <span class="text-xs text-muted-foreground shrink-0">TypeScript · Bun</span>
+          </div>
+          <p class="text-xs text-muted-foreground">Self-evolving agent. Writes new tools for itself, modifies its own code, migrates across machines over P2P. No artificial constraints except budget.</p>
+        </a>
+        <a href="https://github.com/smarcombes/ux-morph" class="flex flex-col gap-1 py-3 px-1 -mx-1 border-b border-divider hover:bg-background-hover">
+          <div class="flex items-baseline gap-1.5 justify-between">
+            <span class="font-semibold">🌊 ux-morph</span>
+            <span class="text-xs text-muted-foreground shrink-0">React · Git</span>
+          </div>
+          <p class="text-xs text-muted-foreground">Apps whose UI rewrites itself per-user. Chat → AI edits → hot-swap → real Git commit on your personal branch.</p>
+        </a>
+        <a href="https://github.com/smarcombes/ollama-pool" class="flex flex-col gap-1 py-3 px-1 -mx-1 border-b border-divider hover:bg-background-hover">
+          <div class="flex items-baseline gap-1.5 justify-between">
+            <span class="font-semibold">🦙 ollama-pool</span>
+            <span class="text-xs text-muted-foreground shrink-0">Node.js</span>
+          </div>
+          <p class="text-xs text-muted-foreground">Distribute LLM inference across your machines. One globally-accessible, OpenAI-compatible endpoint for all your Ollama hardware.</p>
+        </a>
+        <a href="https://github.com/smarcombes/streambin" class="flex flex-col gap-1 py-3 px-1 -mx-1 border-b border-divider hover:bg-background-hover">
+          <div class="flex items-baseline gap-1.5 justify-between">
+            <span class="font-semibold">📡 streambin</span>
+            <span class="text-xs text-muted-foreground shrink-0">E2E crypto</span>
+          </div>
+          <p class="text-xs text-muted-foreground">E2E-encrypted streams, docs &amp; files for agents and humans. Zero-knowledge relay. Drop-in Firebase-style primitives.</p>
+        </a>
+        <a href="https://github.com/smarcombes/github-filesystem" class="flex flex-col gap-1 py-3 px-1 -mx-1 border-b border-divider hover:bg-background-hover">
+          <div class="flex items-baseline gap-1.5 justify-between">
+            <span class="font-semibold">🗂️ github-filesystem</span>
+            <span class="text-xs text-muted-foreground shrink-0">Node.js</span>
+          </div>
+          <p class="text-xs text-muted-foreground">GitHub repos as a Node.js <code>fs</code>. <code>writeFile</code> commits to Git. Agents treat remote repos like local disk.</p>
+        </a>
+        <a href="https://github.com/smarcombes/tailwind-motion-native" class="flex flex-col gap-1 py-3 px-1 -mx-1 border-b border-divider hover:bg-background-hover">
+          <div class="flex items-baseline gap-1.5 justify-between">
+            <span class="font-semibold">🎨 tailwind-motion-native</span>
+            <span class="text-xs text-muted-foreground shrink-0">React Native</span>
+          </div>
+          <p class="text-xs text-muted-foreground">Tailwind Motion animation primitives ported to React Native via Moti.</p>
+        </a>
+        <a href="https://github.com/smarcombes/react-electron" class="flex flex-col gap-1 py-3 px-1 -mx-1 border-b border-divider hover:bg-background-hover">
+          <div class="flex items-baseline gap-1.5 justify-between">
+            <span class="font-semibold">⚛️ react-electron</span>
+            <span class="text-xs text-muted-foreground shrink-0">2017</span>
+          </div>
+          <p class="text-xs text-muted-foreground">Custom React 15 renderer for Electron. Multi-window management from a single component tree.</p>
+        </a>
+      </div>
+
+      <!-- ============ PAST PROJECTS ============ -->
+      <h2 class="font-bold tracking-[-0.01em] mt-16 mb-4">Past projects</h2>
+      <div class="relative flex flex-col space-y-4 border-l border-gray-300 py-4 ml-4
+                  before:h-6 before:w-px before:bg-gradient-to-t before:from-transparent before:to-background before:absolute before:-left-px before:top-0
+                  after:h-6 after:w-px after:bg-gradient-to-b after:from-transparent after:to-background after:absolute after:-left-px after:bottom-0">
+
+        <a href="https://github.com/smarcombes" class="relative flex flex-col gap-1 px-3 py-2 ml-6 group cursor-pointer hover:bg-background-hover">
+          <div class="absolute size-[7px] bg-gray-900 rounded-sm -left-[37px] top-[15px] outline outline-2 outline-background"></div>
+          <div class="flex items-baseline gap-1.5 justify-between">
+            <div class="text-xs font-semibold leading-5">🤖 Agent One</div>
+            <div class="text-xs text-muted-foreground shrink-0 ml-1">2025–2026</div>
+          </div>
+          <p class="text-xs text-muted-foreground">Telegram-native agent backed by the full skills.dev registry. OAuth 2.1 for MCP. Sandboxed on Modal. Hardware on ESP32/M5Stack.</p>
+        </a>
+
+        <a href="https://github.com/smarcombes" class="relative flex flex-col gap-1 px-3 py-2 ml-6 group cursor-pointer hover:bg-background-hover">
+          <div class="absolute size-[7px] bg-gray-900 rounded-sm -left-[37px] top-[15px] outline outline-2 outline-background"></div>
+          <div class="flex items-baseline gap-1.5 justify-between">
+            <div class="text-xs font-semibold leading-5">🤖 Samantha</div>
+            <div class="text-xs text-muted-foreground shrink-0 ml-1">2025</div>
+          </div>
+          <p class="text-xs text-muted-foreground">Multi-device AI assistant. Email → knowledge graph of contacts. Voice via Orpheus TTS. Entity context injected on every turn.</p>
+        </a>
+
+        <a href="https://layouts.dev" class="relative flex flex-col gap-2 px-3 py-2 ml-6 group cursor-pointer bg-white/60 border border-card-border hover:border-card-border-hover hover:shadow-card-soft hover:bg-white transition-all">
+          <div class="absolute size-[7px] bg-gray-900 rounded-sm -left-[37px] top-[15px] outline outline-2 outline-background"></div>
+          <div class="flex items-baseline gap-1.5 justify-between">
+            <div class="text-xs font-semibold leading-5">📐 layouts.dev</div>
+            <div class="text-xs text-muted-foreground shrink-0 ml-1">2024</div>
+          </div>
+          <p class="text-xs text-muted-foreground">Visual coding tool for designers. Custom DSL, cross-platform web + React Native, AI backend, multiplayer. 543K LOC.</p>
+        </a>
+
+        <a href="https://github.com/smarcombes" class="relative flex flex-col gap-1 px-3 py-2 ml-6 group cursor-pointer hover:bg-background-hover">
+          <div class="absolute size-[7px] bg-gray-900 rounded-sm -left-[37px] top-[15px] outline outline-2 outline-background"></div>
+          <div class="flex items-baseline gap-1.5 justify-between">
+            <div class="text-xs font-semibold leading-5">🖼️ HipHop</div>
+            <div class="text-xs text-muted-foreground shrink-0 ml-1">2023</div>
+          </div>
+          <p class="text-xs text-muted-foreground">AI image generation as React components. <code>&lt;ImageOf of="a sunset" /&gt;</code>. 8K Figma plugin users in 2 weeks.</p>
+        </a>
+
+        <a href="https://github.com/smarcombes" class="relative flex flex-col gap-1 px-3 py-2 ml-6 group cursor-pointer hover:bg-background-hover">
+          <div class="absolute size-[7px] bg-gray-900 rounded-sm -left-[37px] top-[15px] outline outline-2 outline-background"></div>
+          <div class="flex items-baseline gap-1.5 justify-between">
+            <div class="text-xs font-semibold leading-5">⛵ Seafront</div>
+            <div class="text-xs text-muted-foreground shrink-0 ml-1">2019–2021</div>
+          </div>
+          <p class="text-xs text-muted-foreground">0-to-1 product agency for startups: value-prop diagnosis, new product strategy, MVP in weeks, support through first press release.</p>
+        </a>
+
+        <a href="https://lima-technology.com" class="relative flex flex-col gap-2 px-3 py-2 ml-6 group cursor-pointer bg-white border border-black shadow-card hover:shadow-card-hover transition-all">
+          <div class="absolute size-[7px] bg-gray-900 rounded-sm -left-[37px] top-[15px] outline outline-2 outline-background"></div>
+          <div class="flex items-baseline gap-1.5 justify-between">
+            <div class="text-sm font-semibold leading-5">☁️ Lima Technology</div>
+            <div class="text-xs text-muted-foreground shrink-0 ml-1">2011–2019</div>
+          </div>
+          <p class="text-xs text-muted-foreground">Personal cloud before Dropbox won. P2P filesystem, custom Linux firmware, FUSE kernel extension. $1.2M Kickstarter, $10M raised, 80K devices. Acquired.</p>
+        </a>
+      </div>
+
+      <p class="mt-12 text-xs text-muted-foreground">Deep-dive write-ups for every project live in this folder as markdown — or ask me about any of them.</p>
+
+      <footer>
+        <div class="w-full flex flex-col md:flex-row justify-between py-6 items-baseline gap-4 border-t border-black mt-16">
+          <p class="font-serif text-lg">Séverin Marcombes</p>
+          <div class="flex gap-4">
+            <a href="/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Home</a>
+            <a href="/thoughts/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Thoughts</a>
+            <a href="/projects/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Projects</a>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+</body>
+</html>

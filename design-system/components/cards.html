@@ -1,0 +1,42 @@
+<!--
+  COMPONENT: Cards (outside the timeline)
+  Same three tiers as the feed, usable standalone. Square corners always.
+-->
+
+<!-- Featured card: solid white, black border, hard offset shadow that grows on hover -->
+<a href="#" class="block bg-white border border-black shadow-card hover:shadow-card-hover transition-all px-3 py-2">
+  <div class="flex items-baseline justify-between gap-1.5">
+    <div class="text-sm font-semibold leading-5 truncate">Featured card</div>
+    <div class="text-xs text-muted-foreground shrink-0">2026</div>
+  </div>
+  <p class="text-xs text-muted-foreground mt-1">Hard 3px black shadow, grows to 5px on hover. No radius.</p>
+</a>
+
+<!-- Boxed card: translucent white, warm subtle border, soft shadow on hover -->
+<a href="#" class="block bg-white/60 border border-card-border hover:border-card-border-hover hover:shadow-card-soft hover:bg-white transition-all px-3 py-2 mt-4">
+  <div class="flex items-baseline justify-between gap-1.5">
+    <div class="text-xs font-semibold leading-5 truncate">Boxed card</div>
+    <div class="text-xs text-muted-foreground shrink-0">2025</div>
+  </div>
+  <p class="text-xs text-muted-foreground mt-1">Resting: white/60 + #D4D3CB border. Hover: solid white + #C0BDAD border and shadow.</p>
+</a>
+
+<!-- Plain row: invisible until hover -->
+<a href="#" class="block px-3 py-2 hover:bg-background-hover mt-4">
+  <div class="flex items-baseline justify-between gap-1.5">
+    <div class="text-xs font-semibold leading-5 truncate">Plain row</div>
+    <div class="text-xs text-muted-foreground shrink-0">2024</div>
+  </div>
+  <p class="text-xs text-muted-foreground mt-1">Only a background-hover tint. Used for dense lists.</p>
+</a>
+
+<!-- Infographic card: warm khaki fill with the single yellow accent -->
+<div class="bg-[#E6E0CB] border border-button-foreground px-4 py-3 mt-4">
+  <div class="text-xs font-semibold">Infographic surface</div>
+  <div class="flex gap-1 mt-2 items-center">
+    <span class="size-[7px] bg-gray-900 rounded-sm"></span>
+    <span class="size-[7px] bg-gray-900 rounded-sm"></span>
+    <span class="size-[7px] bg-highlight rounded-sm outline outline-1 outline-button-foreground"></span>
+    <span class="text-[9px] text-muted-foreground ml-2">#FBD45B is the only accent, used inside diagrams only</span>
+  </div>
+</div>
