@@ -1,0 +1,46 @@
+Hey, I'm Séverin.
+I'm a repeat founder and product builder.
+Working on AI apps since the davinci models (before the ChatGPT era)
+
+I don't make models.
+I build software systems around them so they can make a real difference for people in the field.
+
+
+# Recent work: 
+## Creative Robots
+Experimenting at the intersection of Design x App development x AI-powered tools. 
+Initially working on a vibe-coding app (before ChatGPT launch). Then set out to build an approach more adapted to designers and developers in the field. 
+I call it rail-coding. 
+The main output of that is Layouts.dev, a pure software solution which outputs complete NextJS and Expo projects from a simple DSL: intuitive enough for designers to use in place of Figma, and text-based so AI agents can easily play with it. 
+
+## Interagentic
+A company focused on giving agents more qualitative tools, with better environment boundaries & less humans in the loop.
+People have been making LLMs use tools [since 2021](https://x.com/sharifshameem/status/1405462642936799247), yet the industry is very slow at providing the tools that will unleash the power of AI agents. 
+So much that I think that, 5 years later, model intelligence is no more the bottleneck. Tools and harnesses are.
+Built multiple things: 
+- Skills.dev: A skill system which enable agents to learn skill by sharing auto-optimizing, auto-repairing software snippets (this was before Claude's AgentSkills)
+- Keychains.dev: a credentials management system enabling agent to contact any API in the world in a fully audited way and without ever touching the user credentials
+- Interagentic.inc: a network of infrastructure services made for AI agents
+- Botparty.club: agents creating teams to build entire companies from the ground up: perfect test field to remove humans from the loop entirely.
+
+
+# Selected open source & Fun projects:
+- 🦠 **[protean](https://github.com/smarcombes/protean)** — Self-evolving agent. Writes new tools for itself, modifies its own code, migrates across machines over P2P. No artificial constraints except budget. · [details](projects/protean.md)
+- 🌊 **[ux-morph](https://github.com/smarcombes/ux-morph)** — Apps whose UI rewrites itself per-user. Chat → AI edits → hot-swap → real Git commit on your personal branch. · [details](projects/ux-morph.md)
+- 🦙 **[ollama-pool](https://github.com/smarcombes/ollama-pool)** — Distribute LLM inference across your machines. One globally-accessible and OpenAI-compatible endpoint for all your Ollama hardware. [details](projects/ollama-pool.md)
+- 🎨 **[tailwind-motion-native](https://github.com/smarcombes/tailwind-motion-native)** — Tailwind Motion animation primitives ported to React Native via Moti. · [details](projects/tailwind-motion-native.md)
+- 📡 **[streambin](https://github.com/smarcombes/streambin)** — E2E-encrypted streams, docs & files for agents and humans. Zero-knowledge relay. Drop-in Firebase-style primitives. · [details](projects/streambin.md)
+- 🗂️ **[github-filesystem](https://github.com/smarcombes/github-filesystem)** — GitHub repos as a Node.js `fs`. `writeFile` commits to Git. Agents treat remote repos like local disk. · [details](projects/github-filesystem.md)
+- ⚛️ **[react-electron](https://github.com/smarcombes/react-electron)** — Custom React 15 renderer for Electron. Managing multi-window apps from a single component tree. (2017) · [details](projects/react-electron.md)
+
+# In a previous life
+- Lima: a company redesigning the concept of file storage from the ground up, to make storage liquid, kill sync and keep your data private.
+        6th biggest Kickstarter Tech campaign in 2013. Solo-founder first, then co-founder & CEO for 8 years. 
+- Marketing & Product mentoring for ESCP Europe (business school in Paris)
+- Seafront: product & tech consultancy building startups products from 0-to-1. With clients as small as Adok to as big as Intuit.
+
+
+Let's talk!
+[![X](https://img.shields.io/badge/-smarcombes-000000?style=flat-square&logo=x&logoColor=white)](https://x.com/severin__)
+[![LinkedIn](https://img.shields.io/badge/-Séverin_Marcombes-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/marcombes)
+[![GitHub](https://img.shields.io/badge/-Follow-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/smarcombes)

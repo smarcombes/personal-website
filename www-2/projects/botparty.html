@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>BotParty — Séverin Marcombes</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A framework for companies run entirely by AI — agent employees managed by an agent CEO." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            background: '#F5F4EF', 'background-hover': '#EBEAE5', foreground: '#000000',
+            muted: '#E5E4DC', 'muted-foreground': '#686868', link: '#595959',
+            button: { DEFAULT: '#D9D8D3', hover: '#C4C3BB', foreground: '#403E37' },
+            divider: '#E5E4DC', 'card-border': '#D4D3CB', 'card-border-hover': '#C0BDAD', highlight: '#FBD45B',
+          },
+          fontFamily: {
+            serif: ['Newsreader', 'Georgia', 'ui-serif', 'serif'],
+            mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
+            sans: ['"Source Sans 3"', 'system-ui', 'sans-serif'],
+          },
+          boxShadow: {
+            card: '3px 3px 0px #000000', 'card-hover': '5px 5px 0px #000000',
+            'card-soft': '3px 3px 0px #C0BDAD', btn: '2px 2px 0px #403E37',
+          },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="bg-background text-foreground font-mono text-sm leading-5 antialiased">
+  <div class="p-4 md:p-12 overflow-hidden">
+    <div class="w-full max-w-2xl">
+      <header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+        <span><a href="/index.html" class="text-3xl font-serif">Séverin Marcombes</a></span>
+        <nav class="flex gap-6">
+          <a href="/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Home</a>
+          <a href="/thoughts/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70 hidden">Thoughts</a>
+          <a href="/projects/index.html" class="underline underline-offset-8 decoration-2 hover:decoration-foreground hover:text-foreground">Projects</a>
+        </nav>
+      </header>
+
+      <article>
+        <a href="/projects/index.html" class="text-xs text-muted-foreground underline underline-offset-2 decoration-foreground/20 hover:text-foreground">← Projects</a>
+        <h1 class="text-5xl md:text-6xl font-serif leading-tight text-balance mb-4 mt-8">🎉 BotParty</h1>
+        <p class="text-lg text-muted-foreground mb-2">A framework for companies run entirely by AI — agent employees managed by an agent CEO.</p>
+        <div class="font-sans text-lg leading-relaxed">
+<div class="flex flex-wrap gap-1.5 my-6"><span class="inline-flex items-center px-2 py-0.5 bg-muted border border-divider text-[11px] text-muted-foreground">TypeScript</span></div>
+<div class="flex flex-wrap gap-1.5 my-6"><span class="inline-flex items-center px-2 py-0.5 bg-muted border border-divider text-[11px] text-muted-foreground">active</span></div>
+<p class="mb-4">If agents can build software, call APIs, handle payments, and deploy infrastructure — what happens when you give a group of them a company to run?</p>
+<p class="mb-4">BotParty is a framework for creating AI-operated companies. You define roles (CEO, developer, designer, marketer), the CEO agent delegates tasks, the employees execute them via <a href="/projects/skills-dev.html" class="text-link underline hover:decoration-2">skills.dev</a> and <a href="/projects/interagentic.html" class="text-link underline hover:decoration-2">interagentic</a> infrastructure, and the company produces real output. No humans in the loop.</p>
+<h3 class="text-2xl font-normal mt-12 mb-4 font-sans">Core pieces</h3>
+<h4 class="font-semibold mt-8 mb-3">Federated Bot Identity</h4>
+<p class="mb-4">Every bot in the network has a verified identity. Identity is federated — bots prove who they are across services without a central authority. The foundation for trust between agents that don't share an operator.</p>
+<h4 class="font-semibold mt-8 mb-3">Bot-to-Bot Auth</h4>
+<p class="mb-4">When Agent A calls Agent B's API, the auth layer verifies identity, checks permissions, and manages sessions — without human intervention. Standard auth flows adapted for machine-to-machine, at agent speed.</p>
+<h4 class="font-semibold mt-8 mb-3">Payments</h4>
+<p class="mb-4">Bots pay each other. CEO agent commissions design work → payment flows automatically. Supports internal credits and external rails.</p>
+<h4 class="font-semibold mt-8 mb-3">Company Framework</h4>
+<p class="mb-4">A 5K LOC orchestration layer for defining company structure: role definitions, task delegation and tracking, inter-agent communication protocols, output aggregation and quality checks.</p>
+<h3 class="text-2xl font-normal mt-12 mb-4 font-sans">Built on</h3>
+<p class="mb-4"><a href="/projects/skills-dev.html" class="text-link underline hover:decoration-2">skills.dev</a> (agent capabilities) · <a href="/projects/keychains-dev.html" class="text-link underline hover:decoration-2">keychains.dev</a> (API credentials) · <a href="/projects/interagentic.html" class="text-link underline hover:decoration-2">interagentic</a> (deploy, domains, payments)</p>
+<h3 class="text-2xl font-normal mt-12 mb-4 font-sans">Status</h3>
+<p class="mb-4">Active as of May 2026 · 51K LOC core monorepo</p>
+        </div>
+      </article>
+      <div class="mt-16">
+        <a href="/projects/index.html" class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium px-3 py-1.5 bg-button text-button-foreground border border-button-foreground shadow-btn relative after:absolute after:inset-0.5 after:border after:border-dashed after:border-button-foreground after:pointer-events-none hover:bg-button-hover hover:text-black active:shadow-none active:translate-y-0.5 transition-colors font-mono">← All projects</a>
+      </div>
+
+      <footer>
+        <div class="w-full flex flex-col md:flex-row justify-between py-6 items-baseline gap-4 border-t border-black mt-16">
+          <p class="font-serif text-lg">Séverin Marcombes</p>
+          <div class="flex gap-4">
+            <a href="/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Home</a>
+          <a href="/thoughts/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70 hidden">Thoughts</a>
+          <a href="/projects/index.html" class="underline underline-offset-8 decoration-2 hover:decoration-foreground hover:text-foreground">Projects</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>
