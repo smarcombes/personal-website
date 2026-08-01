@@ -72,11 +72,11 @@ export default function Home() {
   return (
     <Shell active="home">
       <p className="mt-8 mb-6">
-        Hey, I&apos;m Séverin. I&apos;m a repeat founder and product builder,
-        working on AI apps since the davinci models — before the ChatGPT era.
+        I&apos;m a repeat founder and product builder.<br />
+        I&apos;m working on AI apps since before the ChatGPT era.
       </p>
 
-      <p className="font-serif text-2xl md:text-[28px] leading-snug my-10 text-balance">
+      <p className="font-serif text-[18px] font-[500] leading-snug my-10 text-balance">
         I don&apos;t make models. I build the software systems around them, so
         they can make a real difference for people in the field.
       </p>

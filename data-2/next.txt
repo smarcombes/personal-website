@@ -1,0 +1,11 @@
+Now, I'd like you to do the same for the FileUpload path. 
+Please add the following items in the registry: 
+- A file upload component with 
+	- tailwind-styled default implem 
+	- and another implem, untitledUI, derived from that: https://github.com/untitleduico/react/blob/main/components/application/file-upload/file-upload-base.tsx
+- the file-storage service, backed by a S3 ressource and a mongo collection
+- the collection service, with mongodb implem. MongoDB implem will need to implement watch via SSE, as we are on vercel. You'll implement a server + client libs for a strong SSE endpoint as reliable as Firebase's: disconnect detection with retries, reconnect before the server times out thanks to server sending a reconnect message (maxDuration = 800 on server file), computer sleep / tab resume detection,etc. Put these utils in ./data/shared/, and update the registry spec to include that any shared utility file can be placed in shared and how manifests can reference to it.
+- the mongodb and s3 resource files
+
+Same thing, I want to be able to test the installing of the fileupload component up to the provisionning of every ressource by using or mockup CLI. 
+Our mickup CLI can use botparty CLI commands or API to register resources. See ~/Projects/agentity for the services and CLI commands, or ~/Projects/botparty.club for the Botparty services auth and main CLI

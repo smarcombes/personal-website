@@ -35,7 +35,7 @@ export function Shell({
         <header className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
           <span>
             <Link href="/" className="text-3xl font-serif">
-              Séverin Marcombes
+              Hey, I&apos;m Séverin.
             </Link>
           </span>
           <nav className="flex gap-6">
