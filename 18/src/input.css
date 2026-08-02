@@ -1,0 +1,105 @@
+/* source(none) disables automatic detection so only these two pages are
+   scanned — otherwise Tailwind would crawl the sibling prototype folders. */
+@import "tailwindcss" source(none);
+
+/* The compiled output (../dist/styles.css) is committed, so deploying needs no
+   build. Only re-run `npm run build:css` after editing the HTML or these tokens. */
+@source "../dist/index.html";
+@source "../dist/projects/**/*.html";
+
+/*
+  Design tokens for the "scientific lab notebook" look ported from www-2:
+  warm paper background, monospace UI text, serif titles, hard 1-bit offset
+  shadows, almost no border radius, minimal color.
+*/
+@theme {
+  --color-background: #f5f4ef;
+  --color-background-hover: #ebeae5;
+  --color-foreground: #000000;
+  --color-muted: #e5e4dc;
+  --color-muted-foreground: #686868;
+  --color-link: #595959;
+  --color-button: #d9d8d3;
+  --color-button-hover: #c4c3bb;
+  --color-button-foreground: #403e37;
+  --color-divider: #e5e4dc;
+  --color-card-border: #d4d3cb;
+  --color-card-border-hover: #c0bdad;
+  --color-highlight: #fbd45b;
+
+  --font-serif: "Newsreader", Georgia, ui-serif, serif;
+  --font-sans: "Source Sans 3", system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+
+  --shadow-card: 3px 3px 0px #000000;
+  --shadow-card-hover: 5px 5px 0px #000000;
+  --shadow-card-soft: 3px 3px 0px #c0bdad;
+  --shadow-btn: 2px 2px 0px #403e37;
+}
+
+/*
+  Self-hosted fonts (subsetted to latin, pulled from Google Fonts once and
+  committed to dist/fonts/). Each file is the true variable-font instance, so
+  one file covers both weights used on the site.
+
+  font-display: optional avoids the flash-of-fallback-then-swap ("flicker")
+  on load: the browser only uses the webfont if it's already cached or
+  arrives within its very short first-paint budget, otherwise it commits to
+  the fallback for that page view instead of swapping mid-render. Combined
+  with self-hosting (no cross-origin round trip to fonts.gstatic.com) and the
+  <link rel="preload"> hints in each page's <head>, the real font is ready in
+  time on effectively every load after the first.
+*/
+@font-face {
+  font-family: "Newsreader";
+  font-style: normal;
+  font-weight: 400 500;
+  font-display: optional;
+  src: url("/fonts/newsreader-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Newsreader";
+  font-style: italic;
+  font-weight: 400 500;
+  font-display: optional;
+  src: url("/fonts/newsreader-italic.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Source Sans 3";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: optional;
+  src: url("/fonts/source-sans-3-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Source Sans 3";
+  font-style: italic;
+  font-weight: 400 600;
+  font-display: optional;
+  src: url("/fonts/source-sans-3-italic.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Keep long code samples and diagrams from blowing out the layout. */
+pre {
+  tab-size: 2;
+}
+
+/* Subtle, accessible focus ring that fits the 1-bit aesthetic. */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-foreground);
+  outline-offset: 2px;
+}

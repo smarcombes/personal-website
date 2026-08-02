@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lima Technology — Séverin Marcombes</title>
+    <meta
+      name="description"
+      content="Notes on building a personal cloud — 2011–2019."
+    />
+    <link rel="canonical" href="https://severin-marcombes.fr/projects/lima/" />
+
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#f5f4ef" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Lima Technology — Séverin Marcombes" />
+    <meta
+      property="og:description"
+      content="Notes on building a personal cloud — 2011–2019."
+    />
+    <meta
+      property="og:url"
+      content="https://severin-marcombes.fr/projects/lima/"
+    />
+    <meta
+      property="og:image"
+      content="https://severin-marcombes.fr/projects/lima/media/device-branded.jpg"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link
+      rel="preload"
+      href="/fonts/newsreader-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/source-sans-3-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+
+  <body
+    class="bg-background text-foreground font-mono text-sm leading-5 antialiased"
+  >
+    <div class="p-4 md:p-12 overflow-hidden">
+      <div class="w-full max-w-2xl">
+        <header
+          class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4"
+        >
+          <span>
+            <a href="/" class="text-3xl font-serif">Hey, I'm Séverin.</a>
+          </span>
+        </header>
+
+        <article>
+          <a
+            href="/"
+            class="inline-flex items-center gap-1 text-xs text-muted-foreground underline underline-offset-2 decoration-foreground/20 hover:text-foreground"
+          >
+            ← Home
+          </a>
+
+          <header class="mt-10">
+            <p
+              class="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground mb-4"
+            >
+              Recollection · Paris · 2011–2019
+            </p>
+            <h1
+              class="font-serif text-[2.75rem] md:text-[3.75rem] leading-[1.05] tracking-[-0.02em] text-balance"
+            >
+              Lima Technology
+            </h1>
+            <p
+              class="font-serif text-[1.35rem] md:text-[1.55rem] leading-[1.45] text-pretty mt-6 mb-10"
+            >
+              Notes on building a personal cloud: liquid storage, no sync,
+              private by design — and what it cost to try.
+            </p>
+            <p
+              class="font-mono text-xs text-muted-foreground border-y border-divider py-3 mb-12 tracking-wide"
+            >
+              By Séverin Marcombes · Founder &amp; CEO, Lima Technology
+            </p>
+          </header>
+
+          <div class="font-sans">
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75] first-letter:float-left first-letter:font-serif first-letter:text-[4.25rem] first-letter:leading-[0.8] first-letter:pr-3 first-letter:pt-1 first-letter:font-medium"
+            >
+              Between 2011 and 2019 I founded and ran Lima — a company that
+              tried to redesign personal file storage from first principles. We
+              built a peer-to-peer filesystem, a zero-setup NAS dongle, and
+              clients for every major platform. The company is gone. What
+              follows is a recollection of the problem we were chasing, the bets
+              we made, and how the road actually went.
+            </p>
+
+            <div class="my-14 border border-divider bg-black overflow-hidden">
+              <div class="relative w-full aspect-video">
+                <iframe
+                  src="https://player.vimeo.com/video/127921141?title=0&amp;byline=0&amp;portrait=0"
+                  title="Discover Lima"
+                  class="absolute inset-0 h-full w-full"
+                  allow="autoplay; fullscreen; picture-in-picture"
+                  allowfullscreen
+                  loading="lazy"
+                ></iframe>
+              </div>
+              <p
+                class="px-3 py-2.5 text-[11px] text-muted-foreground font-mono bg-background border-t border-divider"
+              >
+                The product film —
+                <a
+                  href="https://vimeo.com/127921141"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="text-link underline hover:decoration-2"
+                  >Discover Lima</a
+                >, 2015.
+              </p>
+            </div>
+
+            <h2
+              class="font-serif text-[1.75rem] md:text-[2rem] leading-tight mt-20 mb-6 text-balance"
+            >
+              The problem, as I saw it then
+            </h2>
+            <p class="mb-7 text-[1.125rem] leading-[1.75]">
+              In 2011, personal storage still mirrored the hardware underneath
+              it. Every device was a shoebox: your Mac had its drive, your PC
+              had another, your phone a third. To have the same things in two
+              places, you copied files by hand and hoped the organization stayed
+              identical. Buy another drive, a cloud bucket, a Dropbox plan —
+              each one was just another shoebox.
+            </p>
+            <p class="mb-7 text-[1.125rem] leading-[1.75]">
+              Sync products papered over a corner of that mess. They let you
+              keep a folder the size of a USB key roughly in sync — not your
+              whole life. And they asked you to rent your files to someone
+              else's servers, at a moment when privacy anxiety around cloud
+              storage was still very real.
+            </p>
+
+            <blockquote
+              class="my-14 md:my-16 border-y border-foreground py-8 md:py-10"
+            >
+              <p
+                class="font-serif text-[1.65rem] md:text-[2.15rem] leading-[1.25] text-balance text-center italic"
+              >
+                The files were mine. I didn't want to rent them.
+              </p>
+            </blockquote>
+
+            <p class="mb-7 text-[1.125rem] leading-[1.75]">
+              The pains were mundane and everywhere: storage was a mess; sync
+              was a pain; backup was never something you wanted to think about.
+              Cloud sync covered a small folder — not the shape of a real
+              library. I wanted my files across my devices without handing them
+              over.
+            </p>
+            <p class="mb-7 text-[1.125rem] leading-[1.75]">
+              Meanwhile the ingredients for something better already existed:
+              decentralized filesystems, fast home internet, ubiquitous Wi-Fi.
+              The constraint wasn't physics. It was that software still
+              pretended each hard drive was a separate universe.
+            </p>
+
+            <figure class="my-12 -mx-0">
+              <div class="border border-divider bg-muted overflow-hidden">
+                <img
+                  src="/projects/lima/media/device-branded.jpg"
+                  alt="The original Lima dongle, held in hand"
+                  width="1000"
+                  height="667"
+                  class="w-full h-auto object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <figcaption
+                class="mt-3 font-mono text-[11px] leading-relaxed text-muted-foreground"
+              >
+                The original Lima — imagined in Paris, assembled in China. Plug
+                it into your router, attach a drive: that was the whole setup.
+              </figcaption>
+            </figure>
+
+            <h2
+              class="font-serif text-[1.75rem] md:text-[2rem] leading-tight mt-20 mb-6 text-balance"
+            >
+              What we believed the answer looked like
+            </h2>
+            <p class="mb-7 text-[1.125rem] leading-[1.75]">
+              We were opinionated about the end state. Three principles guided
+              everything. <em>One storage space:</em> N devices should show the
+              same files, regardless of OS or capacity — a file on my Mac
+              desktop should be on my Windows desktop too.
+              <em>Liquid capacity:</em> buying a hard drive should expand the
+              space available to you, not hand you another silo to sync into.
+              <em>Location as a choice:</em> prefer cloud? Plug in a bucket.
+              Prefer privacy at home? Plug in a drive. Same system either way.
+            </p>
+
+            <blockquote
+              class="my-14 md:my-16 border-y border-foreground py-8 md:py-10"
+            >
+              <p
+                class="font-serif text-[1.65rem] md:text-[2.15rem] leading-[1.25] text-balance text-center italic"
+              >
+                Buying a hard drive should expand the space available to you —
+                not hand you another silo.
+              </p>
+            </blockquote>
+
+            <p class="mb-7 text-[1.125rem] leading-[1.75]">
+              The architectural move was to split presentation from storage.
+              Every device showed the same tree — the full set of files and
+              folders — whether or not the bytes lived locally. "Transferring" a
+              file between devices became mostly metadata: a name, a size, a
+              pointer to where the content could be fetched. That made the UI
+              feel instant, even when the payload hadn't moved yet.
+            </p>
+            <p class="mb-7 text-[1.125rem] leading-[1.75]">
+              The source of truth was a backend pool — one or more NAS devices
+              and/or cloud buckets — holding every file, replicated so we could
+              survive failures. Each device's local disk was only a cache: it
+              kept what you were likely to open next. Cached files behaved like
+              local ones; the rest streamed in. Devices cooperated — a fully
+              decentralized mesh — when you reached for something that wasn't
+              already nearby.
+            </p>
+            <p class="mb-7 text-[1.125rem] leading-[1.75]">
+              If that sounds a little like what iCloud Drive does today: yes. We
+              were shipping a cross-platform version of that idea years earlier,
+              without putting the canonical copy on our servers.
+            </p>
+
+            <div class="my-12 grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <figure>
+                <div class="border border-divider bg-muted overflow-hidden">
+                  <img
+                    src="/projects/lima/media/device-logo.jpg"
+                    alt="Lima device showing the infinity logo"
+                    width="1000"
+                    height="691"
+                    class="w-full h-auto object-cover aspect-square"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <figcaption
+                  class="mt-3 font-mono text-[11px] leading-relaxed text-muted-foreground"
+                >
+                  The infinity mark — files that felt local, wherever they
+                  lived.
+                </figcaption>
+              </figure>
+              <figure>
+                <div class="border border-divider bg-muted overflow-hidden">
+                  <img
+                    src="/projects/lima/media/lifestyle-device.jpg"
+                    alt="Hand holding a Lima Ultra with travel photos"
+                    width="640"
+                    height="639"
+                    class="w-full h-auto object-cover aspect-square"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <figcaption
+                  class="mt-3 font-mono text-[11px] leading-relaxed text-muted-foreground"
+                >
+                  Lima Ultra marketing — your library, not someone else's cloud.
+                </figcaption>
+              </figure>
+            </div>
+
+            <h2
+              class="font-serif text-[1.75rem] md:text-[2rem] leading-tight mt-20 mb-6 text-balance"
+            >
+              What we had to build
+            </h2>
+            <p class="mb-7 text-[1.125rem] leading-[1.75]">
+              Making that vision real meant inventing more of the stack than I'd
+              like to admit. Looking back, these were the layers.
+            </p>
+            <p class="mb-7 text-[1.125rem] leading-[1.75]">
+              <strong class="font-semibold"
+                >A decentralized P2P virtual filesystem</strong
+              >
+              — written in C, running on Android, iOS, Linux, macOS, and
+              Windows. Same eventually-consistent tree on every device;
+              torrent-like multi-source transfers; rules that kept every file in
+              the backend pool and on at least two nodes; end-to-end encryption
+              throughout.
+            </p>
+            <p class="mb-7 text-[1.125rem] leading-[1.75]">
+              <strong class="font-semibold">A mobile filesystem UI</strong> —
+              because phones couldn't just grow a Finder.
+              <strong class="font-semibold"
+                >Deep Finder and Explorer integration</strong
+              >
+              — files you could see that weren't physically on disk; progress on
+              the icon when you opened one; pinned files that stayed available
+              offline; grayed-out entries when you were offline and the bytes
+              weren't cached. Apple's public APIs for that kind of thing came
+              later.
+            </p>
+            <p class="mb-7 text-[1.125rem] leading-[1.75]">
+              And <strong class="font-semibold">a zero-setup NAS dongle</strong>
+              — designed, built, and productized. Plug it into the router, plug
+              a drive into it — suddenly you had more liquid storage. That
+              little box was the product people could hold; the filesystem was
+              the product that made it make sense.
+            </p>
+
+            <figure class="my-12 -mx-0">
+              <div class="border border-divider bg-muted overflow-hidden">
+                <img
+                  src="/projects/lima/media/app-phone.jpg"
+                  alt="Lima mobile app on an iPhone"
+                  width="1600"
+                  height="1067"
+                  class="w-full h-auto object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <figcaption
+                class="mt-3 font-mono text-[11px] leading-relaxed text-muted-foreground"
+              >
+                The mobile client — holographic files, progress on open, the
+                same tree as desktop.
+              </figcaption>
+            </figure>
+
+            <h2
+              class="font-serif text-[1.75rem] md:text-[2rem] leading-tight mt-20 mb-6 text-balance"
+            >
+              How the road went
+            </h2>
+            <p class="mb-7 text-[1.125rem] leading-[1.75]">
+              We launched on Kickstarter in 2013 — at the time, the 6th biggest
+              campaign ever in the tech category, about $1.2M raised. We raised
+              Seed and Series A. We shipped the device late: backers waited
+              roughly a year and a half while the software finally came
+              together. We shipped a second generation with roughly 40× more
+              powerful hardware and much more reliable software. Sales were
+              finally starting to look great — until funding problems forced us
+              to kill all distribution channels.
+            </p>
+            <p class="mb-7 text-[1.125rem] leading-[1.75]">
+              I had always thought the biggest risk on the project was
+              technical. What bit me was underpreparedness on fundraising and
+              investor relations. We made a pre-acquisition deal with another
+              startup; they didn't honor their end. We ran out of cash. By 2019
+              the project was closed, and the company was acquired by one of our
+              clients.
+            </p>
+
+            <blockquote
+              class="my-14 md:my-16 border-y border-foreground py-8 md:py-10"
+            >
+              <p
+                class="font-serif text-[1.65rem] md:text-[2.15rem] leading-[1.25] text-balance text-center italic"
+              >
+                We could have happily made much more margin just selling
+                privacy.
+              </p>
+            </blockquote>
+
+            <p class="mb-7 text-[1.125rem] leading-[1.75]">
+              I still think the design problem was real. In some aspects, it
+              still is. Apple and Microsoft have since opened APIs that make
+              similar solutions easier to build; iCloud has shifted toward
+              syncing the user's whole library. But sync, from my point of view,
+              is still a pain in the ass.
+            </p>
+            <p class="mb-7 text-[1.125rem] leading-[1.75]">
+              We were early, and we paid for that with complexity. My
+              inexperience at the time also pushed us to aim at the stars, when
+              I think we could have happily made much more margin just selling
+              privacy. This isn't a complete overview — just the record of what
+              we were trying to do.
+            </p>
+
+            <div class="my-12 grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <figure>
+                <div class="border border-divider bg-muted overflow-hidden">
+                  <img
+                    src="/projects/lima/media/multi-device.jpg"
+                    alt="Phone, tablet and laptop showing the same library"
+                    width="640"
+                    height="640"
+                    class="w-full h-auto object-cover aspect-square"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <figcaption
+                  class="mt-3 font-mono text-[11px] leading-relaxed text-muted-foreground"
+                >
+                  One library, every screen — the presentation layer made real.
+                </figcaption>
+              </figure>
+              <figure>
+                <div class="border border-divider bg-muted overflow-hidden">
+                  <img
+                    src="/projects/lima/media/privacy-sign.jpg"
+                    alt="Lima brand message about privacy"
+                    width="640"
+                    height="640"
+                    class="w-full h-auto object-cover aspect-square"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <figcaption
+                  class="mt-3 font-mono text-[11px] leading-relaxed text-muted-foreground"
+                >
+                  The pitch that aged best: keep your files safe at home.
+                </figcaption>
+              </figure>
+            </div>
+
+            <footer class="mt-16 pt-8 border-t border-foreground">
+              <p
+                class="font-mono text-xs text-muted-foreground leading-relaxed"
+              >
+                Paris · 2011–2019
+                <br />
+                <a
+                  href="https://web.archive.org/web/20180904102425/https://meetlima.com/index.php?lang=en"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="text-link underline hover:decoration-2"
+                  >meetlima.com (archive)</a
+                >
+                ·
+                <a
+                  href="https://www.instagram.com/meetlima/"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="text-link underline hover:decoration-2"
+                  >@meetlima</a
+                >
+                ·
+                <a
+                  href="https://vimeo.com/127921141"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="text-link underline hover:decoration-2"
+                  >Discover Lima</a
+                >
+              </p>
+            </footer>
+          </div>
+        </article>
+
+        <div class="mt-16">
+          <a
+            href="/"
+            class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium px-3 py-1.5 bg-button text-button-foreground border border-button-foreground shadow-btn relative after:absolute after:inset-0.5 after:border after:border-dashed after:border-button-foreground after:pointer-events-none hover:bg-button-hover hover:text-black active:shadow-none active:translate-y-0.5 transition-colors font-mono"
+          >
+            ← Home
+          </a>
+        </div>
+
+        <footer>
+          <div
+            class="w-full flex flex-col md:flex-row justify-between py-6 items-baseline gap-4 border-t border-black mt-16"
+          >
+            <p class="font-serif text-lg">Séverin Marcombes</p>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </body>
+</html>
