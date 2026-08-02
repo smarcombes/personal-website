@@ -76,8 +76,7 @@ Features: showing the same eventually synchronized file tree on all devices, han
 - Shipped the device, with pain: shipped the backers with 1.5years late. Software tool time coming together.
 - Shipped second version, 40x more powerful hardware, more reliable software.
 - Funding problems
-- Pre-acquisition by Shadow
-- Company crash
+- Acquisition (not on good terms)
 
 # Learnings: 
 - Tech was too complex to start off. Figured most of our users just wanted privacy.

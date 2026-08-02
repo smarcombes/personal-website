@@ -38,7 +38,7 @@ We split **file presentation** from **file storage**.
 - Each device's local drive is just a **cache**: it keeps the files the user is most likely to reach for, up to its own capacity. Cached files open as easily as local files; everything else streams from the other sources.
 - Storage is fully decentralized, so every device cooperates when the user tries to access a file.
 
-# The tech onion
+# The tech
 
 We had to invent and re-imagine entire layers of the stack for the vision to happen.
 
@@ -47,33 +47,10 @@ We had to invent and re-imagine entire layers of the stack for the vision to hap
 3. **Finder & Explorer integration.** We "hacked" the macOS Finder and Windows Explorer to adapt them to our new way of approaching files: the ability to see a file that isn't physically on your device, progress feedback on the icon when you open one, a distinction between *pinned* files (kept on-device when offline) and the rest, and graying out non-accessible files when offline.
 4. **A zero-setup NAS dongle.** Designed, built and productized. Plug it into your router, plug a drive into it. Boom — you have more storage.
 
-## The hard parts
-- A correct, cross-OS, end-to-end-encrypted distributed filesystem written in C, with kernel/FUSE integration on five platforms.
-- Deep OS integration in Finder/Explorer — before Apple made those APIs public.
-- Shipping reliable consumer hardware on a startup budget.
-
-## The good parts
-- "Hologram files": zero local storage until opened — the thing iCloud does today, shipped years earlier and cross-OS.
-- Liquid capacity: add a drive or a bucket, get more space, never a new silo.
-- Privacy by construction — zero user data on our servers.
-
 # The road
 - Launched on Kickstarter — the 6th biggest campaign ever in the tech category, $1.2M raised.
 - Raised Seed / Series A from VCs.
 - Shipped the device, with pain: backers received it ~1.5 years late, as the software finally came together.
 - Shipped a second version — ~40× more powerful hardware, more reliable software.
 - Ran into funding problems.
-- Pre-acquisition by Shadow.
-- Company crash.
-
-# Learnings
-- The tech was too complex to start from. Most of our users, it turned out, just wanted privacy.
-- Learned the hard way about operational death by tech-freeze.
-- The fundraising strategy is what killed us. The product was painful to get out but then worked, and profitability was nearly there. We died from bad board decisions, not from the product.
-
-# Recognition
-- Kickstarter: 6th biggest tech campaign of its time ($1.2M).
-- CES Innovation Award ×4.
-- Futur en Seine — Gold Medal.
-- Huawei Pulse Contest — Winner.
-- MIT Technology Review — Innovator Under 35.
+- Acquisition (not on good terms).
