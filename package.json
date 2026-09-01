@@ -1,0 +1,30 @@
+{
+  "name": "severin-marcombes-website",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Personal website of Séverin Marcombes. Hand-written static HTML in dist/, Tailwind v4 design tokens in src/, build helpers in build/.",
+  "homepage": "https://severin-marcombes.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smarcombes/personal-website.git"
+  },
+  "author": "Séverin Marcombes",
+  "license": "UNLICENSED",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "node build/build.mjs",
+    "build:css": "tailwindcss -i ./src/input.css -o ./dist/styles.css --minify",
+    "watch:css": "tailwindcss -i ./src/input.css -o ./dist/styles.css --watch",
+    "check": "node build/check-dist.mjs",
+    "serve": "python3 -m http.server 4318 --directory dist",
+    "dev": "npm run watch:css",
+    "deploy": "vercel deploy --prod dist"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.18",
+    "tailwindcss": "^4.1.18"
+  }
+}
