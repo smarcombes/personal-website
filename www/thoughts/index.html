@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Thoughts — Séverin Marcombes</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Essays on AI, agents, and the living software stack — by Séverin Marcombes." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            background: '#F5F4EF', 'background-hover': '#EBEAE5', foreground: '#000000',
+            muted: '#E5E4DC', 'muted-foreground': '#686868', link: '#595959',
+            button: { DEFAULT: '#D9D8D3', hover: '#C4C3BB', foreground: '#403E37' },
+            divider: '#E5E4DC', 'card-border': '#D4D3CB', 'card-border-hover': '#C0BDAD', highlight: '#FBD45B',
+          },
+          fontFamily: {
+            serif: ['Newsreader', 'Georgia', 'ui-serif', 'serif'],
+            mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
+            sans: ['"Source Sans 3"', 'system-ui', 'sans-serif'],
+          },
+          boxShadow: {
+            card: '3px 3px 0px #000000', 'card-hover': '5px 5px 0px #000000',
+            'card-soft': '3px 3px 0px #C0BDAD', btn: '2px 2px 0px #403E37',
+          },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="bg-background text-foreground font-mono text-sm leading-5 antialiased">
+  <div class="p-4 md:p-12 overflow-hidden">
+    <div class="w-full max-w-2xl">
+      <header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+        <span><a href="/index.html" class="text-3xl font-serif">Séverin Marcombes</a></span>
+        <nav class="flex gap-6">
+          <a href="/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Home</a>
+          <a href="/thoughts/index.html" class="underline underline-offset-8 decoration-2 hover:decoration-foreground hover:text-foreground">Thoughts</a>
+          <a href="/projects/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Projects</a>
+        </nav>
+      </header>
+
+      <h1 class="text-5xl md:text-6xl font-serif leading-tight mt-12 mb-6">Thoughts</h1>
+      <p class="mt-8 mb-8 text-muted-foreground">Theses on AI, agents, and where software goes next. Written from the inside — every one of these is backed by something I shipped.</p>
+      <div class="relative flex flex-col space-y-4 border-l border-gray-300 py-4 ml-4
+                  before:h-6 before:w-px before:bg-gradient-to-t before:from-transparent before:to-background before:absolute before:-left-px before:top-0
+                  after:h-6 after:w-px after:bg-gradient-to-b after:from-transparent after:to-background after:absolute after:-left-px after:bottom-0">
+        <a href="/thoughts/dont-build-a-machine-build-a-living-organism.html" class="relative flex flex-col gap-2 px-3 py-2 ml-6 group cursor-pointer bg-white border border-black shadow-card hover:shadow-card-hover transition-all">
+          <div class="absolute size-[7px] bg-gray-900 rounded-sm -left-[37px] top-[15px] outline outline-2 outline-background"></div>
+          <div class="flex items-baseline gap-1.5 justify-between">
+            <div class="text-sm font-semibold leading-5">Developers: Don't Build a Machine. Build a Living Organism</div>
+            <div class="text-xs text-muted-foreground shrink-0 ml-1 whitespace-nowrap">July 16, 2026</div>
+          </div>
+          <p class="text-xs text-muted-foreground">The mechanical worldview built the last seventy years of software. It's the wrong mental model for the next seventy.</p>
+        </a>
+        <a href="/thoughts/welcome-to-the-unstructured-self-documented-api.html" class="relative flex flex-col gap-2 px-3 py-2 ml-6 group cursor-pointer bg-white/60 border border-card-border hover:border-card-border-hover hover:shadow-card-soft hover:bg-white transition-all">
+          <div class="absolute size-[7px] bg-gray-900 rounded-sm -left-[37px] top-[15px] outline outline-2 outline-background"></div>
+          <div class="flex items-baseline gap-1.5 justify-between">
+            <div class="text-xs font-semibold leading-5">Welcome to the Unstructured, Self-Documented API</div>
+            <div class="text-xs text-muted-foreground shrink-0 ml-1 whitespace-nowrap">July 2, 2026</div>
+          </div>
+          <p class="text-xs text-muted-foreground">API contracts are rigid because the consumer used to be dumb. When the caller can read, negotiate, and adapt, the interface itself can finally loosen up.</p>
+        </a>
+        <a href="/thoughts/we-are-missing-a-feedback-platform-for-normal-users.html" class="relative flex flex-col gap-2 px-3 py-2 ml-6 group cursor-pointer bg-white/60 border border-card-border hover:border-card-border-hover hover:shadow-card-soft hover:bg-white transition-all">
+          <div class="absolute size-[7px] bg-gray-900 rounded-sm -left-[37px] top-[15px] outline outline-2 outline-background"></div>
+          <div class="flex items-baseline gap-1.5 justify-between">
+            <div class="text-xs font-semibold leading-5">We're Missing a Feedback Loop Platform for Normal Users</div>
+            <div class="text-xs text-muted-foreground shrink-0 ml-1 whitespace-nowrap">June 25, 2026</div>
+          </div>
+          <p class="text-xs text-muted-foreground">AI researchers get RLHF pipelines and eval suites. The people who actually use AI all day get a thumbs-up icon. This asymmetry is a product gap, not a technical one.</p>
+        </a>
+        <a href="/thoughts/bye-user-signup-hello-self-registration.html" class="relative flex flex-col gap-2 px-3 py-2 ml-6 group cursor-pointer bg-white/60 border border-card-border hover:border-card-border-hover hover:shadow-card-soft hover:bg-white transition-all">
+          <div class="absolute size-[7px] bg-gray-900 rounded-sm -left-[37px] top-[15px] outline outline-2 outline-background"></div>
+          <div class="flex items-baseline gap-1.5 justify-between">
+            <div class="text-xs font-semibold leading-5">Bye, User Signup. Hello Self-Registration</div>
+            <div class="text-xs text-muted-foreground shrink-0 ml-1 whitespace-nowrap">June 8, 2026</div>
+          </div>
+          <p class="text-xs text-muted-foreground">The signup form assumes your user has an email inbox, a phone, and fingers. Your next million users will have none of these.</p>
+        </a>
+        <a href="/thoughts/infra-is-not-ready-for-the-ai-era.html" class="relative flex flex-col gap-1 px-3 py-2 ml-6 group cursor-pointer hover:bg-background-hover">
+          <div class="absolute size-[7px] bg-gray-900 rounded-sm -left-[37px] top-[15px] outline outline-2 outline-background"></div>
+          <div class="flex items-baseline gap-1.5 justify-between">
+            <div class="text-xs font-semibold leading-5">Infra Is Not Ready for the AI Era</div>
+            <div class="text-xs text-muted-foreground shrink-0 ml-1 whitespace-nowrap">May 14, 2026</div>
+          </div>
+          <p class="text-xs text-muted-foreground">Every layer of cloud infrastructure assumes a human with a browser, a credit card, and infinite patience for dashboards. Agents have none of these. Why I'm building Interagentic.</p>
+        </a>
+        <a href="/thoughts/building-software-that-morphs-itself.html" class="relative flex flex-col gap-1 px-3 py-2 ml-6 group cursor-pointer hover:bg-background-hover">
+          <div class="absolute size-[7px] bg-gray-900 rounded-sm -left-[37px] top-[15px] outline outline-2 outline-background"></div>
+          <div class="flex items-baseline gap-1.5 justify-between">
+            <div class="text-xs font-semibold leading-5">Building Software That Morphs Itself</div>
+            <div class="text-xs text-muted-foreground shrink-0 ml-1 whitespace-nowrap">April 20, 2026</div>
+          </div>
+          <p class="text-xs text-muted-foreground">Every user gets the same pixels because changing software used to require an engineer. It doesn't anymore. Notes from shipping UI that rewrites itself per user.</p>
+        </a>
+        <a href="/thoughts/security-in-the-ai-era-antivirus-vs-boundaries.html" class="relative flex flex-col gap-1 px-3 py-2 ml-6 group cursor-pointer hover:bg-background-hover">
+          <div class="absolute size-[7px] bg-gray-900 rounded-sm -left-[37px] top-[15px] outline outline-2 outline-background"></div>
+          <div class="flex items-baseline gap-1.5 justify-between">
+            <div class="text-xs font-semibold leading-5">Security in the AI Era: Antivirus vs. Boundaries</div>
+            <div class="text-xs text-muted-foreground shrink-0 ml-1 whitespace-nowrap">April 2, 2026</div>
+          </div>
+          <p class="text-xs text-muted-foreground">One school inspects behavior and hunts for bad patterns. The other makes bad outcomes structurally impossible. We already ran this experiment once — and pattern-matching lost.</p>
+        </a>
+        <a href="/thoughts/building-context-as-a-background-live-loop.html" class="relative flex flex-col gap-1 px-3 py-2 ml-6 group cursor-pointer hover:bg-background-hover">
+          <div class="absolute size-[7px] bg-gray-900 rounded-sm -left-[37px] top-[15px] outline outline-2 outline-background"></div>
+          <div class="flex items-baseline gap-1.5 justify-between">
+            <div class="text-xs font-semibold leading-5">Building Context as a Background Live Loop</div>
+            <div class="text-xs text-muted-foreground shrink-0 ml-1 whitespace-nowrap">March 5, 2026</div>
+          </div>
+          <p class="text-xs text-muted-foreground">Agents assemble their understanding of you from scratch, per request, under time pressure. Real assistants never work this way — context should be built continuously, in the background.</p>
+        </a>
+        <a href="/thoughts/permissions-as-a-live-system.html" class="relative flex flex-col gap-1 px-3 py-2 ml-6 group cursor-pointer hover:bg-background-hover">
+          <div class="absolute size-[7px] bg-gray-900 rounded-sm -left-[37px] top-[15px] outline outline-2 outline-background"></div>
+          <div class="flex items-baseline gap-1.5 justify-between">
+            <div class="text-xs font-semibold leading-5">Permissions Are the Main Brake on Useful AI. Treat Them as a Live System</div>
+            <div class="text-xs text-muted-foreground shrink-0 ml-1 whitespace-nowrap">February 10, 2026</div>
+          </div>
+          <p class="text-xs text-muted-foreground">The capability ceiling of today's agents isn't intelligence — it's authorization. Static grants can't govern dynamic workers.</p>
+        </a>
+        <a href="/thoughts/meet-the-living-software-stack.html" class="relative flex flex-col gap-1 px-3 py-2 ml-6 group cursor-pointer hover:bg-background-hover">
+          <div class="absolute size-[7px] bg-gray-900 rounded-sm -left-[37px] top-[15px] outline outline-2 outline-background"></div>
+          <div class="flex items-baseline gap-1.5 justify-between">
+            <div class="text-xs font-semibold leading-5">Meet the Living Software Stack</div>
+            <div class="text-xs text-muted-foreground shrink-0 ml-1 whitespace-nowrap">January 15, 2026</div>
+          </div>
+          <p class="text-xs text-muted-foreground">Software has always been dead matter arranged by hand: written once, deployed, decayed. What happens when every layer of the stack can rewrite itself?</p>
+        </a>
+        <a href="/thoughts/tool-vibe-coding-as-a-learning-mechanism.html" class="relative flex flex-col gap-1 px-3 py-2 ml-6 group cursor-pointer hover:bg-background-hover">
+          <div class="absolute size-[7px] bg-gray-900 rounded-sm -left-[37px] top-[15px] outline outline-2 outline-background"></div>
+          <div class="flex items-baseline gap-1.5 justify-between">
+            <div class="text-xs font-semibold leading-5">Tool Vibe-Coding as a Learning Mechanism</div>
+            <div class="text-xs text-muted-foreground shrink-0 ml-1 whitespace-nowrap">December 2, 2025</div>
+          </div>
+          <p class="text-xs text-muted-foreground">Vibe-coding apps for humans churned. Vibe-coding tools for agents is a different animal entirely: the output has a spec, a test, and a user that never gets bored.</p>
+        </a>
+        <a href="/thoughts/mcps-are-dog-shit.html" class="relative flex flex-col gap-1 px-3 py-2 ml-6 group cursor-pointer hover:bg-background-hover">
+          <div class="absolute size-[7px] bg-gray-900 rounded-sm -left-[37px] top-[15px] outline outline-2 outline-background"></div>
+          <div class="flex items-baseline gap-1.5 justify-between">
+            <div class="text-xs font-semibold leading-5">MCPs Are Dog Shit. We Need a Better Way to Teach AI How to Do Things</div>
+            <div class="text-xs text-muted-foreground shrink-0 ml-1 whitespace-nowrap">November 5, 2025</div>
+          </div>
+          <p class="text-xs text-muted-foreground">The Model Context Protocol standardized the wrong thing. Tool lists are not knowledge, and context-window stuffing is not teaching.</p>
+        </a>
+        <a href="/thoughts/build-software-factories-not-software.html" class="relative flex flex-col gap-1 px-3 py-2 ml-6 group cursor-pointer hover:bg-background-hover">
+          <div class="absolute size-[7px] bg-gray-900 rounded-sm -left-[37px] top-[15px] outline outline-2 outline-background"></div>
+          <div class="flex items-baseline gap-1.5 justify-between">
+            <div class="text-xs font-semibold leading-5">Don't Use AI to Build Software. Use It to Build Software Factories</div>
+            <div class="text-xs text-muted-foreground shrink-0 ml-1 whitespace-nowrap">October 9, 2025</div>
+          </div>
+          <p class="text-xs text-muted-foreground">AI at build time beats AI at run time. The most leveraged thing an LLM can produce isn't an app — it's the machine that produces apps.</p>
+        </a>
+        <a href="/thoughts/software-as-a-means-for-ai-to-program-its-brain.html" class="relative flex flex-col gap-1 px-3 py-2 ml-6 group cursor-pointer hover:bg-background-hover">
+          <div class="absolute size-[7px] bg-gray-900 rounded-sm -left-[37px] top-[15px] outline outline-2 outline-background"></div>
+          <div class="flex items-baseline gap-1.5 justify-between">
+            <div class="text-xs font-semibold leading-5">Software as a Means for AI to Program Its Own Brain</div>
+            <div class="text-xs text-muted-foreground shrink-0 ml-1 whitespace-nowrap">September 11, 2025</div>
+          </div>
+          <p class="text-xs text-muted-foreground">Weights are read-only at runtime. Code isn't. The most practical form of self-improvement is an agent writing the software it will think with tomorrow.</p>
+        </a>
+        <a href="/thoughts/ai-needs-to-learn-at-runtime.html" class="relative flex flex-col gap-1 px-3 py-2 ml-6 group cursor-pointer hover:bg-background-hover">
+          <div class="absolute size-[7px] bg-gray-900 rounded-sm -left-[37px] top-[15px] outline outline-2 outline-background"></div>
+          <div class="flex items-baseline gap-1.5 justify-between">
+            <div class="text-xs font-semibold leading-5">From Copying, to Reasoning, to Trying: AI Needs to Learn at Runtime</div>
+            <div class="text-xs text-muted-foreground shrink-0 ml-1 whitespace-nowrap">August 21, 2025</div>
+          </div>
+          <p class="text-xs text-muted-foreground">The third era of machine learning won't happen in a training run. And the surprising part: it doesn't need AI to work.</p>
+        </a>
+        <a href="/thoughts/software-based-beats-token-based.html" class="relative flex flex-col gap-1 px-3 py-2 ml-6 group cursor-pointer hover:bg-background-hover">
+          <div class="absolute size-[7px] bg-gray-900 rounded-sm -left-[37px] top-[15px] outline outline-2 outline-background"></div>
+          <div class="flex items-baseline gap-1.5 justify-between">
+            <div class="text-xs font-semibold leading-5">Software-Based Beats Token-Based</div>
+            <div class="text-xs text-muted-foreground shrink-0 ml-1 whitespace-nowrap">July 24, 2025</div>
+          </div>
+          <p class="text-xs text-muted-foreground">Our approach to AI intelligence is wrong. AI will be dramatically better when we give it the tools we built for ourselves, instead of making it emulate them token by token.</p>
+        </a>
+        <a href="/thoughts/intelligence-is-here-now-we-need-better-tools.html" class="relative flex flex-col gap-1 px-3 py-2 ml-6 group cursor-pointer hover:bg-background-hover">
+          <div class="absolute size-[7px] bg-gray-900 rounded-sm -left-[37px] top-[15px] outline outline-2 outline-background"></div>
+          <div class="flex items-baseline gap-1.5 justify-between">
+            <div class="text-xs font-semibold leading-5">Intelligence Is Here. Now We Need Better Tools</div>
+            <div class="text-xs text-muted-foreground shrink-0 ml-1 whitespace-nowrap">June 12, 2025</div>
+          </div>
+          <p class="text-xs text-muted-foreground">The bottleneck has moved. Models are smart enough for most real work — what's missing is everything around them.</p>
+        </a>
+        <a href="/thoughts/the-tech-stack-is-too-complex-for-ai.html" class="relative flex flex-col gap-1 px-3 py-2 ml-6 group cursor-pointer hover:bg-background-hover">
+          <div class="absolute size-[7px] bg-gray-900 rounded-sm -left-[37px] top-[15px] outline outline-2 outline-background"></div>
+          <div class="flex items-baseline gap-1.5 justify-between">
+            <div class="text-xs font-semibold leading-5">The Tech Stack Is Too Complex for AI — Because It Was Already Too Complex for Us</div>
+            <div class="text-xs text-muted-foreground shrink-0 ml-1 whitespace-nowrap">May 8, 2025</div>
+          </div>
+          <p class="text-xs text-muted-foreground">AI didn't break software engineering. It exposed how broken it already was. Tech teams were inefficient long before the first token was sampled.</p>
+        </a>
+        <a href="/thoughts/a-dsl-for-genui-beats-pure-react.html" class="relative flex flex-col gap-1 px-3 py-2 ml-6 group cursor-pointer hover:bg-background-hover">
+          <div class="absolute size-[7px] bg-gray-900 rounded-sm -left-[37px] top-[15px] outline outline-2 outline-background"></div>
+          <div class="flex items-baseline gap-1.5 justify-between">
+            <div class="text-xs font-semibold leading-5">A DSL for GenUI Is So Much Better Than Pure React</div>
+            <div class="text-xs text-muted-foreground shrink-0 ml-1 whitespace-nowrap">April 14, 2025</div>
+          </div>
+          <p class="text-xs text-muted-foreground">Letting a model emit raw React is handing a firehose to a calligrapher. Constrain the language and generation gets faster, safer, and dramatically more correct.</p>
+        </a>
+      </div>
+
+      <footer>
+        <div class="w-full flex flex-col md:flex-row justify-between py-6 items-baseline gap-4 border-t border-black mt-16">
+          <p class="font-serif text-lg">Séverin Marcombes</p>
+          <div class="flex gap-4">
+            <a href="/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Home</a>
+            <a href="/thoughts/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Thoughts</a>
+            <a href="/projects/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Projects</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>

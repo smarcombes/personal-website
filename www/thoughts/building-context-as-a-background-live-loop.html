@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Building Context as a Background Live Loop — Séverin Marcombes</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Agents assemble their understanding of you from scratch, per request, under time pressure. Real assistants never work this way — context should be built continuously, in the background." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            background: '#F5F4EF', 'background-hover': '#EBEAE5', foreground: '#000000',
+            muted: '#E5E4DC', 'muted-foreground': '#686868', link: '#595959',
+            button: { DEFAULT: '#D9D8D3', hover: '#C4C3BB', foreground: '#403E37' },
+            divider: '#E5E4DC', 'card-border': '#D4D3CB', 'card-border-hover': '#C0BDAD', highlight: '#FBD45B',
+          },
+          fontFamily: {
+            serif: ['Newsreader', 'Georgia', 'ui-serif', 'serif'],
+            mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
+            sans: ['"Source Sans 3"', 'system-ui', 'sans-serif'],
+          },
+          boxShadow: {
+            card: '3px 3px 0px #000000', 'card-hover': '5px 5px 0px #000000',
+            'card-soft': '3px 3px 0px #C0BDAD', btn: '2px 2px 0px #403E37',
+          },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="bg-background text-foreground font-mono text-sm leading-5 antialiased">
+  <div class="p-4 md:p-12 overflow-hidden">
+    <div class="w-full max-w-2xl">
+      <header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+        <span><a href="/index.html" class="text-3xl font-serif">Séverin Marcombes</a></span>
+        <nav class="flex gap-6">
+          <a href="/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Home</a>
+          <a href="/thoughts/index.html" class="underline underline-offset-8 decoration-2 hover:decoration-foreground hover:text-foreground">Thoughts</a>
+          <a href="/projects/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Projects</a>
+        </nav>
+      </header>
+
+      <article>
+        <h1 class="text-5xl md:text-6xl font-serif leading-tight text-balance mb-6 mt-12">Building Context as a Background Live Loop</h1>
+        <div class="grid md:grid-cols-[120px_1fr] gap-0.5 font-mono text-sm mb-12">
+          <div class="text-muted-foreground">Published</div>
+          <div>March 5, 2026</div>
+          <div class="text-muted-foreground">Author</div>
+          <div>Séverin Marcombes</div>
+        </div>
+        <div class="font-sans text-lg leading-relaxed">
+<p class="mb-4">Every agent request today begins with a frantic scavenger hunt. Search the vector store, skim recent messages, guess which facts matter, cram whatever fits into the window — all in the seconds before answering, all discarded the moment the answer ships.</p>
+<p class="mb-4">We've accepted this as normal. It's deeply weird. Imagine a chief of staff who, every time you asked a question, sprinted to the archives, speed-read your files, answered, and then <em>forgot everything</em>. You wouldn't call that person well-informed. You'd call them permanently unprepared.</p>
+<h3 class="text-2xl font-normal mt-12 mb-4 font-sans">Retrieval at request time is too late</h3>
+<p class="mb-4">The flaw isn't retrieval itself — it's <em>when</em> the understanding gets built. Request time is the worst possible moment: latency budget of seconds, attention consumed by the actual task, and no chance to notice anything that wasn't explicitly searched for.</p>
+<p class="mb-4">Human context doesn't work this way. Your colleague understands your project because they've been <em>absorbing</em> it for months — in meetings, in passing remarks, in noticing what you complained about last week. The understanding was built continuously, in the background, when nobody needed it yet. By the time you ask a question, the context already exists.</p>
+<h3 class="text-2xl font-normal mt-12 mb-4 font-sans">The background loop</h3>
+<p class="mb-4">So flip the architecture: context construction becomes a <strong class="font-semibold">live background process</strong>, decoupled from requests entirely.</p>
+<p class="mb-4">While the agent is idle, the loop runs: ingest new signals (emails, commits, documents, decisions), <em>distill</em> them — not into raw embeddings but into structured understanding: entities, relationships, open threads, preferences — reconcile contradictions with what's already known, decay what's stale, and pre-shape the digest the agent will need for its likely next tasks.</p>
+<p class="mb-4">I built a version of this into Samantha, my multi-device assistant: it turns your email into a knowledge graph of the people in your life, in the background, and injects entity context on every turn of conversation. The difference is not subtle. Ask about "the Lyon situation" and there's no search — the assistant already knows, because knowing was its idle job. Request-time work drops to a lookup.</p>
+<h3 class="text-2xl font-normal mt-12 mb-4 font-sans">Cost, and what it buys</h3>
+<p class="mb-4">Yes, a background loop burns tokens while nobody's watching, and naive versions are wasteful. But the economics run in its favor: idle-time compute is schedulable on cheap models and off-peak capacity, while request-time compute is the most expensive kind — a user is waiting. Trading the former for the latter is buying latency, quality, and even <em>proactivity</em>: a loop that continuously reconciles understanding is also the thing that can notice "these two commitments conflict" before you ask.</p>
+<p class="mb-4">Memory isn't a database you query at the last second. It's a process that never stops running. Build the loop.</p>
+        </div>
+      </article>
+      <div class="mt-16">
+        <a href="/thoughts/index.html" class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium px-3 py-1.5 bg-button text-button-foreground border border-button-foreground shadow-btn relative after:absolute after:inset-0.5 after:border after:border-dashed after:border-button-foreground after:pointer-events-none hover:bg-button-hover hover:text-black active:shadow-none active:translate-y-0.5 transition-colors font-mono">← All thoughts</a>
+      </div>
+
+      <footer>
+        <div class="w-full flex flex-col md:flex-row justify-between py-6 items-baseline gap-4 border-t border-black mt-16">
+          <p class="font-serif text-lg">Séverin Marcombes</p>
+          <div class="flex gap-4">
+            <a href="/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Home</a>
+            <a href="/thoughts/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Thoughts</a>
+            <a href="/projects/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Projects</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>

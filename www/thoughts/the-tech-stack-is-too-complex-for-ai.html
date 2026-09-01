@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>The Tech Stack Is Too Complex for AI — Because It Was Already Too Complex for Us — Séverin Marcombes</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AI didn't break software engineering. It exposed how broken it already was. Tech teams were inefficient long before the first token was sampled." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            background: '#F5F4EF', 'background-hover': '#EBEAE5', foreground: '#000000',
+            muted: '#E5E4DC', 'muted-foreground': '#686868', link: '#595959',
+            button: { DEFAULT: '#D9D8D3', hover: '#C4C3BB', foreground: '#403E37' },
+            divider: '#E5E4DC', 'card-border': '#D4D3CB', 'card-border-hover': '#C0BDAD', highlight: '#FBD45B',
+          },
+          fontFamily: {
+            serif: ['Newsreader', 'Georgia', 'ui-serif', 'serif'],
+            mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
+            sans: ['"Source Sans 3"', 'system-ui', 'sans-serif'],
+          },
+          boxShadow: {
+            card: '3px 3px 0px #000000', 'card-hover': '5px 5px 0px #000000',
+            'card-soft': '3px 3px 0px #C0BDAD', btn: '2px 2px 0px #403E37',
+          },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="bg-background text-foreground font-mono text-sm leading-5 antialiased">
+  <div class="p-4 md:p-12 overflow-hidden">
+    <div class="w-full max-w-2xl">
+      <header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+        <span><a href="/index.html" class="text-3xl font-serif">Séverin Marcombes</a></span>
+        <nav class="flex gap-6">
+          <a href="/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Home</a>
+          <a href="/thoughts/index.html" class="underline underline-offset-8 decoration-2 hover:decoration-foreground hover:text-foreground">Thoughts</a>
+          <a href="/projects/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Projects</a>
+        </nav>
+      </header>
+
+      <article>
+        <h1 class="text-5xl md:text-6xl font-serif leading-tight text-balance mb-6 mt-12">The Tech Stack Is Too Complex for AI — Because It Was Already Too Complex for Us</h1>
+        <div class="grid md:grid-cols-[120px_1fr] gap-0.5 font-mono text-sm mb-12">
+          <div class="text-muted-foreground">Published</div>
+          <div>May 8, 2025</div>
+          <div class="text-muted-foreground">Author</div>
+          <div>Séverin Marcombes</div>
+        </div>
+        <div class="font-sans text-lg leading-relaxed">
+<p class="mb-4">Everyone is asking why AI agents struggle to ship production software. Wrong question. The right one: why does a team of ten senior engineers need six months to ship a CRUD app?</p>
+<p class="mb-4">AI didn't break software engineering. It exposed it.</p>
+<h3 class="text-2xl font-normal mt-12 mb-4 font-sans">We normalized the absurd</h3>
+<p class="mb-4">Look at what it takes to put a button on the internet in 2025: a package manager on top of a package manager, a bundler configured by a meta-framework, a CI pipeline that re-installs the world on every commit, three environments that never quite match, and a YAML file whose indentation can take down production.</p>
+<p class="mb-4">None of this complexity comes from the problem being solved. It comes from decades of accretion — every layer patching the layer below instead of replacing it. Humans adapted to this the way you adapt to a chronic pain: we stopped noticing. We built entire careers around navigating the scar tissue.</p>
+<p class="mb-4">Then we handed this stack to a language model and acted surprised when it got lost. Of course it got lost. <em>We</em> are lost. We just have meetings about it.</p>
+<h3 class="text-2xl font-normal mt-12 mb-4 font-sans">Tech teams were the original inefficiency</h3>
+<p class="mb-4">I've built engineering teams since 2011 — hired from Oracle, Ubuntu, Dropbox. Great people. And still, at Lima, I watched brilliant engineers spend most of their week on things that produced zero user value: fighting builds, syncing environments, re-explaining context that lived in someone's head, coordinating who touches which file.</p>
+<p class="mb-4">The dirty secret of our industry is that a "10x engineer" is mostly someone who has memorized more of the accidental complexity. That's not leverage. That's hostage negotiation with our own tooling.</p>
+<h3 class="text-2xl font-normal mt-12 mb-4 font-sans">AI is the forcing function</h3>
+<p class="mb-4">Here's what makes this moment interesting: an LLM has no ego investment in the stack. It won't pretend the complexity is fine. When an agent fails to set up your dev environment, it's giving you a legibility score — and most codebases fail it.</p>
+<p class="mb-4">So we have two options. Keep fine-tuning models to survive our mess — teach them Webpack the way we teach interns Webpack. Or take the hint and simplify the substrate itself: fewer layers, self-describing systems, environments that are constructed rather than configured.</p>
+<p class="mb-4">I'm betting on the second. The winners of the AI era won't be the teams with the best agents on top of the old stack. They'll be the teams who rebuilt the stack so that <em>anyone</em> — human or model — can be productive in it in minutes.</p>
+<p class="mb-4">The tech stack was never designed. It happened. Now we get to design it.</p>
+        </div>
+      </article>
+      <div class="mt-16">
+        <a href="/thoughts/index.html" class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium px-3 py-1.5 bg-button text-button-foreground border border-button-foreground shadow-btn relative after:absolute after:inset-0.5 after:border after:border-dashed after:border-button-foreground after:pointer-events-none hover:bg-button-hover hover:text-black active:shadow-none active:translate-y-0.5 transition-colors font-mono">← All thoughts</a>
+      </div>
+
+      <footer>
+        <div class="w-full flex flex-col md:flex-row justify-between py-6 items-baseline gap-4 border-t border-black mt-16">
+          <p class="font-serif text-lg">Séverin Marcombes</p>
+          <div class="flex gap-4">
+            <a href="/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Home</a>
+            <a href="/thoughts/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Thoughts</a>
+            <a href="/projects/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Projects</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>

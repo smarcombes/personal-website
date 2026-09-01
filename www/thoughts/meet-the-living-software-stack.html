@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Meet the Living Software Stack — Séverin Marcombes</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Software has always been dead matter arranged by hand: written once, deployed, decayed. What happens when every layer of the stack can rewrite itself?" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            background: '#F5F4EF', 'background-hover': '#EBEAE5', foreground: '#000000',
+            muted: '#E5E4DC', 'muted-foreground': '#686868', link: '#595959',
+            button: { DEFAULT: '#D9D8D3', hover: '#C4C3BB', foreground: '#403E37' },
+            divider: '#E5E4DC', 'card-border': '#D4D3CB', 'card-border-hover': '#C0BDAD', highlight: '#FBD45B',
+          },
+          fontFamily: {
+            serif: ['Newsreader', 'Georgia', 'ui-serif', 'serif'],
+            mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
+            sans: ['"Source Sans 3"', 'system-ui', 'sans-serif'],
+          },
+          boxShadow: {
+            card: '3px 3px 0px #000000', 'card-hover': '5px 5px 0px #000000',
+            'card-soft': '3px 3px 0px #C0BDAD', btn: '2px 2px 0px #403E37',
+          },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="bg-background text-foreground font-mono text-sm leading-5 antialiased">
+  <div class="p-4 md:p-12 overflow-hidden">
+    <div class="w-full max-w-2xl">
+      <header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+        <span><a href="/index.html" class="text-3xl font-serif">Séverin Marcombes</a></span>
+        <nav class="flex gap-6">
+          <a href="/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Home</a>
+          <a href="/thoughts/index.html" class="underline underline-offset-8 decoration-2 hover:decoration-foreground hover:text-foreground">Thoughts</a>
+          <a href="/projects/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Projects</a>
+        </nav>
+      </header>
+
+      <article>
+        <h1 class="text-5xl md:text-6xl font-serif leading-tight text-balance mb-6 mt-12">Meet the Living Software Stack</h1>
+        <div class="grid md:grid-cols-[120px_1fr] gap-0.5 font-mono text-sm mb-12">
+          <div class="text-muted-foreground">Published</div>
+          <div>January 15, 2026</div>
+          <div class="text-muted-foreground">Author</div>
+          <div>Séverin Marcombes</div>
+        </div>
+        <div class="font-sans text-lg leading-relaxed">
+<p class="mb-4">All software you've ever used shares one property so universal you've never had to name it: it's <em>dead</em>. Compiled, deployed, frozen. It doesn't notice you struggling with it. It can't fix its own bugs. From the day it ships, it only decays — every change requires a human to open it up and operate.</p>
+<p class="mb-4">That property is no longer mandatory. And I don't think we've absorbed how much of the stack it changes at once.</p>
+<h3 class="text-2xl font-normal mt-12 mb-4 font-sans">What "alive" means, concretely</h3>
+<p class="mb-4">Not conscious — nothing mystical. Alive in the way an organism is alive:</p>
+<ul class="list-none space-y-3 my-6">
+<li class="flex gap-3"><span class="size-[7px] bg-gray-900 rounded-sm mt-2.5 shrink-0"></span><span><strong class="font-semibold">It repairs itself.</strong> An exception isn't a crash report for a human queue; it's a stimulus. The system reads its own stack trace, patches, redeploys.</span></li>
+<li class="flex gap-3"><span class="size-[7px] bg-gray-900 rounded-sm mt-2.5 shrink-0"></span><span><strong class="font-semibold">It adapts to its environment.</strong> Software that watches how <em>you</em> use it and reshapes accordingly — with real diffs, not a config flag.</span></li>
+<li class="flex gap-3"><span class="size-[7px] bg-gray-900 rounded-sm mt-2.5 shrink-0"></span><span><strong class="font-semibold">It grows new capabilities on demand.</strong> A missing feature is something the system writes when first asked.</span></li>
+<li class="flex gap-3"><span class="size-[7px] bg-gray-900 rounded-sm mt-2.5 shrink-0"></span><span><strong class="font-semibold">It metabolizes.</strong> It acquires resources programmatically — compute, domains, storage, payment rails — without a human filling out forms.</span></li>
+</ul>
+<p class="mb-4">Each of these exists today in some form. I know because I've been building one organ at a time: UXMorph does the adaptation (chat, AI edits, hot-swap, a real Git commit on your personal branch); skills.dev does the growth; Interagentic does the metabolism; Protean — my most feral experiment — does all of it at once, including migrating itself across machines when it needs a new home.</p>
+<h3 class="text-2xl font-normal mt-12 mb-4 font-sans">The stack, reconsidered</h3>
+<p class="mb-4">Take any layer of the traditional stack and ask: what's the living version?</p>
+<p class="mb-4">Dead UI is pixel-identical for every user; living UI morphs per user. Dead APIs have versioned, frozen contracts; living APIs describe themselves and negotiate. Dead infra is provisioned by humans in dashboards; living infra is acquired by the software that needs it. Dead code waits for a maintainer; living code is its own maintainer.</p>
+<p class="mb-4">This isn't a feature list for one product. It's a new set of defaults, and every default that flips takes a category of tooling with it — code editors, admin dashboards, even the concept of a "release."</p>
+<h3 class="text-2xl font-normal mt-12 mb-4 font-sans">The uncomfortable, necessary parts</h3>
+<p class="mb-4">Living systems need what organisms need: boundaries (an immune system, not a prayer), observability (you can't debug what you can't watch mutate), and selection pressure (bad mutations must die quickly and safely). That's a real engineering discipline, currently almost nonexistent. It's also, I'd argue, one of the most important open problem spaces in software.</p>
+<p class="mb-4">For seventy years, programming has meant arranging dead matter into useful shapes. We're the first generation that gets to build software that lives. The stack is stirring. Meet it.</p>
+        </div>
+      </article>
+      <div class="mt-16">
+        <a href="/thoughts/index.html" class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium px-3 py-1.5 bg-button text-button-foreground border border-button-foreground shadow-btn relative after:absolute after:inset-0.5 after:border after:border-dashed after:border-button-foreground after:pointer-events-none hover:bg-button-hover hover:text-black active:shadow-none active:translate-y-0.5 transition-colors font-mono">← All thoughts</a>
+      </div>
+
+      <footer>
+        <div class="w-full flex flex-col md:flex-row justify-between py-6 items-baseline gap-4 border-t border-black mt-16">
+          <p class="font-serif text-lg">Séverin Marcombes</p>
+          <div class="flex gap-4">
+            <a href="/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Home</a>
+            <a href="/thoughts/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Thoughts</a>
+            <a href="/projects/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Projects</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>ollama-pool — Séverin Marcombes</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Distribute LLM inference across your machines. One OpenAI-compatible endpoint, any model, all your hardware." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            background: '#F5F4EF', 'background-hover': '#EBEAE5', foreground: '#000000',
+            muted: '#E5E4DC', 'muted-foreground': '#686868', link: '#595959',
+            button: { DEFAULT: '#D9D8D3', hover: '#C4C3BB', foreground: '#403E37' },
+            divider: '#E5E4DC', 'card-border': '#D4D3CB', 'card-border-hover': '#C0BDAD', highlight: '#FBD45B',
+          },
+          fontFamily: {
+            serif: ['Newsreader', 'Georgia', 'ui-serif', 'serif'],
+            mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
+            sans: ['"Source Sans 3"', 'system-ui', 'sans-serif'],
+          },
+          boxShadow: {
+            card: '3px 3px 0px #000000', 'card-hover': '5px 5px 0px #000000',
+            'card-soft': '3px 3px 0px #C0BDAD', btn: '2px 2px 0px #403E37',
+          },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="bg-background text-foreground font-mono text-sm leading-5 antialiased">
+  <div class="p-4 md:p-12 overflow-hidden">
+    <div class="w-full max-w-2xl">
+      <header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+        <span><a href="/index.html" class="text-3xl font-serif">Séverin Marcombes</a></span>
+        <nav class="flex gap-6">
+          <a href="/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Home</a>
+          <a href="/thoughts/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70 hidden">Thoughts</a>
+          <a href="/projects/index.html" class="underline underline-offset-8 decoration-2 hover:decoration-foreground hover:text-foreground">Projects</a>
+        </nav>
+      </header>
+
+      <article>
+        <a href="/projects/index.html" class="text-xs text-muted-foreground underline underline-offset-2 decoration-foreground/20 hover:text-foreground">← Projects</a>
+        <h1 class="text-5xl md:text-6xl font-serif leading-tight text-balance mb-4 mt-8">🦙 ollama-pool</h1>
+        <p class="text-lg text-muted-foreground mb-2">Distribute LLM inference across your machines. One OpenAI-compatible endpoint, any model, all your hardware.</p>
+        <div class="font-sans text-lg leading-relaxed">
+<div class="flex flex-wrap gap-1.5 my-6"><span class="inline-flex items-center px-2 py-0.5 bg-muted border border-divider text-[11px] text-muted-foreground">TypeScript</span></div>
+<div class="flex flex-wrap gap-1.5 my-6"><span class="inline-flex items-center px-2 py-0.5 bg-muted border border-divider text-[11px] text-muted-foreground">Electron</span></div>
+<div class="flex flex-wrap gap-1.5 my-6"><span class="inline-flex items-center px-2 py-0.5 bg-muted border border-divider text-[11px] text-muted-foreground">Next.js</span></div>
+<p class="mb-4">You have a MacBook, a desktop, maybe a home server — all running Ollama, all with different models loaded. Normally you'd have to know which machine has which model and hit the right IP. Ollama Pool turns all of them into one endpoint.</p>
+<pre class="bg-white border border-divider p-4 my-6 overflow-x-auto text-[13px] leading-5"><code>┌─────────┐     ┌──────────┐     ┌───────────────┐     ┌────────┐
+│   CLI   │────▶│  Server  │────▶│  Firebase DB  │◀────│Desktop │──▶ Ollama
+│ or app  │◀────│ (Next.js)│◀────│   (bridge)    │────▶│  App   │
+└─────────┘ SSE └──────────┘     └───────────────┘ SSE └────────┘</code></pre>
+<h3 class="text-2xl font-normal mt-12 mb-4 font-sans">How it works</h3>
+<ol class="list-decimal ml-6 space-y-2 my-6 marker:text-muted-foreground"><li class="pl-1"><strong class="font-semibold">You ask</strong> via CLI, <code class="font-mono text-[13px] bg-white border border-divider px-1">curl</code>, or any OpenAI-compatible client</li><li class="pl-1"><strong class="font-semibold">Server</strong> creates a job in Firebase, picks the best available machine</li><li class="pl-1"><strong class="font-semibold">Desktop app</strong> on that machine picks up the job, runs Ollama inference</li><li class="pl-1"><strong class="font-semibold">Tokens stream back</strong> — Ollama → Desktop → Firebase → Server → You (SSE)</li><li class="pl-1"><strong class="font-semibold">Cleanup</strong> — job data deleted from Firebase after completion</li></ol>
+<p class="mb-4">Streams are stored in OpenAI <code class="font-mono text-[13px] bg-white border border-divider px-1">ChatCompletionChunk</code> format with support for content, thinking/reasoning traces, and tool calls.</p>
+<h3 class="text-2xl font-normal mt-12 mb-4 font-sans">API</h3>
+<p class="mb-4">Drop-in OpenAI replacement. Point any compatible client at the server:</p>
+<pre class="bg-white border border-divider p-4 my-6 overflow-x-auto text-[13px] leading-5"><code># Chat
+curl http://localhost:3000/api/v1/chat/completions \
+  -H "Authorization: Bearer any-key" \
+  -d '{"model":"llama3.2","messages":[{"role":"user","content":"Hi"}],"stream":true}'
+
+# List all models across all machines
+curl http://localhost:3000/api/v1/models -H "Authorization: Bearer any-key"</code></pre>
+<h3 class="text-2xl font-normal mt-12 mb-4 font-sans">Components</h3>
+<p class="mb-4"><strong class="font-semibold">Server</strong> — Next.js 15 API + dashboard. Speaks OpenAI format, coordinates jobs via Firebase.</p>
+<p class="mb-4"><strong class="font-semibold">Desktop app</strong> — Electron tray app. Runs on each machine with Ollama, picks up jobs, streams tokens back.</p>
+<p class="mb-4"><strong class="font-semibold">CLI</strong> — Interactive terminal client for chatting through the pool.</p>
+<h3 class="text-2xl font-normal mt-12 mb-4 font-sans">Stack</h3>
+<p class="mb-4">Next.js 15 · Electron + Vite + React · Firebase Realtime Database (job bridge + SSE) · Turborepo · BotParty (identity + JWT) · Ollama</p>
+<p class="mt-8 pt-4 border-t border-divider text-muted-foreground text-xs">→ <a href="https://github.com/smarcombes/ollama-pool" class="text-link underline hover:decoration-2">github.com/smarcombes/ollama-pool</a></p>
+        </div>
+      </article>
+      <div class="mt-16">
+        <a href="/projects/index.html" class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium px-3 py-1.5 bg-button text-button-foreground border border-button-foreground shadow-btn relative after:absolute after:inset-0.5 after:border after:border-dashed after:border-button-foreground after:pointer-events-none hover:bg-button-hover hover:text-black active:shadow-none active:translate-y-0.5 transition-colors font-mono">← All projects</a>
+      </div>
+
+      <footer>
+        <div class="w-full flex flex-col md:flex-row justify-between py-6 items-baseline gap-4 border-t border-black mt-16">
+          <p class="font-serif text-lg">Séverin Marcombes</p>
+          <div class="flex gap-4">
+            <a href="/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Home</a>
+          <a href="/thoughts/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70 hidden">Thoughts</a>
+          <a href="/projects/index.html" class="underline underline-offset-8 decoration-2 hover:decoration-foreground hover:text-foreground">Projects</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>

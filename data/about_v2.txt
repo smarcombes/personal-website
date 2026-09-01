@@ -1,0 +1,70 @@
+Hey, I'm Séverin.
+Repeat founder & Product builder
+
+I'm an engineer: I was trained to build an iPhone from scratch and develop the full stack of apps on top of it (embedded systems, distributed systems, CS).
+...with a business side: built my first company, Lima, when I was 24. CEO ever since, but with a very sharp focus on everything product. Mentoring startups in both tech & marketing. 
+
+# Achievements:
+- Built a 40+ people company, hiring top talent from Oracle, Ubuntu, DropBox & al.
+- Built and launched the 6th biggest tech category campaign on Kickstarter in 2013, single handedly
+- Won multiple prizes: MIT Innovator under 30, Huawei Pulse contest, Handi's ability, etc.
+- Learned humility through failure, hostile acquisition, company crash, and retries
+
+# Fun facts:
+- Steve Wozniak bought my first product. Bill Gates asked for a personal demo of the second. 
+- Got invited to have lunch with Emmanuel Macron, twice.
+
+# My career in brief
+- 2011-2019: Lima (CEO) - a company selling private cloud devices, with a distributed filesystem that did unify the way your files are organized on all your devices (ultimately acquired)
+- 2019-2021: Seafront - a 0-to-1 product agency for startups: we diagnosed your current business & product value prop, we offered a new product strategy that makes better sense business-side and more resonnance with users, we implement the MVP in a few weeks & support you until the first press release. 
+- 2021-2025: Creative Robots - working with AI (LLMs) to create one of the first vibe-coding platforms out there. Then pivoted to a rail-coding product
+- 2026: Interagentic
+
+# What I'm doing now: 
+Been playing with LLMs since the davinci models (2021) and the application level. 
+Built a company called Creative Robots to implement vibe coding (early 2022), then rail-coding as we saw vibe-coding was churning too much.
+
+
+# Most defining projects: 
+- Interagentic
+- Layouts.dev
+- Skills.dev
+- Illustrations.dev / Hippo
+- Lima
+- HAMAC
+- Majority Report
+
+
+# Other fun projects
+- Protean
+- OllamaSwarm
+- UXMorph
+- GenUI / Widget generator
+- AgentParts
+- BotParty
+- Keychains.dev
+- Tailwind motion native
+- Dropbox link stealer
+- React Electron
+
+
+# Thesis
+- The tech stack is too complex for AI, because it is too complex for humans / Tech teams are incredibly unefficient. They were so since well before AI.
+- Our approach to AI intelligence is wrong / AI will be so much better if we gave it the tools we use for ourselves / (software based > token based)
+- Intelligence is here. Now we need better tools
+- LLMs can produce software. They would be so much more efficent at building software factories. / AI at build time is much better that AI at run time / Don't use AI to build software. Use it to build software factories. 
+- MCPs are dog shit. We need a better way for humanity to teach AI how to do things.
+- From learn by copying, to learn by reasoning, to learn by trying & iterating / AI needs a way to learn at runtime. It doesn't need AI for that.
+- Software as a means for AI to program its brain.
+- Tool vibe-coding as a learning mechanism
+- Meet the living software stack
+- Permissions are the main break against a more useful AI. Approching them as a live system may help.
+- Building context as a background live loop
+- Security at the AI area: antivirus vs boundaries
+- Building software that morphs itself
+- A DST for GenUI is so much better that pure react
+- Infra is not ready for the AI area. (Interagentic)
+- Bye, user signup. Hello self-registration
+- We're missing a feedback loop plateform for non-AI-researchers (normal users
+- Welcome to the unstructured, self-documented API?
+- Developers: Don't build a machine. Build a living organism

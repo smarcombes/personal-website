@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+/*
+  Design tokens for the "scientific lab notebook" look ported from www-2:
+  warm paper background, monospace UI text, serif titles, hard 1-bit offset
+  shadows, almost no border radius, minimal color.
+*/
+@theme {
+  --color-background: #f5f4ef;
+  --color-background-hover: #ebeae5;
+  --color-foreground: #000000;
+  --color-muted: #e5e4dc;
+  --color-muted-foreground: #686868;
+  --color-link: #595959;
+  --color-button: #d9d8d3;
+  --color-button-hover: #c4c3bb;
+  --color-button-foreground: #403e37;
+  --color-divider: #e5e4dc;
+  --color-card-border: #d4d3cb;
+  --color-card-border-hover: #c0bdad;
+  --color-highlight: #fbd45b;
+
+  --font-serif: var(--font-newsreader), Georgia, ui-serif, serif;
+  --font-sans: var(--font-source-sans), system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+
+  --shadow-card: 3px 3px 0px #000000;
+  --shadow-card-hover: 5px 5px 0px #000000;
+  --shadow-card-soft: 3px 3px 0px #c0bdad;
+  --shadow-btn: 2px 2px 0px #403e37;
+}
+
+/* Keep long code samples and diagrams from blowing out the layout. */
+pre {
+  tab-size: 2;
+}
+
+/* Subtle, accessible focus ring that fits the 1-bit aesthetic. */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-foreground);
+  outline-offset: 2px;
+}

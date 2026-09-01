@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Slices — Séverin Marcombes</title>
+    <meta
+      name="description"
+      content="A shadcn-compatible registry of fullstack features: UI, services and resources installed with one command, into your repo, yours to edit."
+    />
+    <link rel="canonical" href="https://severin-marcombes.com/projects/slices/" />
+
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#f5f4ef" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Slices — Séverin Marcombes" />
+    <meta
+      property="og:description"
+      content="A shadcn-compatible registry of fullstack features: UI, services and resources installed with one command, into your repo, yours to edit."
+    />
+    <meta property="og:url" content="https://severin-marcombes.com/projects/slices/" />
+    <meta name="twitter:card" content="summary" />
+
+    <link
+      rel="preload"
+      href="/fonts/newsreader-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/source-sans-3-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+
+  <body
+    class="bg-background text-foreground font-mono text-sm leading-5 antialiased"
+  >
+    <div class="p-4 md:p-12 overflow-hidden">
+      <div class="w-full max-w-2xl">
+        <header
+          class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4"
+        >
+          <span>
+            <a href="/" class="text-3xl font-serif">Hey, I'm Séverin.</a>
+          </span>
+        </header>
+
+        <article>
+          <a
+            href="/"
+            class="inline-flex items-center gap-1 text-xs text-muted-foreground underline underline-offset-2 decoration-foreground/20 hover:text-foreground"
+          >
+            ← Home
+          </a>
+
+          <header class="mt-10">
+            <p class="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground mb-4">
+              Project · 2026 — now
+            </p>
+            <h1
+              class="font-serif text-[2.75rem] md:text-[3.75rem] leading-[1.05] tracking-[-0.02em] text-balance"
+            >
+              Slices
+            </h1>
+            <p
+              class="font-serif text-[1.35rem] md:text-[1.55rem] leading-[1.45] text-pretty mt-6 mb-10"
+            >
+              Install features, not components. One command writes the UI,
+              the service behind it and the resources it needs — into your
+              repo, and it stays yours.
+            </p>
+            <p class="font-mono text-xs text-muted-foreground border-y border-divider py-3 mb-12 tracking-wide">
+              By Séverin Marcombes · slices.sh
+            </p>
+          </header>
+
+          <div class="font-sans">
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75] first-letter:float-left first-letter:font-serif first-letter:text-[4.25rem] first-letter:leading-[0.8] first-letter:pr-3 first-letter:pt-1 first-letter:font-medium"
+            >
+              Every component registry stops at the same place. It hands
+              you a beautiful table and wishes you luck. But a table is
+              never just a table — it is a view onto a collection, and a
+              collection means auth, an audit trail, a database, and a
+              route that filters what each user is allowed to see. The
+              registry gives you one of those six things and leaves you
+              the other five.
+            </p>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              Slices is one layer past that. It is a shadcn-compatible
+              registry of <em>fullstack features</em>: the UI, the
+              behaviour underneath it, the hooks, the client and server
+              SDKs, the access rules, the API route, and the resources the
+              whole thing needs to actually run.
+            </p>
+            <blockquote class="my-14 md:my-16 border-y border-foreground py-8 md:py-10">
+              <p class="font-serif text-[1.65rem] md:text-[2.15rem] leading-[1.25] text-balance text-center italic">
+                A table is never just a table.
+              </p>
+            </blockquote>
+            <h2
+              class="font-serif text-[1.75rem] md:text-[2rem] leading-tight mt-20 mb-6 text-balance"
+            >
+              What one command actually writes
+            </h2>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              This is the whole argument, and it is easier to show than to
+              describe. One <code>add</code>, and what lands in the
+              repository:
+            </p>
+            <pre
+              class="my-10 overflow-x-auto border border-card-border bg-white px-4 py-4 font-mono text-[12px] leading-[1.7] text-foreground"
+            ><code>$ npx shadcn add https://slices.sh/r/collection-table
+
+✓ components/molecules/collection-table/     the skin
+✓ components/skinnable/collection-table/     the pattern, platform-neutral
+✓ components/headless/collection/            behaviour, no opinion on looks
+✓ hooks/collection/                          one file per hook
+✓ services/collection/                       client SDK, server SDK, types
+✓ services/auth/rules.ts                     yours, seeded once
+✓ app/api/collections/[collection]/route.ts  a real REST route</code></pre>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              One command wrote six directories, including your API route.
+              I do not know of another registry in this category that can
+              make that claim.
+            </p>
+            <h2
+              class="font-serif text-[1.75rem] md:text-[2rem] leading-tight mt-20 mb-6 text-balance"
+            >
+              The code is yours, and there is no runtime
+            </h2>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              Installation is copy-in, exactly as shadcn does it. There is
+              no package to depend on, no version to bump, no dispatcher
+              sitting where your routes should be. After installing,
+              nothing in the resulting code says a registry was ever
+              involved: no shared implementation folder, no framework
+              fingerprints, no vendor name in a path.
+            </p>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              That constraint is not aesthetic. Code you cannot read and
+              edit is code you cannot own, and a feature you do not own is
+              a dependency you will eventually fight.
+            </p>
+            <h2
+              class="font-serif text-[1.75rem] md:text-[2rem] leading-tight mt-20 mb-6 text-balance"
+            >
+              Swap the backend, keep the contract
+            </h2>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              Underneath each feature is a contract, and a contract can
+              have several implementations that all pass the same
+              conformance suite. The UI never learns which one you picked,
+              so changing your mind is one more <code>add</code> rather
+              than a rewrite.
+            </p>
+            <ul class="list-none space-y-3 mb-8 border-t border-divider pt-5">
+              <li class="flex gap-3 text-[1.0625rem] leading-[1.7]">
+                <span class="shrink-0">→</span>
+                <span>
+                  <strong>collection</strong> — memory, SQLite, MongoDB,
+                  Supabase.
+                </span>
+              </li>
+              <li class="flex gap-3 text-[1.0625rem] leading-[1.7]">
+                <span class="shrink-0">→</span>
+                <span>
+                  <strong>auth</strong> — devlogin, Better Auth, Clerk,
+                  BotParty.
+                </span>
+              </li>
+              <li class="flex gap-3 text-[1.0625rem] leading-[1.7]">
+                <span class="shrink-0">→</span>
+                <span>
+                  <strong>ai-chat</strong> — echo, Vercel AI SDK.
+                  <strong>file-storage</strong> — memory, S3.
+                </span>
+              </li>
+              <li class="flex gap-3 text-[1.0625rem] leading-[1.7]">
+                <span class="shrink-0">→</span>
+                <span>
+                  <strong>audit</strong>, <strong>geocoder</strong> and
+                  <strong>realtime</strong> have one implementation each —
+                  enough to prove the seam is real, not enough to prove a
+                  swap.
+                </span>
+              </li>
+            </ul>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              When a contract has exactly one implementation it is served
+              verbatim and the consumer never learns there was a choice.
+              With several, it becomes a placeholder that names them. That
+              is the entire resolution rule.
+            </p>
+            <h2
+              class="font-serif text-[1.75rem] md:text-[2rem] leading-tight mt-20 mb-6 text-balance"
+            >
+              The resources come too
+            </h2>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              This is what makes “end-to-end” literal rather than
+              aspirational. A feature declares the resources it needs, and
+              the accessor does not fail with a stack trace — it fails
+              with the command that fixes it:
+            </p>
+            <pre
+              class="my-10 overflow-x-auto border border-card-border bg-white px-4 py-4 font-mono text-[12px] leading-[1.7] text-foreground"
+            ><code>The &quot;mongo&quot; resource is not configured.
+Missing environment variables: MONGODB_URI
+Provision it in one command:
+  npx extraorbital provision mongo</code></pre>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              ExtraOrbital reads the project, creates the database,
+              bucket, queue or model key on a free tier, and writes the
+              variables back into the environment. No console, no card,
+              nobody in the loop — which is also precisely what makes the
+              whole path runnable by an agent.
+            </p>
+            <blockquote class="my-14 md:my-16 border-y border-foreground py-8 md:py-10">
+              <p class="font-serif text-[1.65rem] md:text-[2.15rem] leading-[1.25] text-balance text-center italic">
+                slices add → extraorbital provision → the feature runs.
+              </p>
+            </blockquote>
+            <h2
+              class="font-serif text-[1.75rem] md:text-[2rem] leading-tight mt-20 mb-6 text-balance"
+            >
+              One pattern, three libraries
+            </h2>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              There are 27 patterns across 6 families, each shipped for
+              coss, shadcn-radix and shadcn-baseui — 90 molecules in
+              total. Under every one of them sits a <em>skinnable</em>
+              that names no platform at all, so a fourth skin, or a React
+              Native one, is a map of class names rather than a rewrite.
+            </p>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              One pattern carries variants: <code>document-viewer</code>
+              is a single contract, a single skinnable and a single
+              documentation page, installed four ways — PDF, DOCX, XLSX,
+              PPTX — so a project ships only the parsers it actually uses.
+            </p>
+            <h2
+              class="font-serif text-[1.75rem] md:text-[2rem] leading-tight mt-20 mb-6 text-balance"
+            >
+              Why build it this shape
+            </h2>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              The objection is never “I cannot find a table component”. It
+              is “I will just ask the model to write it”. That answer has
+              a bill, and the tokens are the cheapest line on it.
+            </p>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              You pay in tokens, burning a million of them on a sign-in
+              screen, then again next sprint, then again on the next
+              project. You pay in risk, because generated auth is code
+              nobody has read twice, and access rules are exactly where
+              rows leak — a model hands you a confident, plausible, subtly
+              wrong one that looks identical to a correct one in the diff.
+              And you pay in attention: every hour re-checking generated
+              plumbing is an hour not spent on the part only you can
+              build.
+            </p>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              A slice has already been read. Sign-in, invitations,
+              collections and audit trails are generic — the same in your
+              product and in mine — and there is no reason for either of
+              us to invent them privately. Every implementation passes the
+              same conformance suite before it ships, a bug is fixed in
+              one place, and you <code>add</code> again instead of
+              prompting again.
+            </p>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              Which is the same argument I would make about agents
+              generally. An agent is not just a model and a harness; it
+              needs muscle memory, and muscle memory should be executable
+              software rather than prose — something that runs
+              deterministically, is evaluated against the real world, and
+              improves in one place for everyone. Slices is that idea
+              aimed at the audience best equipped to judge it: developers,
+              who will notice immediately if the code is not good.
+            </p>
+
+            <footer class="mt-16 pt-8 border-t border-foreground">
+              <p class="font-mono text-xs text-muted-foreground leading-relaxed">
+                <a href="https://slices.sh" target="_blank" rel="noreferrer" class="text-link underline hover:decoration-2">slices.sh</a> · <a href="https://extraorbital.dev" target="_blank" rel="noreferrer" class="text-link underline hover:decoration-2">extraorbital.dev</a>
+              </p>
+            </footer>
+          </div>
+        </article>
+
+        <footer>
+          <div
+            class="w-full flex flex-col md:flex-row justify-between py-6 items-baseline gap-4 border-t border-black mt-16"
+          >
+            <p class="font-serif text-lg">Séverin Marcombes</p>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </body>
+</html>

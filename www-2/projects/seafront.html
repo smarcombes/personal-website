@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>SeaFront — Séverin Marcombes</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Product and dev agency. 0-to-1 MVPs for startups — business model through shipped code." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            background: '#F5F4EF', 'background-hover': '#EBEAE5', foreground: '#000000',
+            muted: '#E5E4DC', 'muted-foreground': '#686868', link: '#595959',
+            button: { DEFAULT: '#D9D8D3', hover: '#C4C3BB', foreground: '#403E37' },
+            divider: '#E5E4DC', 'card-border': '#D4D3CB', 'card-border-hover': '#C0BDAD', highlight: '#FBD45B',
+          },
+          fontFamily: {
+            serif: ['Newsreader', 'Georgia', 'ui-serif', 'serif'],
+            mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
+            sans: ['"Source Sans 3"', 'system-ui', 'sans-serif'],
+          },
+          boxShadow: {
+            card: '3px 3px 0px #000000', 'card-hover': '5px 5px 0px #000000',
+            'card-soft': '3px 3px 0px #C0BDAD', btn: '2px 2px 0px #403E37',
+          },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="bg-background text-foreground font-mono text-sm leading-5 antialiased">
+  <div class="p-4 md:p-12 overflow-hidden">
+    <div class="w-full max-w-2xl">
+      <header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+        <span><a href="/index.html" class="text-3xl font-serif">Séverin Marcombes</a></span>
+        <nav class="flex gap-6">
+          <a href="/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Home</a>
+          <a href="/thoughts/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70 hidden">Thoughts</a>
+          <a href="/projects/index.html" class="underline underline-offset-8 decoration-2 hover:decoration-foreground hover:text-foreground">Projects</a>
+        </nav>
+      </header>
+
+      <article>
+        <a href="/projects/index.html" class="text-xs text-muted-foreground underline underline-offset-2 decoration-foreground/20 hover:text-foreground">← Projects</a>
+        <h1 class="text-5xl md:text-6xl font-serif leading-tight text-balance mb-4 mt-8">⛵ SeaFront</h1>
+        <p class="text-lg text-muted-foreground mb-2">Product and dev agency. 0-to-1 MVPs for startups — business model through shipped code.</p>
+        <div class="font-sans text-lg leading-relaxed">
+<div class="flex flex-wrap gap-1.5 my-6"><span class="inline-flex items-center px-2 py-0.5 bg-muted border border-divider text-[11px] text-muted-foreground">TypeScript</span></div>
+<div class="flex flex-wrap gap-1.5 my-6"><span class="inline-flex items-center px-2 py-0.5 bg-muted border border-divider text-[11px] text-muted-foreground">React Native</span></div>
+<div class="flex flex-wrap gap-1.5 my-6"><span class="inline-flex items-center px-2 py-0.5 bg-muted border border-divider text-[11px] text-muted-foreground">2019–2022</span></div>
+<p class="mb-4">Solo-operated boutique that I built to take "time off" after my years at Lima Technology.</p>
+<p class="mb-4">Specialized in taking startup ideas from zero to a working MVP.</p>
+<p class="mb-4">Generally started working with clients on business model and strategy, before diving-in on product definition and delivering the first version of the product for them.</p>
+<p class="mb-4">Lot of 0-to-1 fun.</p>
+<h3 class="text-2xl font-normal mt-12 mb-4 font-sans">Adok Meetings (2019)</h3>
+<p class="mb-4">Smart meeting room device — a physical touchscreen for conference rooms.</p>
+<p class="mb-4">I did the OS of that. Touch screen interface with voice commands. Able to open any web app, start video conference while interacting touch-first with most business SaaS.</p>
+<p class="mb-4">Did a recap of meeting actions at the end (a bit clunky as it was pre-AI era, but working).</p>
+<p class="mb-4">Bill Gates saw that at CES and asked for a personal demo of this one.</p>
+<p class="mt-8 pt-4 border-t border-divider text-muted-foreground text-xs">→ <a href="https://www.youtube.com/watch?v=iLVEbixkdfk" class="text-link underline hover:decoration-2">Product video</a></p>
+<h3 class="text-2xl font-normal mt-12 mb-4 font-sans">EzDrive (2021–2022)</h3>
+<p class="mb-4">Full electric-vehicle charging platform deployed in production. 2.4M LOC.</p>
+<p class="mb-4">Mobile &amp; web app (React Native + React DOM) to see the map of compatible charging stations and control them. Backoffice for operating the fleet of stations + fully documented REST API.</p>
+<h3 class="text-2xl font-normal mt-12 mb-4 font-sans">QuickBooks France - Export feature (2021)</h3>
+<p class="mb-4">Built &amp; owned a feature for the French version of Quickbooks, so users could export their data to all major French legacy accountant software providers.</p>
+<p class="mb-4">Service directly integrated into Quickbooks. Operated by us.</p>
+<h3 class="text-2xl font-normal mt-12 mb-4 font-sans">Busea (2019-2022)</h3>
+<p class="mb-4">Bus ticketing platform deployed in Ecuador (React Native + web + embedded IoT hardware, 3.4M LOC).</p>
+<p class="mb-4">Selling up to 4k tickets/month at the time.</p>
+<h3 class="text-2xl font-normal mt-12 mb-4 font-sans">Other</h3>
+<p class="mb-4">Lots of analytics / marketing / tracking software for multiple business.</p>
+<p class="mb-4">Tech &amp; marketing mentoring at <a href="https://escp.eu/" class="text-link underline hover:decoration-2">ESCP Europe Business school</a> and others.</p>
+        </div>
+      </article>
+      <div class="mt-16">
+        <a href="/projects/index.html" class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium px-3 py-1.5 bg-button text-button-foreground border border-button-foreground shadow-btn relative after:absolute after:inset-0.5 after:border after:border-dashed after:border-button-foreground after:pointer-events-none hover:bg-button-hover hover:text-black active:shadow-none active:translate-y-0.5 transition-colors font-mono">← All projects</a>
+      </div>
+
+      <footer>
+        <div class="w-full flex flex-col md:flex-row justify-between py-6 items-baseline gap-4 border-t border-black mt-16">
+          <p class="font-serif text-lg">Séverin Marcombes</p>
+          <div class="flex gap-4">
+            <a href="/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Home</a>
+          <a href="/thoughts/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70 hidden">Thoughts</a>
+          <a href="/projects/index.html" class="underline underline-offset-8 decoration-2 hover:decoration-foreground hover:text-foreground">Projects</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>github-filesystem — Séverin Marcombes</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="GitHub repos as a Node.js `fs`. `writeFile` commits to Git." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            background: '#F5F4EF', 'background-hover': '#EBEAE5', foreground: '#000000',
+            muted: '#E5E4DC', 'muted-foreground': '#686868', link: '#595959',
+            button: { DEFAULT: '#D9D8D3', hover: '#C4C3BB', foreground: '#403E37' },
+            divider: '#E5E4DC', 'card-border': '#D4D3CB', 'card-border-hover': '#C0BDAD', highlight: '#FBD45B',
+          },
+          fontFamily: {
+            serif: ['Newsreader', 'Georgia', 'ui-serif', 'serif'],
+            mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
+            sans: ['"Source Sans 3"', 'system-ui', 'sans-serif'],
+          },
+          boxShadow: {
+            card: '3px 3px 0px #000000', 'card-hover': '5px 5px 0px #000000',
+            'card-soft': '3px 3px 0px #C0BDAD', btn: '2px 2px 0px #403E37',
+          },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="bg-background text-foreground font-mono text-sm leading-5 antialiased">
+  <div class="p-4 md:p-12 overflow-hidden">
+    <div class="w-full max-w-2xl">
+      <header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+        <span><a href="/index.html" class="text-3xl font-serif">Séverin Marcombes</a></span>
+        <nav class="flex gap-6">
+          <a href="/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Home</a>
+          <a href="/thoughts/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70 hidden">Thoughts</a>
+          <a href="/projects/index.html" class="underline underline-offset-8 decoration-2 hover:decoration-foreground hover:text-foreground">Projects</a>
+        </nav>
+      </header>
+
+      <article>
+        <a href="/projects/index.html" class="text-xs text-muted-foreground underline underline-offset-2 decoration-foreground/20 hover:text-foreground">← Projects</a>
+        <h1 class="text-5xl md:text-6xl font-serif leading-tight text-balance mb-4 mt-8">🗂️ github-filesystem</h1>
+        <p class="text-lg text-muted-foreground mb-2">GitHub repos as a Node.js <code class="font-mono text-[13px] bg-white border border-divider px-1">fs</code>. <code class="font-mono text-[13px] bg-white border border-divider px-1">writeFile</code> commits to Git.</p>
+        <div class="font-sans text-lg leading-relaxed">
+<div class="flex flex-wrap gap-1.5 my-6"><span class="inline-flex items-center px-2 py-0.5 bg-muted border border-divider text-[11px] text-muted-foreground">github-filesystem</span></div>
+<div class="flex flex-wrap gap-1.5 my-6"><span class="inline-flex items-center px-2 py-0.5 bg-muted border border-divider text-[11px] text-muted-foreground">TypeScript</span></div>
+<p class="mb-4">AI agents need to read and write code in remote repos without cloning locally. This library gives them the standard Node.js <code class="font-mono text-[13px] bg-white border border-divider px-1">fs.promises</code> API — backed by the GitHub Contents API and Git Data API.</p>
+<h3 class="text-2xl font-normal mt-12 mb-4 font-sans">Usage</h3>
+<pre class="bg-white border border-divider p-4 my-6 overflow-x-auto text-[13px] leading-5"><code>import { GitHubFS } from 'github-filesystem';
+
+const fs = new GitHubFS({ repo: 'owner/repo', branch: 'main' });
+
+await fs.readFile('src/index.ts');           // Buffer
+await fs.writeFile('src/index.ts', code);   // commits immediately
+await fs.readdir('src/');                    // string[]
+await fs.stat('src/index.ts');              // Stats
+await fs.rm('src/old.ts');
+await fs.rename('src/a.ts', 'src/b.ts');
+await fs.appendFile('src/log.txt', 'line\n');
+await fs.exists('src/index.ts');            // boolean</code></pre>
+<h3 class="text-2xl font-normal mt-12 mb-4 font-sans">Two modes</h3>
+<p class="mb-4"><strong class="font-semibold">Instant mode</strong> (default) — every <code class="font-mono text-[13px] bg-white border border-divider px-1">writeFile</code> or <code class="font-mono text-[13px] bg-white border border-divider px-1">deleteFile</code> creates a commit immediately via the Contents API. Simple, one commit per operation.</p>
+<p class="mb-4"><strong class="font-semibold">Commit mode</strong> — batch multiple changes into a single Git commit:</p>
+<pre class="bg-white border border-divider p-4 my-6 overflow-x-auto text-[13px] leading-5"><code>await fs.startWork();
+await fs.writeFile('a.ts', '...');
+await fs.writeFile('b.ts', '...');
+await fs.deleteFile('c.ts');
+await fs.commitWork('refactor: reorganize modules');
+// → one commit, three file changes</code></pre>
+<p class="mb-4">In commit mode, staged changes are buffered in Upstash Redis. Reads merge staged state with GitHub so the view stays consistent mid-batch.</p>
+<p class="mb-4">The commit uses GitHub's Git Data API (not Contents API): <code class="font-mono text-[13px] bg-white border border-divider px-1">getRef</code> → <code class="font-mono text-[13px] bg-white border border-divider px-1">getCommit</code> → <code class="font-mono text-[13px] bg-white border border-divider px-1">createTree</code> → <code class="font-mono text-[13px] bg-white border border-divider px-1">createCommit</code> → <code class="font-mono text-[13px] bg-white border border-divider px-1">updateRef</code>. This handles deletions correctly (the Contents API can't delete and modify atomically).</p>
+<h3 class="text-2xl font-normal mt-12 mb-4 font-sans">Notes</h3>
+<ul class="list-none space-y-3 my-6"><li class="flex gap-3"><span class="size-[7px] bg-gray-900 rounded-sm mt-2.5 shrink-0"></span><span><code class="font-mono text-[13px] bg-white border border-divider px-1">mkdir</code> creates <code class="font-mono text-[13px] bg-white border border-divider px-1">.gitkeep</code> (Git has no empty directories)</span></li><li class="flex gap-3"><span class="size-[7px] bg-gray-900 rounded-sm mt-2.5 shrink-0"></span><span><code class="font-mono text-[13px] bg-white border border-divider px-1">rename</code> = read → write → delete (not a native Git operation)</span></li><li class="flex gap-3"><span class="size-[7px] bg-gray-900 rounded-sm mt-2.5 shrink-0"></span><span><code class="font-mono text-[13px] bg-white border border-divider px-1">stat</code> tries <code class="font-mono text-[13px] bg-white border border-divider px-1">readFile</code>, falls back to <code class="font-mono text-[13px] bg-white border border-divider px-1">readdir</code> to determine file vs directory</span></li><li class="flex gap-3"><span class="size-[7px] bg-gray-900 rounded-sm mt-2.5 shrink-0"></span><span>Sync methods exist but throw — remote filesystems can't be synchronous</span></li></ul>
+<h3 class="text-2xl font-normal mt-12 mb-4 font-sans">Install</h3>
+<pre class="bg-white border border-divider p-4 my-6 overflow-x-auto text-[13px] leading-5"><code>npm install github-filesystem</code></pre>
+<p class="mt-8 pt-4 border-t border-divider text-muted-foreground text-xs">→ <a href="https://github.com/smarcombes/github-filesystem" class="text-link underline hover:decoration-2">github.com/smarcombes/github-filesystem</a></p>
+        </div>
+      </article>
+      <div class="mt-16">
+        <a href="/projects/index.html" class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium px-3 py-1.5 bg-button text-button-foreground border border-button-foreground shadow-btn relative after:absolute after:inset-0.5 after:border after:border-dashed after:border-button-foreground after:pointer-events-none hover:bg-button-hover hover:text-black active:shadow-none active:translate-y-0.5 transition-colors font-mono">← All projects</a>
+      </div>
+
+      <footer>
+        <div class="w-full flex flex-col md:flex-row justify-between py-6 items-baseline gap-4 border-t border-black mt-16">
+          <p class="font-serif text-lg">Séverin Marcombes</p>
+          <div class="flex gap-4">
+            <a href="/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Home</a>
+          <a href="/thoughts/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70 hidden">Thoughts</a>
+          <a href="/projects/index.html" class="underline underline-offset-8 decoration-2 hover:decoration-foreground hover:text-foreground">Projects</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>

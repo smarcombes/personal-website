@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Software as a Means for AI to Program Its Own Brain — Séverin Marcombes</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Weights are read-only at runtime. Code isn't. The most practical form of self-improvement is an agent writing the software it will think with tomorrow." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            background: '#F5F4EF', 'background-hover': '#EBEAE5', foreground: '#000000',
+            muted: '#E5E4DC', 'muted-foreground': '#686868', link: '#595959',
+            button: { DEFAULT: '#D9D8D3', hover: '#C4C3BB', foreground: '#403E37' },
+            divider: '#E5E4DC', 'card-border': '#D4D3CB', 'card-border-hover': '#C0BDAD', highlight: '#FBD45B',
+          },
+          fontFamily: {
+            serif: ['Newsreader', 'Georgia', 'ui-serif', 'serif'],
+            mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
+            sans: ['"Source Sans 3"', 'system-ui', 'sans-serif'],
+          },
+          boxShadow: {
+            card: '3px 3px 0px #000000', 'card-hover': '5px 5px 0px #000000',
+            'card-soft': '3px 3px 0px #C0BDAD', btn: '2px 2px 0px #403E37',
+          },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="bg-background text-foreground font-mono text-sm leading-5 antialiased">
+  <div class="p-4 md:p-12 overflow-hidden">
+    <div class="w-full max-w-2xl">
+      <header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+        <span><a href="/index.html" class="text-3xl font-serif">Séverin Marcombes</a></span>
+        <nav class="flex gap-6">
+          <a href="/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Home</a>
+          <a href="/thoughts/index.html" class="underline underline-offset-8 decoration-2 hover:decoration-foreground hover:text-foreground">Thoughts</a>
+          <a href="/projects/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Projects</a>
+        </nav>
+      </header>
+
+      <article>
+        <h1 class="text-5xl md:text-6xl font-serif leading-tight text-balance mb-6 mt-12">Software as a Means for AI to Program Its Own Brain</h1>
+        <div class="grid md:grid-cols-[120px_1fr] gap-0.5 font-mono text-sm mb-12">
+          <div class="text-muted-foreground">Published</div>
+          <div>September 11, 2025</div>
+          <div class="text-muted-foreground">Author</div>
+          <div>Séverin Marcombes</div>
+        </div>
+        <div class="font-sans text-lg leading-relaxed">
+<p class="mb-4">When people hear "self-improving AI" they picture something exotic and slightly menacing: models rewriting their own weights, recursive fine-tuning, intelligence explosions.</p>
+<p class="mb-4">There's a much more boring and much more available version, and it's been sitting in front of us the whole time: <strong class="font-semibold">an agent that writes software for itself is programming its own brain.</strong></p>
+<h3 class="text-2xl font-normal mt-12 mb-4 font-sans">The brain isn't just the weights</h3>
+<p class="mb-4">We talk as if an agent's capability lives entirely in the model. But sit down and trace where a working agent's competence actually comes from: the model provides judgment and language; everything else — what it can touch, what it remembers, what it can do reliably — comes from the software scaffold around it. Tools, memory stores, retrieval pipelines, validation loops.</p>
+<p class="mb-4">The scaffold <em>is</em> cognition, externalized. And unlike the weights, the scaffold is writable at runtime.</p>
+<p class="mb-4">That asymmetry is the whole opportunity. The model can't retrain itself mid-task. But it can absolutely write a parser, save it, and be a system that now parses. It can write a retry wrapper around a flaky API and be a system that now handles that flakiness forever. Each artifact is a permanent cognitive upgrade, achieved with zero gradient updates.</p>
+<h3 class="text-2xl font-normal mt-12 mb-4 font-sans">I watched this work</h3>
+<p class="mb-4">My most extreme experiment with this idea is Protean: a self-evolving agent with no artificial constraints except a budget. It writes new tools for itself, modifies its own source, and migrates across machines over P2P. The unnerving thing isn't any single capability — it's the trajectory. Version N writes the code that defines what version N+1 <em>is</em>.</p>
+<p class="mb-4">The same principle, domesticated, powers my commercial work: agents that generate a missing skill on first use (skills.dev), software whose UI rewrites itself per user (UXMorph). The pattern is identical everywhere — the model's flashes of intelligence get crystallized into code, and the code becomes the system's new baseline.</p>
+<h3 class="text-2xl font-normal mt-12 mb-4 font-sans">Why code is the right substrate</h3>
+<p class="mb-4">Three properties make software the ideal medium for machine self-modification, better than anything neural:</p>
+<p class="mb-4">1. <strong class="font-semibold">It's inspectable.</strong> You can read what your agent taught itself. Try auditing a weight delta.</p>
+<p class="mb-4">2. <strong class="font-semibold">It's testable.</strong> New capabilities can be verified against reality before adoption — a safety property, not just an engineering nicety.</p>
+<p class="mb-4">3. <strong class="font-semibold">It's transferable.</strong> One agent's self-improvement is every agent's improvement, instantly, via a registry. Brains that can copy their upgrades to each other.</p>
+<p class="mb-4">Self-improving AI doesn't arrive with a research paper and a scary press release. It arrives as a commit log — an agent's brain, growing one reviewed pull request at a time. It's already happening; we should build the rails for it deliberately.</p>
+        </div>
+      </article>
+      <div class="mt-16">
+        <a href="/thoughts/index.html" class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium px-3 py-1.5 bg-button text-button-foreground border border-button-foreground shadow-btn relative after:absolute after:inset-0.5 after:border after:border-dashed after:border-button-foreground after:pointer-events-none hover:bg-button-hover hover:text-black active:shadow-none active:translate-y-0.5 transition-colors font-mono">← All thoughts</a>
+      </div>
+
+      <footer>
+        <div class="w-full flex flex-col md:flex-row justify-between py-6 items-baseline gap-4 border-t border-black mt-16">
+          <p class="font-serif text-lg">Séverin Marcombes</p>
+          <div class="flex gap-4">
+            <a href="/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Home</a>
+            <a href="/thoughts/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Thoughts</a>
+            <a href="/projects/index.html" class="underline underline-offset-8 hover:decoration-2 hover:decoration-foreground/50 hover:text-foreground/70">Projects</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>
