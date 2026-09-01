@@ -5,8 +5,7 @@
 
 /* The compiled output (../dist/styles.css) is committed, so deploying needs no
    build. Only re-run `npm run build:css` after editing the HTML or these tokens. */
-@source "../dist/index.html";
-@source "../dist/projects/**/*.html";
+@source "../dist/**/*.html";
 
 /*
   Design tokens for the "scientific lab notebook" look ported from www-2:

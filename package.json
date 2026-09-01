@@ -16,6 +16,7 @@
   },
   "scripts": {
     "build": "node build/build.mjs",
+    "render": "node build/render.mjs",
     "build:css": "tailwindcss -i ./src/input.css -o ./dist/styles.css --minify",
     "watch:css": "tailwindcss -i ./src/input.css -o ./dist/styles.css --watch",
     "check": "node build/check-dist.mjs",

@@ -1,8 +1,11 @@
 /**
- * Full build: compile Tailwind, then sanity-check dist/.
+ * Full build: render pages, compile Tailwind, then sanity-check dist/.
  *
- * dist/styles.css is committed, so deploying never *requires* this — run it
- * after editing src/input.css or any page markup.
+ * Order matters — Tailwind scans the rendered HTML in dist/, so pages have to
+ * exist before styles.css is compiled from them.
+ *
+ * dist/ is committed, so deploying never *requires* this — run it after
+ * editing anything under src/.
  */
 import { spawnSync } from "node:child_process";
 import path from "node:path";
@@ -16,5 +19,6 @@ const run = (label, args) => {
   if (res.status !== 0) process.exit(res.status ?? 1);
 };
 
+run("rendering pages", ["render"]);
 run("compiling styles.css", ["build:css"]);
 run("checking dist/", ["check"]);
