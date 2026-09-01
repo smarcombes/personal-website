@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Infra Is Not Ready for the AI Era — Séverin Marcombes</title>
+    <meta
+      name="description"
+      content="Every layer of cloud infrastructure assumes a human with a browser, a credit card, and infinite patience for dashboards. Agents have none of these. Why I'm building Interagentic."
+    />
+    <link rel="canonical" href="https://severin-marcombes.com/thoughts/infra-is-not-ready-for-the-ai-era/" />
+
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#f5f4ef" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Infra Is Not Ready for the AI Era — Séverin Marcombes" />
+    <meta
+      property="og:description"
+      content="Every layer of cloud infrastructure assumes a human with a browser, a credit card, and infinite patience for dashboards. Agents have none of these. Why I'm building Interagentic."
+    />
+    <meta property="og:url" content="https://severin-marcombes.com/thoughts/infra-is-not-ready-for-the-ai-era/" />
+    <meta name="twitter:card" content="summary" />
+
+    <link
+      rel="preload"
+      href="/fonts/newsreader-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/source-sans-3-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+
+  <body
+    class="bg-background text-foreground font-mono text-sm leading-5 antialiased"
+  >
+    <div class="p-4 md:p-12 overflow-hidden">
+      <div class="w-full max-w-2xl">
+        <header
+          class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4"
+        >
+          <span>
+            <a href="/" class="text-3xl font-serif">Hey, I'm Séverin.</a>
+          </span>
+        </header>
+
+        <article>
+          <a
+            href="/thoughts/"
+            class="inline-flex items-center gap-1 text-xs text-muted-foreground underline underline-offset-2 decoration-foreground/20 hover:text-foreground"
+          >
+            ← Writing
+          </a>
+
+          <header class="mt-10">
+            <p class="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground mb-4">
+              14 May 2026
+            </p>
+            <h1
+              class="font-serif text-[2.75rem] md:text-[3.75rem] leading-[1.05] tracking-[-0.02em] text-balance"
+            >
+              Infra Is Not Ready for the AI Era
+            </h1>
+            <p class="font-mono text-xs text-muted-foreground border-y border-divider py-3 mt-8 mb-12 tracking-wide">
+              By Séverin Marcombes
+            </p>
+          </header>
+
+          <div class="font-sans">
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75] first-letter:float-left first-letter:font-serif first-letter:text-[4.25rem] first-letter:leading-[0.8] first-letter:pr-3 first-letter:pt-1 first-letter:font-medium"
+            >
+              Run a simple experiment. Ask a capable agent to do something completely ordinary for a builder: put a small web service online, with a domain, a database, and the ability to charge customers.
+            </p>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              The agent can write every line of that system in about a minute. Then it hits the real world:
+            </p>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              Create a cloud account — there's a CAPTCHA, literally a test for not being a machine. Verify email. Add a credit card, whose 3-D Secure flow pings a phone. Register a domain through a checkout wizard. Configure DNS in a dashboard. Get payment processing — a signup that can involve <em>identity verification interviews</em>.
+            </p>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              Every wall is the same wall: <strong>infrastructure assumes the operator is a human with a browser.</strong> The signup form, the dashboard, the confirmation email, the "click here to verify" — the entire self-serve cloud, the greatest developer-experience achievement of the 2010s, is a UI-shaped lock on capabilities that agents need API-shaped.
+            </p>
+            <h2
+              class="font-serif text-[1.75rem] md:text-[2rem] leading-tight mt-20 mb-6 text-balance"
+            >
+              "Just give the agent your account" doesn't survive contact
+            </h2>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              The workaround everyone reaches for — hand the agent your AWS keys and your Stripe login — fails on three axes at once. Security: those are <em>your</em> root credentials in a context window. Attribution: everything the agent does is indistinguishable from you, so one runaway loop is your bill and your banned account. Scale: it works for one hobbyist agent, not for a fleet of thousands that each need their own isolated resources, budgets, and blast radius.
+            </p>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              The unit of cloud tenancy needs to change. Accounts were designed for humans; agents need <strong>programmatic tenancy</strong> — identity, resources, and spending that can be created, scoped, and destroyed by an API call.
+            </p>
+            <h2
+              class="font-serif text-[1.75rem] md:text-[2rem] leading-tight mt-20 mb-6 text-balance"
+            >
+              What agent-native infra looks like
+            </h2>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              This is the thesis behind Interagentic — AWS for agents. The design principles:
+            </p>
+            <ul class="list-none space-y-3 mb-8 border-t border-divider pt-5">
+              <li class="flex gap-3 text-[1.0625rem] leading-[1.7]">
+                <span class="shrink-0">→</span>
+                <span><strong>No dashboards, no signups.</strong> Every capability — deploy a site, register a domain, spin up a database, accept payments — is a programmatic call. The absence of a web console isn't a missing feature; it's the point.</span>
+              </li>
+              <li class="flex gap-3 text-[1.0625rem] leading-[1.7]">
+                <span class="shrink-0">→</span>
+                <span><strong>Self-registration.</strong> An agent establishes its own identity and gets to work in seconds, without a human pre-creating an account for it.</span>
+              </li>
+              <li class="flex gap-3 text-[1.0625rem] leading-[1.7]">
+                <span class="shrink-0">→</span>
+                <span><strong>Money as a first-class primitive.</strong> Budgets, caps, and payment rails built in — because an economic actor without spending limits is a bug, and one <em>with</em> them is a customer.</span>
+              </li>
+              <li class="flex gap-3 text-[1.0625rem] leading-[1.7]">
+                <span class="shrink-0">→</span>
+                <span><strong>Disposability.</strong> Resources scoped to a task, destroyed with the task. Agent infrastructure should be closer to a process table than to a cloud console.</span>
+              </li>
+            </ul>
+            <h2
+              class="font-serif text-[1.75rem] md:text-[2rem] leading-tight mt-20 mb-6 text-balance"
+            >
+              The stakes
+            </h2>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              Every platform shift had this moment: capability arrives before infrastructure, and whoever closes the gap defines the next decade. Mobile had it (the App Store was infra, not tech). The web had it (Stripe compressed "accept payments" from months to an afternoon).
+            </p>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              Agents are the largest new class of economic actors since the corporation. Right now they're locked out of the building by a form that says <em>I am not a robot</em>. Unlocking that door is not a feature request. It's the platform.
+            </p>
+            <footer class="mt-16 pt-8 border-t border-foreground">
+              <p class="font-mono text-xs text-muted-foreground leading-relaxed">
+                <a href="/thoughts/" class="text-link underline hover:decoration-2">All writing</a>
+                ·
+                <a href="/" class="text-link underline hover:decoration-2">Home</a>
+              </p>
+            </footer>
+          </div>
+        </article>
+
+        <footer>
+          <div
+            class="w-full flex flex-col md:flex-row justify-between py-6 items-baseline gap-4 border-t border-black mt-16"
+          >
+            <p class="font-serif text-lg">Séverin Marcombes</p>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </body>
+</html>

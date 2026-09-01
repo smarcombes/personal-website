@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tool Vibe-Coding as a Learning Mechanism — Séverin Marcombes</title>
+    <meta
+      name="description"
+      content="Vibe-coding apps for humans churned. Vibe-coding tools for agents is a different animal entirely: the output has a spec, a test, and a user that never gets bored."
+    />
+    <link rel="canonical" href="https://severin-marcombes.com/thoughts/tool-vibe-coding-as-a-learning-mechanism/" />
+
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#f5f4ef" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Tool Vibe-Coding as a Learning Mechanism — Séverin Marcombes" />
+    <meta
+      property="og:description"
+      content="Vibe-coding apps for humans churned. Vibe-coding tools for agents is a different animal entirely: the output has a spec, a test, and a user that never gets bored."
+    />
+    <meta property="og:url" content="https://severin-marcombes.com/thoughts/tool-vibe-coding-as-a-learning-mechanism/" />
+    <meta name="twitter:card" content="summary" />
+
+    <link
+      rel="preload"
+      href="/fonts/newsreader-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/source-sans-3-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+
+  <body
+    class="bg-background text-foreground font-mono text-sm leading-5 antialiased"
+  >
+    <div class="p-4 md:p-12 overflow-hidden">
+      <div class="w-full max-w-2xl">
+        <header
+          class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4"
+        >
+          <span>
+            <a href="/" class="text-3xl font-serif">Hey, I'm Séverin.</a>
+          </span>
+        </header>
+
+        <article>
+          <a
+            href="/thoughts/"
+            class="inline-flex items-center gap-1 text-xs text-muted-foreground underline underline-offset-2 decoration-foreground/20 hover:text-foreground"
+          >
+            ← Writing
+          </a>
+
+          <header class="mt-10">
+            <p class="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground mb-4">
+              2 December 2025
+            </p>
+            <h1
+              class="font-serif text-[2.75rem] md:text-[3.75rem] leading-[1.05] tracking-[-0.02em] text-balance"
+            >
+              Tool Vibe-Coding as a Learning Mechanism
+            </h1>
+            <p class="font-mono text-xs text-muted-foreground border-y border-divider py-3 mt-8 mb-12 tracking-wide">
+              By Séverin Marcombes
+            </p>
+          </header>
+
+          <div class="font-sans">
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75] first-letter:float-left first-letter:font-serif first-letter:text-[4.25rem] first-letter:leading-[0.8] first-letter:pr-3 first-letter:pt-1 first-letter:font-medium"
+            >
+              I have an unusual relationship with vibe-coding: I built one of the first vibe-coding platforms in early 2022 at Creative Robots, watched it churn, and pivoted away from it. So when I say vibe-coding has found its killer application, I'm not late to the hype — I'm returning to the scene with notes.
+            </p>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              The killer application isn't humans vibe-coding apps. It's <strong>agents vibe-coding their own tools</strong>.
+            </p>
+            <h2
+              class="font-serif text-[1.75rem] md:text-[2rem] leading-tight mt-20 mb-6 text-balance"
+            >
+              Why human vibe-coding churned
+            </h2>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              Our users loved the first five minutes: describe an app, watch it appear. Then reality: the app was 80% right, and the remaining 20% was a wall. They couldn't debug what they couldn't read. Regenerating rolled the dice on everything they liked. The medium gave them power without a feedback loop — thrilling, then frustrating, then gone.
+            </p>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              The lesson wasn't "generation is bad." It was: <em>generation without a tight verification loop produces artifacts nobody can finish.</em>
+            </p>
+            <h2
+              class="font-serif text-[1.75rem] md:text-[2rem] leading-tight mt-20 mb-6 text-balance"
+            >
+              Why agent tool-generation is different
+            </h2>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              Now change both the producer and the consumer. An agent needs a capability — say, "convert this bank's CSV export into structured transactions." It writes a quick-and-dirty tool for itself. Consider what changed:
+            </p>
+            <ul class="list-none space-y-3 mb-8 border-t border-divider pt-5">
+              <li class="flex gap-3 text-[1.0625rem] leading-[1.7]">
+                <span class="shrink-0">→</span>
+                <span><strong>The spec is concrete.</strong> Not "an app for my bakery, but make it pop" — a precise input, a precise output, defined by the task at hand.</span>
+              </li>
+              <li class="flex gap-3 text-[1.0625rem] leading-[1.7]">
+                <span class="shrink-0">→</span>
+                <span><strong>Verification is immediate and objective.</strong> Run the tool. Did the CSV parse? There's no taste involved; there's a test.</span>
+              </li>
+              <li class="flex gap-3 text-[1.0625rem] leading-[1.7]">
+                <span class="shrink-0">→</span>
+                <span><strong>The 80% problem inverts.</strong> A human abandons a mostly-working app. An agent iterates on a mostly-working tool until the test passes — it doesn't get frustrated, and each iteration takes seconds.</span>
+              </li>
+              <li class="flex gap-3 text-[1.0625rem] leading-[1.7]">
+                <span class="shrink-0">→</span>
+                <span><strong>The artifact compounds.</strong> A vibe-coded app was a dead end. A vibe-coded tool enters a registry and becomes infrastructure — for that agent and every other one.</span>
+              </li>
+            </ul>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              Vibe-coding's weaknesses — looseness, disposability, trial-and-error — are <em>features</em> when the output is a small, testable function instead of a product.
+            </p>
+            <h2
+              class="font-serif text-[1.75rem] md:text-[2rem] leading-tight mt-20 mb-6 text-balance"
+            >
+              The learning loop, closed
+            </h2>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              Put it together and you get something that deserves to be called learning: encounter a novel task, improvise (slow, exploratory, token-hungry), crystallize the improvisation into a tool, verify it against reality, keep it. Next encounter: instant recall. That's the skills.dev loop — six to ninety seconds the first time, milliseconds forever after.
+            </p>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              Every failed vibe-coded app taught me the same thing: generation needs a loop that closes. Agents close it. Humans vibe-coding apps was the rehearsal. Agents vibe-coding tools is the show.
+            </p>
+            <footer class="mt-16 pt-8 border-t border-foreground">
+              <p class="font-mono text-xs text-muted-foreground leading-relaxed">
+                <a href="/thoughts/" class="text-link underline hover:decoration-2">All writing</a>
+                ·
+                <a href="/" class="text-link underline hover:decoration-2">Home</a>
+              </p>
+            </footer>
+          </div>
+        </article>
+
+        <footer>
+          <div
+            class="w-full flex flex-col md:flex-row justify-between py-6 items-baseline gap-4 border-t border-black mt-16"
+          >
+            <p class="font-serif text-lg">Séverin Marcombes</p>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </body>
+</html>

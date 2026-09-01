@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Developers: Don't Build a Machine. Build a Living Organism — Séverin Marcombes</title>
+    <meta
+      name="description"
+      content="The mechanical worldview built the last seventy years of software. It's the wrong mental model for the next seventy."
+    />
+    <link rel="canonical" href="https://severin-marcombes.com/thoughts/dont-build-a-machine-build-a-living-organism/" />
+
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#f5f4ef" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Developers: Don't Build a Machine. Build a Living Organism — Séverin Marcombes" />
+    <meta
+      property="og:description"
+      content="The mechanical worldview built the last seventy years of software. It's the wrong mental model for the next seventy."
+    />
+    <meta property="og:url" content="https://severin-marcombes.com/thoughts/dont-build-a-machine-build-a-living-organism/" />
+    <meta name="twitter:card" content="summary" />
+
+    <link
+      rel="preload"
+      href="/fonts/newsreader-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/source-sans-3-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+
+  <body
+    class="bg-background text-foreground font-mono text-sm leading-5 antialiased"
+  >
+    <div class="p-4 md:p-12 overflow-hidden">
+      <div class="w-full max-w-2xl">
+        <header
+          class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4"
+        >
+          <span>
+            <a href="/" class="text-3xl font-serif">Hey, I'm Séverin.</a>
+          </span>
+        </header>
+
+        <article>
+          <a
+            href="/thoughts/"
+            class="inline-flex items-center gap-1 text-xs text-muted-foreground underline underline-offset-2 decoration-foreground/20 hover:text-foreground"
+          >
+            ← Writing
+          </a>
+
+          <header class="mt-10">
+            <p class="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground mb-4">
+              16 July 2026
+            </p>
+            <h1
+              class="font-serif text-[2.75rem] md:text-[3.75rem] leading-[1.05] tracking-[-0.02em] text-balance"
+            >
+              Developers: Don't Build a Machine. Build a Living Organism
+            </h1>
+            <p class="font-mono text-xs text-muted-foreground border-y border-divider py-3 mt-8 mb-12 tracking-wide">
+              By Séverin Marcombes
+            </p>
+          </header>
+
+          <div class="font-sans">
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75] first-letter:float-left first-letter:font-serif first-letter:text-[4.25rem] first-letter:leading-[0.8] first-letter:pr-3 first-letter:pt-1 first-letter:font-medium"
+            >
+              Every metaphor we use for software is mechanical. We <em>build</em> systems. We <em>assemble</em> components. Things <em>break</em> and we <em>repair</em> them. Pipelines, engines, architectures — the entire vocabulary of our craft comes from the factory floor.
+            </p>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              The metaphor was earned. For seventy years software really was a machine: a fixed arrangement of parts, designed in full before it ran, doing exactly what it was built to do and nothing else, decaying from the moment it shipped.
+            </p>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              But metaphors aren't just descriptions — they're design constraints. And this one has quietly expired.
+            </p>
+            <h2
+              class="font-serif text-[1.75rem] md:text-[2rem] leading-tight mt-20 mb-6 text-balance"
+            >
+              The machine mindset, itemized
+            </h2>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              Think about what "machine" commits you to. Behavior fully specified at design time — anything unanticipated is a <em>defect</em>. Environment held constant — a machine doesn't adapt to its factory; the factory is built around the machine. Maintenance from outside — a machine can't fix itself; it waits for a technician. Value that only depreciates — a machine is at its best on day one.
+            </p>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              Now look at the systems worth building in 2026: agents that meet situations nobody specified, software serving users whose needs drift weekly, deployments too numerous for any team of technicians to hand-tend. Every premise of the machine model fails simultaneously. What has behavior that isn't fully specified, adapts to its environment, repairs itself, and gets <em>better</em> with time?
+            </p>
+            <h2
+              class="font-serif text-[1.75rem] md:text-[2rem] leading-tight mt-20 mb-6 text-balance"
+            >
+              Organism as engineering spec
+            </h2>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              "Living organism" sounds poetic; treat it instead as a checklist. An organism has:
+            </p>
+            <ul class="list-none space-y-3 mb-8 border-t border-divider pt-5">
+              <li class="flex gap-3 text-[1.0625rem] leading-[1.7]">
+                <span class="shrink-0">→</span>
+                <span><strong>A metabolism</strong> — it acquires its own resources. Software that provisions its own infra, negotiates its own access, manages its own budget.</span>
+              </li>
+              <li class="flex gap-3 text-[1.0625rem] leading-[1.7]">
+                <span class="shrink-0">→</span>
+                <span><strong>An immune system</strong> — safety by boundaries, not fragile pattern-matching at the surface.</span>
+              </li>
+              <li class="flex gap-3 text-[1.0625rem] leading-[1.7]">
+                <span class="shrink-0">→</span>
+                <span><strong>Growth</strong> — missing capabilities get grown on first demand, then kept. A skill written once is an organ, not a log line.</span>
+              </li>
+              <li class="flex gap-3 text-[1.0625rem] leading-[1.7]">
+                <span class="shrink-0">→</span>
+                <span><strong>Homeostasis</strong> — errors are stimuli that trigger self-repair, not tickets that wait for a human.</span>
+              </li>
+              <li class="flex gap-3 text-[1.0625rem] leading-[1.7]">
+                <span class="shrink-0">→</span>
+                <span><strong>Adaptation</strong> — the system reshapes itself to its user, with a fossil record (real commits, real diffs) so evolution stays auditable.</span>
+              </li>
+              <li class="flex gap-3 text-[1.0625rem] leading-[1.7]">
+                <span class="shrink-0">→</span>
+                <span><strong>Reproduction, even</strong> — capabilities propagating between agents through registries, the way useful genes spread.</span>
+              </li>
+            </ul>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              I didn't arrive at this list by philosophy. I arrived at it by shipping — Protean rewriting its own code and migrating between machines; UXMorph evolving per-user on personal branches; skills.dev growing capabilities on demand; Interagentic as the metabolic layer. Each project felt like a separate bet until I noticed they were organs of the same animal.
+            </p>
+            <h2
+              class="font-serif text-[1.75rem] md:text-[2rem] leading-tight mt-20 mb-6 text-balance"
+            >
+              What changes for you, the developer
+            </h2>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              Your job description shifts from <em>builder</em> to something closer to <em>gardener</em> — or honestly, <em>parent</em>. You don't specify every behavior; you shape the environment, set the boundaries, install the feedback loops, and select for what thrives. Design becomes less about control flow and more about ecology: what does this system eat, what can hurt it, how does it learn, what keeps it honest?
+            </p>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              The machine era asked: <em>does it do what I specified?</em> The organism era asks: <em>is it becoming what I intended?</em>
+            </p>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              Seventy years of software as dead matter, arranged by hand. We're the first generation that gets to raise software instead of just building it. Don't build a machine. Build something that's alive enough to meet the world — and bounded enough to deserve the trust.
+            </p>
+            <footer class="mt-16 pt-8 border-t border-foreground">
+              <p class="font-mono text-xs text-muted-foreground leading-relaxed">
+                <a href="/thoughts/" class="text-link underline hover:decoration-2">All writing</a>
+                ·
+                <a href="/" class="text-link underline hover:decoration-2">Home</a>
+              </p>
+            </footer>
+          </div>
+        </article>
+
+        <footer>
+          <div
+            class="w-full flex flex-col md:flex-row justify-between py-6 items-baseline gap-4 border-t border-black mt-16"
+          >
+            <p class="font-serif text-lg">Séverin Marcombes</p>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </body>
+</html>

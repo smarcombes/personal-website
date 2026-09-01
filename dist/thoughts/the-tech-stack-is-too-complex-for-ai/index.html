@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>The Tech Stack Is Too Complex for AI — Because It Was Already Too Complex for Us — Séverin Marcombes</title>
+    <meta
+      name="description"
+      content="AI didn't break software engineering. It exposed how broken it already was. Tech teams were inefficient long before the first token was sampled."
+    />
+    <link rel="canonical" href="https://severin-marcombes.com/thoughts/the-tech-stack-is-too-complex-for-ai/" />
+
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#f5f4ef" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="The Tech Stack Is Too Complex for AI — Because It Was Already Too Complex for Us — Séverin Marcombes" />
+    <meta
+      property="og:description"
+      content="AI didn't break software engineering. It exposed how broken it already was. Tech teams were inefficient long before the first token was sampled."
+    />
+    <meta property="og:url" content="https://severin-marcombes.com/thoughts/the-tech-stack-is-too-complex-for-ai/" />
+    <meta name="twitter:card" content="summary" />
+
+    <link
+      rel="preload"
+      href="/fonts/newsreader-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/source-sans-3-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+
+  <body
+    class="bg-background text-foreground font-mono text-sm leading-5 antialiased"
+  >
+    <div class="p-4 md:p-12 overflow-hidden">
+      <div class="w-full max-w-2xl">
+        <header
+          class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4"
+        >
+          <span>
+            <a href="/" class="text-3xl font-serif">Hey, I'm Séverin.</a>
+          </span>
+        </header>
+
+        <article>
+          <a
+            href="/thoughts/"
+            class="inline-flex items-center gap-1 text-xs text-muted-foreground underline underline-offset-2 decoration-foreground/20 hover:text-foreground"
+          >
+            ← Writing
+          </a>
+
+          <header class="mt-10">
+            <p class="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground mb-4">
+              8 May 2025
+            </p>
+            <h1
+              class="font-serif text-[2.75rem] md:text-[3.75rem] leading-[1.05] tracking-[-0.02em] text-balance"
+            >
+              The Tech Stack Is Too Complex for AI — Because It Was Already Too Complex for Us
+            </h1>
+            <p class="font-mono text-xs text-muted-foreground border-y border-divider py-3 mt-8 mb-12 tracking-wide">
+              By Séverin Marcombes
+            </p>
+          </header>
+
+          <div class="font-sans">
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75] first-letter:float-left first-letter:font-serif first-letter:text-[4.25rem] first-letter:leading-[0.8] first-letter:pr-3 first-letter:pt-1 first-letter:font-medium"
+            >
+              Everyone is asking why AI agents struggle to ship production software. Wrong question. The right one: why does a team of ten senior engineers need six months to ship a CRUD app?
+            </p>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              AI didn't break software engineering. It exposed it.
+            </p>
+            <h2
+              class="font-serif text-[1.75rem] md:text-[2rem] leading-tight mt-20 mb-6 text-balance"
+            >
+              We normalized the absurd
+            </h2>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              Look at what it takes to put a button on the internet in 2025: a package manager on top of a package manager, a bundler configured by a meta-framework, a CI pipeline that re-installs the world on every commit, three environments that never quite match, and a YAML file whose indentation can take down production.
+            </p>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              None of this complexity comes from the problem being solved. It comes from decades of accretion — every layer patching the layer below instead of replacing it. Humans adapted to this the way you adapt to a chronic pain: we stopped noticing. We built entire careers around navigating the scar tissue.
+            </p>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              Then we handed this stack to a language model and acted surprised when it got lost. Of course it got lost. <em>We</em> are lost. We just have meetings about it.
+            </p>
+            <h2
+              class="font-serif text-[1.75rem] md:text-[2rem] leading-tight mt-20 mb-6 text-balance"
+            >
+              Tech teams were the original inefficiency
+            </h2>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              I've built engineering teams since 2011 — hired from Oracle, Ubuntu, Dropbox. Great people. And still, at Lima, I watched brilliant engineers spend most of their week on things that produced zero user value: fighting builds, syncing environments, re-explaining context that lived in someone's head, coordinating who touches which file.
+            </p>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              The dirty secret of our industry is that a "10x engineer" is mostly someone who has memorized more of the accidental complexity. That's not leverage. That's hostage negotiation with our own tooling.
+            </p>
+            <h2
+              class="font-serif text-[1.75rem] md:text-[2rem] leading-tight mt-20 mb-6 text-balance"
+            >
+              AI is the forcing function
+            </h2>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              Here's what makes this moment interesting: an LLM has no ego investment in the stack. It won't pretend the complexity is fine. When an agent fails to set up your dev environment, it's giving you a legibility score — and most codebases fail it.
+            </p>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              So we have two options. Keep fine-tuning models to survive our mess — teach them Webpack the way we teach interns Webpack. Or take the hint and simplify the substrate itself: fewer layers, self-describing systems, environments that are constructed rather than configured.
+            </p>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              I'm betting on the second. The winners of the AI era won't be the teams with the best agents on top of the old stack. They'll be the teams who rebuilt the stack so that <em>anyone</em> — human or model — can be productive in it in minutes.
+            </p>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              The tech stack was never designed. It happened. Now we get to design it.
+            </p>
+            <footer class="mt-16 pt-8 border-t border-foreground">
+              <p class="font-mono text-xs text-muted-foreground leading-relaxed">
+                <a href="/thoughts/" class="text-link underline hover:decoration-2">All writing</a>
+                ·
+                <a href="/" class="text-link underline hover:decoration-2">Home</a>
+              </p>
+            </footer>
+          </div>
+        </article>
+
+        <footer>
+          <div
+            class="w-full flex flex-col md:flex-row justify-between py-6 items-baseline gap-4 border-t border-black mt-16"
+          >
+            <p class="font-serif text-lg">Séverin Marcombes</p>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </body>
+</html>

@@ -9,21 +9,54 @@ as project `severin-marcombes.com`.
 ## Layout
 
 ```
-src/input.css      Tailwind v4 source: @theme design tokens + @font-face rules
-dist/              ← deploy THIS folder, as-is
-build/             build + verification scripts
-resources/         written source material (not deployed) — see below
+src/
+  layout.html      the shell every page shares: head, meta, header, footer
+  pages/**.html    page bodies + a JSON front-matter block
+  content/thoughts/*.md   essays, as Markdown
+  input.css        Tailwind v4: @theme design tokens + @font-face rules
+build/
+  build.mjs        render → compile CSS → check
+  render.mjs       src/ → dist/
+  markdown.mjs     the small Markdown subset the essays use
+  check-dist.mjs   dead links + stale styles.css
+dist/              ← deploy THIS folder, as-is (generated, but committed)
+resources/         written source material, never deployed — see below
 package.json
 ```
+
+Pages are generated, but `dist/` stays plain HTML with no runtime and is
+committed, so deploying still needs no build step.
+
+### Adding a page
+
+Drop an HTML file under `src/pages/` with a front-matter comment:
+
+```html
+<!--{
+  "title": "Thing — Séverin Marcombes",
+  "description": "One sentence.",
+  "path": "/projects/thing/",
+  "ogType": "article"
+}-->
+<article>…</article>
+```
+
+`ogType: "article"` widens the column to `max-w-2xl` and preloads the body
+font. `ogImage` (a root-absolute path) upgrades the Twitter card. Then
+`npm run build`. Essays are simpler still: add a Markdown file under
+`src/content/thoughts/` with `title`, `date`, `description` and `slug`, and it
+appears on `/thoughts/` automatically, newest first.
 
 ### `dist/` — what actually ships
 
 ```
 dist/
 ├── index.html                 home page
-├── projects/lima/
-│   ├── index.html             Lima article
-│   └── media/*.jpg            article images, beside the page that uses them
+├── projects/<slug>/index.html slices · extraorbital · botparty ·
+│                              design-system-stealer · lima
+├── projects/lima/media/*.jpg  article images, beside the page that uses them
+├── thoughts/index.html        the writing index
+├── thoughts/<slug>/index.html one page per essay
 ├── styles.css                 compiled Tailwind — committed, so no build to deploy
 ├── fonts/*.woff2              self-hosted Newsreader + Source Sans 3
 ├── site.webmanifest
@@ -43,7 +76,7 @@ Everything written for the site across its versions, kept so no copy is lost:
 | `projects/longform/` | 14 project write-ups in the templated form — *Why / Design decisions / The tech onion / Recognition* |
 | `projects/briefs/` | 17 shorter project descriptions, incl. agent-one, hiphop, samantha |
 | `projects/archive/` | Superseded variants worth keeping (`lima-technical.md`) |
-| `thoughts/` | 19 essays on AI, agents, tooling and infrastructure |
+| `thoughts/` | 19 essays. 18 are published from `src/content/thoughts/`; `mcps-are-dog-shit.md` is held back — copy it across to publish it |
 | `design-system/` | `DESIGN_SYSTEM.md` + standalone HTML component references |
 | `notes/` | Working briefs (project-rewrite template, registry task) |
 | `legacy-build/` | The Python generators that built the earlier site versions |
@@ -58,10 +91,9 @@ npm run build        # compile styles.css, then verify dist/
 npm run check        # verify dist/ only (dead links, stale styles.css)
 ```
 
-`dist/styles.css` is committed. Re-run `npm run build:css` (or `npm run build`)
-after editing `src/input.css` **or** after adding/changing classes in any page —
-Tailwind only emits the classes it finds in the files listed as `@source` in
-`src/input.css`, so a new page must be added there too.
+`dist/` is committed in full. Re-run `npm run build` after editing anything
+under `src/` — Tailwind only emits the classes it finds in the rendered HTML,
+which is why `render` runs before `build:css`.
 
 `npm run check` catches the two ways this site actually breaks: a link or asset
 pointing at a file that isn't there, and a `styles.css` older than the markup.

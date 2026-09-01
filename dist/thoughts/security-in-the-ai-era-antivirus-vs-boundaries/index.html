@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Security in the AI Era: Antivirus vs. Boundaries — Séverin Marcombes</title>
+    <meta
+      name="description"
+      content="One school inspects behavior and hunts for bad patterns. The other makes bad outcomes structurally impossible. We already ran this experiment once — and pattern-matching lost."
+    />
+    <link rel="canonical" href="https://severin-marcombes.com/thoughts/security-in-the-ai-era-antivirus-vs-boundaries/" />
+
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#f5f4ef" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Security in the AI Era: Antivirus vs. Boundaries — Séverin Marcombes" />
+    <meta
+      property="og:description"
+      content="One school inspects behavior and hunts for bad patterns. The other makes bad outcomes structurally impossible. We already ran this experiment once — and pattern-matching lost."
+    />
+    <meta property="og:url" content="https://severin-marcombes.com/thoughts/security-in-the-ai-era-antivirus-vs-boundaries/" />
+    <meta name="twitter:card" content="summary" />
+
+    <link
+      rel="preload"
+      href="/fonts/newsreader-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/source-sans-3-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+
+  <body
+    class="bg-background text-foreground font-mono text-sm leading-5 antialiased"
+  >
+    <div class="p-4 md:p-12 overflow-hidden">
+      <div class="w-full max-w-2xl">
+        <header
+          class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4"
+        >
+          <span>
+            <a href="/" class="text-3xl font-serif">Hey, I'm Séverin.</a>
+          </span>
+        </header>
+
+        <article>
+          <a
+            href="/thoughts/"
+            class="inline-flex items-center gap-1 text-xs text-muted-foreground underline underline-offset-2 decoration-foreground/20 hover:text-foreground"
+          >
+            ← Writing
+          </a>
+
+          <header class="mt-10">
+            <p class="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground mb-4">
+              2 April 2026
+            </p>
+            <h1
+              class="font-serif text-[2.75rem] md:text-[3.75rem] leading-[1.05] tracking-[-0.02em] text-balance"
+            >
+              Security in the AI Era: Antivirus vs. Boundaries
+            </h1>
+            <p class="font-mono text-xs text-muted-foreground border-y border-divider py-3 mt-8 mb-12 tracking-wide">
+              By Séverin Marcombes
+            </p>
+          </header>
+
+          <div class="font-sans">
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75] first-letter:float-left first-letter:font-serif first-letter:text-[4.25rem] first-letter:leading-[0.8] first-letter:pr-3 first-letter:pt-1 first-letter:font-medium"
+            >
+              The security industry has seen this exact fork in the road before, and it's worth remembering who won.
+            </p>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              For twenty years, the dominant answer to malware was the antivirus: watch everything, recognize known-bad patterns, quarantine on match. It was always one signature behind the attacker, by construction. What actually moved the needle was the other philosophy: sandboxes, permission systems, process isolation — <em>boundaries</em>. Don't try to recognize evil; make it structurally unable to reach anything that matters. Your phone doesn't run a virus scanner over every app. It runs every app in a box.
+            </p>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              Now agents arrive, and I watch the industry instinctively rebuild the antivirus: prompt-injection classifiers, output filters, LLM-judges watching other LLMs, "guardrail" models scoring every response for harmfulness.
+            </p>
+            <h2
+              class="font-serif text-[1.75rem] md:text-[2rem] leading-tight mt-20 mb-6 text-balance"
+            >
+              Why the antivirus approach fails harder this time
+            </h2>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              Against malware, signatures at least targeted a finite set of binaries. Against language, the attack surface is <em>every possible way of saying anything</em>. Injection payloads don't have hashes. A model policing another model's text is a probabilistic filter over an infinite input space — and one clever paraphrase away from a miss. Worse, every new capability you give the agent multiplies what a single miss costs.
+            </p>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              Detection also carries a quieter tax: false positives. Tighten the filter until attacks reliably fail and you've usually neutered the agent for legitimate work too — the security teams' oldest dilemma, now at inference speed.
+            </p>
+            <h2
+              class="font-serif text-[1.75rem] md:text-[2rem] leading-tight mt-20 mb-6 text-balance"
+            >
+              What boundaries look like for agents
+            </h2>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              The boundary school asks a different question. Not "is this behavior malicious?" but "what can this process reach, even on its worst day?" Concretely:
+            </p>
+            <ul class="list-none space-y-3 mb-8 border-t border-divider pt-5">
+              <li class="flex gap-3 text-[1.0625rem] leading-[1.7]">
+                <span class="shrink-0">→</span>
+                <span><strong>Execution in sandboxes.</strong> Code runs in disposable, isolated environments with no default egress. (Agent One runs everything on Modal sandboxes for exactly this reason.)</span>
+              </li>
+              <li class="flex gap-3 text-[1.0625rem] leading-[1.7]">
+                <span class="shrink-0">→</span>
+                <span><strong>Credentials the agent never holds.</strong> A proxy injects secrets at request time; a fully compromised agent has nothing to exfiltrate. That's the keychains.dev design.</span>
+              </li>
+              <li class="flex gap-3 text-[1.0625rem] leading-[1.7]">
+                <span class="shrink-0">→</span>
+                <span><strong>Capability-scoped, expiring access.</strong> Permission for <em>this task, this resource, this hour</em> — not a standing key to the kingdom.</span>
+              </li>
+              <li class="flex gap-3 text-[1.0625rem] leading-[1.7]">
+                <span class="shrink-0">→</span>
+                <span><strong>Blast-radius budgets.</strong> Spend caps, rate limits, human sign-off above thresholds. Assume the agent goes insane; bound the damage arithmetic-ally.</span>
+              </li>
+            </ul>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              Notice none of these require deciding whether the model's intent was bad — no classifier in the loop, nothing to jailbreak. The prompt injection may fully succeed and it still can't do anything that the walls don't allow.
+            </p>
+            <h2
+              class="font-serif text-[1.75rem] md:text-[2rem] leading-tight mt-20 mb-6 text-balance"
+            >
+              Both, but in the right order
+            </h2>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              Detection has a place — as telemetry, as the alarm system inside the walls. The failure mode is making it the <em>load-bearing</em> layer. History's verdict is clean: every platform that got secure did it with architecture, not vigilance.
+            </p>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              Don't scan for demons. Build rooms they can't leave.
+            </p>
+            <footer class="mt-16 pt-8 border-t border-foreground">
+              <p class="font-mono text-xs text-muted-foreground leading-relaxed">
+                <a href="/thoughts/" class="text-link underline hover:decoration-2">All writing</a>
+                ·
+                <a href="/" class="text-link underline hover:decoration-2">Home</a>
+              </p>
+            </footer>
+          </div>
+        </article>
+
+        <footer>
+          <div
+            class="w-full flex flex-col md:flex-row justify-between py-6 items-baseline gap-4 border-t border-black mt-16"
+          >
+            <p class="font-serif text-lg">Séverin Marcombes</p>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </body>
+</html>

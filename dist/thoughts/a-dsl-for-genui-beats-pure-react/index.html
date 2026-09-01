@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>A DSL for GenUI Is So Much Better Than Pure React — Séverin Marcombes</title>
+    <meta
+      name="description"
+      content="Letting a model emit raw React is handing a firehose to a calligrapher. Constrain the language and generation gets faster, safer, and dramatically more correct."
+    />
+    <link rel="canonical" href="https://severin-marcombes.com/thoughts/a-dsl-for-genui-beats-pure-react/" />
+
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#f5f4ef" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="A DSL for GenUI Is So Much Better Than Pure React — Séverin Marcombes" />
+    <meta
+      property="og:description"
+      content="Letting a model emit raw React is handing a firehose to a calligrapher. Constrain the language and generation gets faster, safer, and dramatically more correct."
+    />
+    <meta property="og:url" content="https://severin-marcombes.com/thoughts/a-dsl-for-genui-beats-pure-react/" />
+    <meta name="twitter:card" content="summary" />
+
+    <link
+      rel="preload"
+      href="/fonts/newsreader-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/source-sans-3-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+
+  <body
+    class="bg-background text-foreground font-mono text-sm leading-5 antialiased"
+  >
+    <div class="p-4 md:p-12 overflow-hidden">
+      <div class="w-full max-w-2xl">
+        <header
+          class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4"
+        >
+          <span>
+            <a href="/" class="text-3xl font-serif">Hey, I'm Séverin.</a>
+          </span>
+        </header>
+
+        <article>
+          <a
+            href="/thoughts/"
+            class="inline-flex items-center gap-1 text-xs text-muted-foreground underline underline-offset-2 decoration-foreground/20 hover:text-foreground"
+          >
+            ← Writing
+          </a>
+
+          <header class="mt-10">
+            <p class="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground mb-4">
+              14 April 2025
+            </p>
+            <h1
+              class="font-serif text-[2.75rem] md:text-[3.75rem] leading-[1.05] tracking-[-0.02em] text-balance"
+            >
+              A DSL for GenUI Is So Much Better Than Pure React
+            </h1>
+            <p class="font-mono text-xs text-muted-foreground border-y border-divider py-3 mt-8 mb-12 tracking-wide">
+              By Séverin Marcombes
+            </p>
+          </header>
+
+          <div class="font-sans">
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75] first-letter:float-left first-letter:font-serif first-letter:text-[4.25rem] first-letter:leading-[0.8] first-letter:pr-3 first-letter:pt-1 first-letter:font-medium"
+            >
+              When you ask a model to generate UI, the default move is obvious: it knows React, React renders interfaces, so let it write React. I've now spent years on the other side of that decision — layouts.dev is built on a custom DSL, 543K lines of conviction — and I'll defend the unpopular position flatly: for generative UI, a purpose-built DSL beats raw React by an order of magnitude.
+            </p>
+            <h2
+              class="font-serif text-[1.75rem] md:text-[2rem] leading-tight mt-20 mb-6 text-balance"
+            >
+              The case against the firehose
+            </h2>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              React is a general-purpose programming surface. When a model emits it, the model can express <em>anything</em> — which sounds like power and behaves like variance:
+            </p>
+            <ul class="list-none space-y-3 mb-8 border-t border-divider pt-5">
+              <li class="flex gap-3 text-[1.0625rem] leading-[1.7]">
+                <span class="shrink-0">→</span>
+                <span><strong>The failure space is unbounded.</strong> Arbitrary JS means hooks misused, effects looping, state mutated mid-render, imports hallucinated. Every generation is a small code review with a nonzero chance of a crash — and you can't statically guarantee much about it without solving the halting problem.</span>
+              </li>
+              <li class="flex gap-3 text-[1.0625rem] leading-[1.7]">
+                <span class="shrink-0">→</span>
+                <span><strong>Tokens are spent on ceremony.</strong> Imports, prop drilling, className soup, closing tags. A huge share of the output budget goes to syntax that carries no design intent — slower, costlier, and more surface for errors.</span>
+              </li>
+              <li class="flex gap-3 text-[1.0625rem] leading-[1.7]">
+                <span class="shrink-0">→</span>
+                <span><strong>Iteration is regeneration.</strong> "Make the sidebar wider" against freeform code means the model re-emits (and risks re-breaking) things that were fine. There's no stable structure to make a <em>surgical</em> edit against.</span>
+              </li>
+            </ul>
+            <h2
+              class="font-serif text-[1.75rem] md:text-[2rem] leading-tight mt-20 mb-6 text-balance"
+            >
+              What a DSL buys you
+            </h2>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              A DSL inverts every one of those properties, because it constrains expression to the domain:
+            </p>
+            <ul class="list-none space-y-3 mb-8 border-t border-divider pt-5">
+              <li class="flex gap-3 text-[1.0625rem] leading-[1.7]">
+                <span class="shrink-0">→</span>
+                <span><strong>Invalid states become unrepresentable.</strong> The grammar simply has no way to write an infinite loop or a side effect. Validation is parsing, not linting — a malformed generation is rejected in microseconds, before anything renders.</span>
+              </li>
+              <li class="flex gap-3 text-[1.0625rem] leading-[1.7]">
+                <span class="shrink-0">→</span>
+                <span><strong>Every token is signal.</strong> The language encodes columns, cards, actions, bindings — design decisions and nothing else. Generations are shorter, cheaper, and land inside the distribution the model handles best: structured, repetitive, predictable.</span>
+              </li>
+              <li class="flex gap-3 text-[1.0625rem] leading-[1.7]">
+                <span class="shrink-0">→</span>
+                <span><strong>Edits become diffs.</strong> A stable tree with addressable nodes means "wider sidebar" is a one-node mutation. This is what makes conversational iteration feel instant instead of feeling like a re-roll.</span>
+              </li>
+              <li class="flex gap-3 text-[1.0625rem] leading-[1.7]">
+                <span class="shrink-0">→</span>
+                <span><strong>Rendering stays yours.</strong> The DSL compiles to whatever you want — layouts.dev targets web <em>and</em> React Native from the same source. The model describes intent; battle-tested code you wrote once decides how intent becomes pixels.</span>
+              </li>
+            </ul>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              The pattern is ancient, of course: we don't generate Postgres internals, we generate SQL. Constrained languages are how you let an unreliable author drive a reliable machine.
+            </p>
+            <h2
+              class="font-serif text-[1.75rem] md:text-[2rem] leading-tight mt-20 mb-6 text-balance"
+            >
+              The objection that matters
+            </h2>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              "But a DSL can't express everything!" Correct — that's the feature. GenUI doesn't need everything; it needs the 95% of interfaces that are lists, forms, cards, and flows, delivered with near-zero failure rate. For the last 5%, add an escape hatch to custom components — authored by humans, <em>referenced</em> by the model.
+            </p>
+            <p
+              class="mb-7 text-[1.125rem] leading-[1.75]"
+            >
+              Give the model a language where the only thing it can say is valid UI, and suddenly it speaks fluently. Vocabulary, it turns out, was never the problem. Grammar was.
+            </p>
+            <footer class="mt-16 pt-8 border-t border-foreground">
+              <p class="font-mono text-xs text-muted-foreground leading-relaxed">
+                <a href="/thoughts/" class="text-link underline hover:decoration-2">All writing</a>
+                ·
+                <a href="/" class="text-link underline hover:decoration-2">Home</a>
+              </p>
+            </footer>
+          </div>
+        </article>
+
+        <footer>
+          <div
+            class="w-full flex flex-col md:flex-row justify-between py-6 items-baseline gap-4 border-t border-black mt-16"
+          >
+            <p class="font-serif text-lg">Séverin Marcombes</p>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </body>
+</html>
