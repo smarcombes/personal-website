@@ -1,0 +1,4 @@
+# Approved essays land here, written by the writing-review tool's export script.
+# Empty on purpose: the 19 AI-drafted originals live in resources/thoughts/ and
+# none has been through review yet. render.mjs skips the whole /thoughts/ section
+# while this directory has no .md files in it.

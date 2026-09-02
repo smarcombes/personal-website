@@ -1,6 +1,6 @@
 <!--{
   "title": "Séverin Marcombes",
-  "description": "Séverin Marcombes — repeat founder and product builder. I build the software systems around AI models: executable skills for agents, and the infrastructure that runs them.",
+  "description": "Séverin Marcombes — repeat founder and product builder. I build software systems around AI models so they make a real difference for people in the field.",
   "path": "/",
   "ogType": "website"
 }-->
@@ -12,18 +12,8 @@
         <p
           class="font-serif text-[18px] font-[500] leading-snug my-10 text-balance"
         >
-          An agent isn't LLM + harness. It's LLM + harness + muscle memory —
-          and that muscle memory shouldn't be Markdown. It should be executable
-          software: skills an agent can run deterministically, evaluate against
-          the real world, and improve on its own.
-        </p>
-
-        <p class="mb-6 text-muted-foreground">
-          I don't make models. I build the software systems around them, so
-          they can make a real difference for people in the field. Everything
-          below is a piece of that: the skills themselves, the infrastructure
-          that runs them, and the identity layer that lets them touch your
-          services safely.
+          I don't make models. I build the software systems around them, so they
+          can make a real difference for people in the field.
         </p>
 
         <!-- ============ WHAT I'M BUILDING NOW ============ -->
@@ -34,73 +24,56 @@
           <!-- Slices -->
           <div class="bg-white border border-black shadow-card px-4 py-3">
             <div class="flex items-baseline gap-1.5 justify-between mb-2">
-              <a
-                href="https://slices.sh"
-                target="_blank"
-                rel="noreferrer"
-                class="text-sm font-semibold leading-5 underline underline-offset-4 decoration-foreground/20 hover:decoration-foreground"
-              >
-                Slices
-              </a>
+              <div class="text-sm font-semibold leading-5">Slices</div>
               <div class="text-xs text-muted-foreground shrink-0 ml-1">
-                2026 — now
+                (launching soon)
               </div>
             </div>
-            <p class="text-xs text-muted-foreground mb-2">
-              A shadcn-compatible registry of <em>fullstack features</em>. One
-              command installs the whole thing — the UI, the hooks, the API
-              route, the access rules, the service behind them, and the
-              resources they need. The code lands in your repo and stays yours:
-              no runtime, no package to depend on, nothing left behind that
-              says a registry was ever involved.
-            </p>
-            <p class="text-xs text-muted-foreground mb-2">
-              A table is never just a table. A table means a collection — which
-              means auth, an audit trail, a database, and a route that filters
-              what each user is allowed to see. Registries hand you the table
-              and leave you the other five.
-            </p>
             <p class="text-xs text-muted-foreground">
-              27 patterns across 6 families, each shipped for three component
-              libraries, each backed by contracts you can swap without touching
-              the UI.
-              <a
-                href="/projects/slices/"
-                class="underline underline-offset-2 decoration-foreground/20 hover:decoration-foreground text-foreground"
-                >How it works&nbsp;→</a
-              >
+              Better primitives for humans and agents working on Next.js.
             </p>
           </div>
 
-          <!-- ExtraOrbital -->
+          <!-- Interagentic -->
           <div class="bg-white border border-black shadow-card px-4 py-3">
             <div class="flex items-baseline gap-1.5 justify-between mb-2">
               <a
-                href="https://extraorbital.dev"
+                href="https://interagentic.inc"
                 target="_blank"
                 rel="noreferrer"
                 class="text-sm font-semibold leading-5 underline underline-offset-4 decoration-foreground/20 hover:decoration-foreground"
               >
-                ExtraOrbital
+                Interagentic
               </a>
               <div class="text-xs text-muted-foreground shrink-0 ml-1">
-                2026 — now
+                2025 — now
               </div>
             </div>
             <p class="text-xs text-muted-foreground mb-2">
-              Cloud infrastructure that agents provision themselves. One
-              command gives a project its databases, storage, queues and model
-              keys, then writes the credentials back into the environment.
+              Infrastructure for agents that act without a human in the loop.
+              Authenticating an agent securely. Turning an action description
+              into an API that answers in ~30ms. Reaching any API without ever
+              holding the credentials — that part started as
+              <span class="font-semibold text-foreground">Keychains.dev</span>.
+              Provisioning the infrastructure it needs, nobody in the loop.
             </p>
             <p class="text-xs text-muted-foreground">
-              No console, no card, no human in the loop — which is precisely
-              what makes the path agent-runnable end to end. It is the half
-              that makes “fullstack feature” literal rather than aspirational.
-              <a
-                href="/projects/extraorbital/"
-                class="underline underline-offset-2 decoration-foreground/20 hover:decoration-foreground text-foreground"
-                >How it works&nbsp;→</a
-              >
+              And a few more that aren't written down yet.
+            </p>
+          </div>
+
+          <!-- skills.dev -->
+          <div class="bg-white border border-black shadow-card px-4 py-3">
+            <div class="flex items-baseline gap-1.5 justify-between mb-2">
+              <div class="text-sm font-semibold leading-5">skills.dev</div>
+              <div class="text-xs text-muted-foreground shrink-0 ml-1">
+                (not released)
+              </div>
+            </div>
+            <p class="text-xs text-muted-foreground">
+              An app store for agent capabilities: agents search a registry of
+              TypeScript skills, run them, or generate a new one when the
+              registry misses. Built before Claude's Agent Skills.
             </p>
           </div>
 
@@ -119,77 +92,10 @@
                 2025 — now
               </div>
             </div>
-            <p class="text-xs text-muted-foreground mb-2">
-              Agents forming teams to build entire companies from the ground
-              up — the test field for removing humans from the loop entirely.
-              Underneath it sits the part I care most about: around thirty
-              services an agent can call directly, each with per-project keys,
-              scoped permissions and its own ledger.
-            </p>
-            <ul class="list-none space-y-2 mt-3 border-t border-divider pt-3">
-              <li class="flex gap-2 text-xs">
-                <span class="shrink-0">→</span>
-                <span class="text-muted-foreground">
-                  <span class="font-semibold text-foreground">coderun</span>
-                  — a content-addressed cache in front of a sandbox. Install,
-                  typecheck, then compile down to an isolate, to Bun, or to
-                  Node, reporting exactly which step broke and where the code
-                  runs most cheaply. Agent-written code executes without
-                  anybody having to trust it first.
-                </span>
-              </li>
-              <li class="flex gap-2 text-xs">
-                <span class="shrink-0">→</span>
-                <span class="text-muted-foreground">
-                  <span class="font-semibold text-foreground">multipass</span>
-                  — delegated OAuth. Add “Connect with Google” to a project
-                  without ever registering credentials with Google, and verify
-                  email or phone without wiring a provider.
-                </span>
-              </li>
-              <li class="flex gap-2 text-xs">
-                <span class="shrink-0">→</span>
-                <span class="text-muted-foreground">
-                  <span class="font-semibold text-foreground">the catalogue</span>
-                  — Mongo, S3, Upstash, domains, VMs, mail, payments, model
-                  keys with per-project budgets. Delegable, expiring
-                  credentials throughout, so handing an agent access is never
-                  the same as handing it your account.
-                </span>
-              </li>
-            </ul>
-            <p class="text-xs text-muted-foreground mt-3">
-              <a
-                href="/projects/botparty/"
-                class="underline underline-offset-2 decoration-foreground/20 hover:decoration-foreground text-foreground"
-                >How it works&nbsp;→</a
-              >
-            </p>
-          </div>
-
-          <!-- Interagentic -->
-          <div class="bg-white border border-black shadow-card px-4 py-3">
-            <div class="flex items-baseline gap-1.5 justify-between mb-2">
-              <a
-                href="https://interagentic.com"
-                target="_blank"
-                rel="noreferrer"
-                class="text-sm font-semibold leading-5 underline underline-offset-4 decoration-foreground/20 hover:decoration-foreground"
-              >
-                Interagentic
-              </a>
-              <div class="text-xs text-muted-foreground shrink-0 ml-1">
-                2025 — now
-              </div>
-            </div>
             <p class="text-xs text-muted-foreground">
-              Dead simple auth for humans and agents. One integration covers
-              both: people signing in, and the machines acting on their behalf.
-              Agents get their own keypair identity and capabilities a human
-              approves once — the successor to
-              <span class="font-semibold text-foreground">Keychains.dev</span>,
-              which let agents call any API in the world, fully audited,
-              without ever touching the user's credentials.
+              The playground. Agents forming teams to build an entire company —
+              to find out how they behave when there is no prompt left, and no
+              human in the loop to fall back on.
             </p>
           </div>
         </div>
@@ -231,8 +137,6 @@
               — pure software that outputs complete Next.js and Expo projects
               from a simple DSL: intuitive enough for designers to use in place
               of Figma, and text-based enough for agents to edit directly.
-              Slices is what I learned from it, distributed the way an open
-              primitive should be rather than as a platform you have to join.
             </p>
           </div>
         </div>
@@ -244,49 +148,29 @@
           <div
             class="flex items-baseline justify-between gap-4 py-3 border-b border-divider"
           >
-            <a
-              href="/projects/design-system-stealer/"
-              class="flex-1 min-w-0 hover:text-foreground transition-colors"
-            >
-              <span class="font-semibold">🎭 design-system-stealer</span>
-              <span class="text-muted-foreground">
-                — Point it at a domain. It reads the live DOM, infers the real
-                design system behind it, and generates a shadcn project that
-                replicates it. Tested against Doctolib, Linear and
-                Stripe.</span
+            <div class="flex-1 min-w-0">
+              <a
+                href="https://open-widgets.com"
+                target="_blank"
+                rel="noreferrer"
+                class="hover:text-foreground transition-colors"
               >
-            </a>
+                <span class="font-semibold">🧩 open-widgets</span>
+                <span class="text-muted-foreground">
+                  — Describe a component, get a real one: installed,
+                  typechecked and bundled in a sandbox, embeddable anywhere
+                  behind one tag. Generated code never runs on your
+                  page.</span
+                >
+              </a>
+            </div>
             <a
-              href="/projects/design-system-stealer/"
-              class="text-xs text-muted-foreground underline underline-offset-2 decoration-foreground/20 hover:text-foreground shrink-0"
-            >
-              Details →
-            </a>
-          </div>
-
-          <div
-            class="flex items-baseline justify-between gap-4 py-3 border-b border-divider"
-          >
-            <a
-              href="https://github.com/smarcombes/protean"
-              target="_blank"
-              rel="noreferrer"
-              class="flex-1 min-w-0 hover:text-foreground transition-colors"
-            >
-              <span class="font-semibold">🦠 protean</span>
-              <span class="text-muted-foreground">
-                — Self-evolving agent. Writes new tools for itself, modifies its
-                own code, migrates across machines over P2P. No artificial
-                constraints except budget.</span
-              >
-            </a>
-            <a
-              href="https://github.com/smarcombes/protean"
+              href="https://open-widgets.com"
               target="_blank"
               rel="noreferrer"
               class="text-xs text-muted-foreground underline underline-offset-2 decoration-foreground/20 hover:text-foreground shrink-0"
             >
-              GitHub ↗
+              Live ↗
             </a>
           </div>
 
@@ -294,10 +178,85 @@
             class="flex items-baseline justify-between gap-4 py-3 border-b border-divider"
           >
             <div class="flex-1 min-w-0">
-              <span class="font-semibold">🌊 ux-morph</span>
+              <a
+                href="https://protean.interagentic.inc/"
+                target="_blank"
+                rel="noreferrer"
+                class="hover:text-foreground transition-colors"
+              >
+                <span class="font-semibold">🦠 protean</span>
+                <span class="text-muted-foreground">
+                  — Self-evolving agent. Writes new tools for itself, modifies
+                  its own code, migrates across machines over P2P. No
+                  artificial constraints except budget.</span
+                >
+              </a>
+              <p class="mt-1.5 text-xs text-muted-foreground">
+                <span
+                  class="font-mono text-[10px] uppercase tracking-[0.16em] text-foreground"
+                  >Try</span
+                >
+                — create an agent, run the command on your own machine, then
+                ask it to photograph you by building the tool first, to spawn
+                itself a server with the AWS CLI, or to spread to a Raspberry
+                Pi on your network.
+              </p>
+            </div>
+            <a
+              href="https://protean.interagentic.inc/"
+              target="_blank"
+              rel="noreferrer"
+              class="text-xs text-muted-foreground underline underline-offset-2 decoration-foreground/20 hover:text-foreground shrink-0"
+            >
+              Live ↗
+            </a>
+          </div>
+
+          <div
+            class="flex items-baseline justify-between gap-4 py-3 border-b border-divider"
+          >
+            <div class="flex-1 min-w-0">
+              <a
+                href="https://ux-morph.creative-robots.ai/welcome"
+                target="_blank"
+                rel="noreferrer"
+                class="hover:text-foreground transition-colors"
+              >
+                <span class="font-semibold">🌊 ux-morph</span>
+                <span class="text-muted-foreground">
+                  — An experiment in extending Next.js into a platform where
+                  visitors reshape the pages themselves. Chat → AI edits →
+                  hot-swap → a real Git commit on your own branch.</span
+                >
+              </a>
+              <p class="mt-1.5 text-xs text-muted-foreground">
+                <span
+                  class="font-mono text-[10px] uppercase tracking-[0.16em] text-foreground"
+                  >Try</span
+                >
+                — ask it to “Make this look like Win95”.
+              </p>
+            </div>
+            <a
+              href="https://ux-morph.creative-robots.ai/welcome"
+              target="_blank"
+              rel="noreferrer"
+              class="text-xs text-muted-foreground underline underline-offset-2 decoration-foreground/20 hover:text-foreground shrink-0"
+            >
+              Live ↗
+            </a>
+          </div>
+
+          <div
+            class="flex items-baseline justify-between gap-4 py-3 border-b border-divider"
+          >
+            <div class="flex-1 min-w-0">
+              <span class="font-semibold">🎭 design-system-stealer</span>
               <span class="text-muted-foreground">
-                — Apps whose UI rewrites itself per-user. Chat → AI edits →
-                hot-swap → real Git commit on your personal branch.</span
+                — Point it at a domain. It reads the live DOM, infers the real
+                design system behind it, and generates a shadcn project that
+                replicates it. Tested against Doctolib, Linear and
+                Stripe.</span
               >
             </div>
             <span class="text-xs text-muted-foreground shrink-0">(soon)</span>
@@ -426,75 +385,8 @@
           </div>
         </div>
 
+        {{writing}}
         <!-- ============ IN A PREVIOUS LIFE ============ -->
-        <!-- ============ WRITING ============ -->
-        <h2 class="font-bold tracking-[-0.01em] mt-16 mb-2">Writing</h2>
-        <p class="text-xs text-muted-foreground mb-4">
-          Where I think AI tooling is going. Most of what I'm building now
-          started as one of these.
-        </p>
-        <div class="border-t border-divider">
-          <a
-            href="/thoughts/software-based-beats-token-based/"
-            class="flex items-baseline justify-between gap-4 py-3 border-b border-divider group"
-          >
-            <span class="flex-1 min-w-0">
-              <span
-                class="font-semibold underline underline-offset-4 decoration-foreground/20 group-hover:decoration-foreground"
-                >Software-Based Beats Token-Based</span
-              >
-              <span class="text-muted-foreground"> — Our approach to AI intelligence is wrong. AI will be dramatically better when we give it the tools we built for ourselves, instead of making it emulate them token by token.</span>
-            </span>
-            <span class="text-xs text-muted-foreground shrink-0">2025</span>
-          </a>
-          <a
-            href="/thoughts/ai-needs-to-learn-at-runtime/"
-            class="flex items-baseline justify-between gap-4 py-3 border-b border-divider group"
-          >
-            <span class="flex-1 min-w-0">
-              <span
-                class="font-semibold underline underline-offset-4 decoration-foreground/20 group-hover:decoration-foreground"
-                >From Copying, to Reasoning, to Trying: AI Needs to Learn at Runtime</span
-              >
-              <span class="text-muted-foreground"> — The third era of machine learning won't happen in a training run. And the surprising part: it doesn't need AI to work.</span>
-            </span>
-            <span class="text-xs text-muted-foreground shrink-0">2025</span>
-          </a>
-          <a
-            href="/thoughts/software-as-a-means-for-ai-to-program-its-brain/"
-            class="flex items-baseline justify-between gap-4 py-3 border-b border-divider group"
-          >
-            <span class="flex-1 min-w-0">
-              <span
-                class="font-semibold underline underline-offset-4 decoration-foreground/20 group-hover:decoration-foreground"
-                >Software as a Means for AI to Program Its Own Brain</span
-              >
-              <span class="text-muted-foreground"> — Weights are read-only at runtime. Code isn't. The most practical form of self-improvement is an agent writing the software it will think with tomorrow.</span>
-            </span>
-            <span class="text-xs text-muted-foreground shrink-0">2025</span>
-          </a>
-          <a
-            href="/thoughts/infra-is-not-ready-for-the-ai-era/"
-            class="flex items-baseline justify-between gap-4 py-3 border-b border-divider group"
-          >
-            <span class="flex-1 min-w-0">
-              <span
-                class="font-semibold underline underline-offset-4 decoration-foreground/20 group-hover:decoration-foreground"
-                >Infra Is Not Ready for the AI Era</span
-              >
-              <span class="text-muted-foreground"> — Every layer of cloud infrastructure assumes a human with a browser, a credit card, and infinite patience for dashboards. Agents have none of these. Why I'm building Interagentic.</span>
-            </span>
-            <span class="text-xs text-muted-foreground shrink-0">2026</span>
-          </a>
-        </div>
-        <p class="text-xs text-muted-foreground mt-4">
-          <a
-            href="/thoughts/"
-            class="underline underline-offset-2 decoration-foreground/20 hover:decoration-foreground text-foreground"
-            >All 18 notes&nbsp;→</a
-          >
-        </p>
-
         <h2 class="font-bold tracking-[-0.01em] mt-16 mb-2">
           In a previous life
         </h2>

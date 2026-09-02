@@ -12,7 +12,7 @@ as project `severin-marcombes.com`.
 src/
   layout.html      the shell every page shares: head, meta, header, footer
   pages/**.html    page bodies + a JSON front-matter block
-  content/thoughts/*.md   essays, as Markdown
+  content/thoughts/*.md   essays, as Markdown (currently empty — see below)
   input.css        Tailwind v4: @theme design tokens + @font-face rules
 build/
   build.mjs        render → compile CSS → check
@@ -47,16 +47,21 @@ font. `ogImage` (a root-absolute path) upgrades the Twitter card. Then
 `src/content/thoughts/` with `title`, `date`, `description` and `slug`, and it
 appears on `/thoughts/` automatically, newest first.
 
+**There are currently no essays.** The 19 AI-drafted originals sit in
+`resources/thoughts/` and are being reworked one at a time in the `writing-review`
+tool, which exports approved ones back into `src/content/thoughts/`. The whole essay
+pipeline is conditional on that directory: with nothing in it, no essay pages, no
+`/thoughts/` index and no Writing section on the home page are emitted. Drop one file
+in and all three reappear.
+
 ### `dist/` — what actually ships
 
 ```
 dist/
 ├── index.html                 home page
-├── projects/<slug>/index.html slices · extraorbital · botparty ·
-│                              design-system-stealer · lima
+├── projects/lima/index.html   the Lima article — currently the only long page
 ├── projects/lima/media/*.jpg  article images, beside the page that uses them
-├── thoughts/index.html        the writing index
-├── thoughts/<slug>/index.html one page per essay
+├── thoughts/…                 only when src/content/thoughts/ has essays in it
 ├── styles.css                 compiled Tailwind — committed, so no build to deploy
 ├── fonts/*.woff2              self-hosted Newsreader + Source Sans 3
 ├── site.webmanifest
@@ -76,7 +81,8 @@ Everything written for the site across its versions, kept so no copy is lost:
 | `projects/longform/` | 14 project write-ups in the templated form — *Why / Design decisions / The tech onion / Recognition* |
 | `projects/briefs/` | 17 shorter project descriptions, incl. agent-one, hiphop, samantha |
 | `projects/archive/` | Superseded variants worth keeping (`lima-technical.md`) |
-| `thoughts/` | 19 essays. 18 are published from `src/content/thoughts/`; `mcps-are-dog-shit.md` is held back — copy it across to publish it |
+| `archive/pages/` | Four project pages written then pulled from the site — Slices, ExtraOrbital, BotParty, design-system-stealer. Front matter intact, so moving one back into `src/pages/projects/` republishes it as-is |
+| `thoughts/` | The 19 AI-drafted essays. None is published; they are the input to the `writing-review` tool, and approved rewrites land in `src/content/thoughts/` |
 | `design-system/` | `DESIGN_SYSTEM.md` + standalone HTML component references |
 | `notes/` | Working briefs (project-rewrite template, registry task) |
 | `legacy-build/` | The Python generators that built the earlier site versions |
@@ -96,7 +102,13 @@ under `src/` — Tailwind only emits the classes it finds in the rendered HTML,
 which is why `render` runs before `build:css`.
 
 `npm run check` catches the two ways this site actually breaks: a link or asset
-pointing at a file that isn't there, and a `styles.css` older than the markup.
+pointing at a file that isn't there, and a `styles.css` that no longer matches the
+markup.
+
+`render` also **prunes**: any directory under `dist/` holding a generated
+`index.html` that the run did not write is deleted. So removing a page from `src/`
+removes it from the site, and `dist/` can't accumulate pages nobody meant to ship.
+`fonts/`, `media/` and `.vercel/` are never touched.
 
 ## Design
 

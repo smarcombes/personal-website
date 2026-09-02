@@ -1,14 +1,19 @@
 /**
- * Render src/pages/**.html into dist/.
+ * Render src/pages/**.html and src/content/thoughts/*.md into dist/.
  *
  * Each page is a body fragment preceded by a JSON front-matter comment. The
  * shell — head, meta, header, footer — lives once in src/layout.html, so a new
  * page cannot drift on its canonical URL, its OG tags or its nav.
  *
- * Output is plain HTML with no runtime, exactly as before: dist/ stays
- * committed and deployable on its own.
+ * Essays are Markdown because they are prose, not layout. They are optional:
+ * with none present, no essay pages, no /thoughts/ index and no Writing section
+ * on the home page are emitted at all. That is the current state — the drafts
+ * are being reworked in the writing-review tool and come back one at a time.
+ *
+ * Output is plain HTML with no runtime: dist/ stays committed and deployable
+ * on its own.
  */
-import { readdir, readFile, writeFile, mkdir } from "node:fs/promises";
+import { readdir, readFile, writeFile, mkdir, rm } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { frontMatter, toHtml } from "./markdown.mjs";
@@ -20,6 +25,10 @@ const DIST = path.join(ROOT, "dist");
 const SITE = "https://severin-marcombes.com";
 
 const FRONT_MATTER = /^<!--(\{[\s\S]*?\})-->\n/;
+const I = " ".repeat(8);
+
+/** Directories under dist/ that hold hand-managed assets, never generated pages. */
+const NEVER_PRUNE = new Set(["media", "fonts", ".vercel"]);
 
 async function pageFiles(dir) {
   const out = [];
@@ -35,57 +44,47 @@ async function pageFiles(dir) {
 const attr = (s) =>
   String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
 
-const layout = await readFile(path.join(ROOT, "src/layout.html"), "utf8");
-const files = (await pageFiles(PAGES)).sort();
-const written = [];
+const longDate = (iso) =>
+  new Date(`${iso}T00:00:00Z`).toLocaleDateString("en-GB", {
+    day: "numeric", month: "long", year: "numeric", timeZone: "UTC",
+  });
 
-for (const file of files) {
-  const raw = await readFile(file, "utf8");
-  const fm = raw.match(FRONT_MATTER);
-  if (!fm) throw new Error(`${path.relative(ROOT, file)}: missing front matter`);
-
-  const meta = JSON.parse(fm[1]);
-  const content = raw.slice(fm[0].length).replace(/\s+$/, "");
-  for (const key of ["title", "description", "path"]) {
-    if (!meta[key]) throw new Error(`${path.relative(ROOT, file)}: missing "${key}"`);
-  }
-
-  // Article pages preload the body font too — they are the ones with enough
-  // running prose for a late swap to be visible.
-  const isArticle = (meta.ogType ?? "website") === "article";
-
-  const html = layout
-    .replace(/\{\{title\}\}/g, attr(meta.title))
-    .replace(/\{\{description\}\}/g, attr(meta.description))
-    .replace(/\{\{url\}\}/g, SITE + meta.path)
-    .replace(/\{\{ogType\}\}/g, meta.ogType ?? "website")
-    .replace(/\{\{twitterCard\}\}/g, meta.ogImage ? "summary_large_image" : "summary")
+/** Fill the shell. `over` supplies the per-page values. */
+const render = (layout, over) =>
+  layout
+    .replace(/\{\{title\}\}/g, attr(over.title))
+    .replace(/\{\{description\}\}/g, attr(over.description))
+    .replace(/\{\{url\}\}/g, SITE + over.path)
+    .replace(/\{\{ogType\}\}/g, over.ogType ?? "website")
+    .replace(/\{\{twitterCard\}\}/g, over.ogImage ? "summary_large_image" : "summary")
     .replace(
       /\{\{ogImage\}\}/g,
-      meta.ogImage
-        ? `    <meta\n      property="og:image"\n      content="${SITE}${attr(meta.ogImage)}"\n    />\n`
+      over.ogImage
+        ? `    <meta\n      property="og:image"\n      content="${SITE}${attr(over.ogImage)}"\n    />\n`
         : "",
     )
     .replace(
       /\{\{preloadBodyFont\}\}/g,
-      isArticle
+      over.preloadBodyFont
         ? `    <link\n      rel="preload"\n      href="/fonts/source-sans-3-normal.woff2"\n      as="font"\n      type="font/woff2"\n      crossorigin\n    />\n`
         : "",
     )
-    .replace(/\{\{width\}\}/g, meta.width ?? (isArticle ? "max-w-2xl" : "max-w-xl"))
-    .replace(/\{\{content\}\}/g, `\n${content}\n`);
+    .replace(/\{\{width\}\}/g, over.width)
+    .replace(/\{\{content\}\}/g, `\n${over.content}\n`);
 
-  const out = path.join(DIST, meta.path, "index.html");
+const layout = await readFile(path.join(ROOT, "src/layout.html"), "utf8");
+const written = new Set();
+
+const emit = async (relDir, html) => {
+  const out = path.join(DIST, relDir, "index.html");
   await mkdir(path.dirname(out), { recursive: true });
   await writeFile(out, html);
-  written.push(path.relative(ROOT, out));
-}
+  written.add(out);
+};
 
 // ---------------------------------------------------------------- essays
-// Written as Markdown because they are prose, not layout. Same shell, same
-// article idiom as the project pages.
-const I = " ".repeat(8);
-
+// Loaded before the pages, because the home page's Writing section is built
+// from them and has to be empty when there are none.
 const essays = [];
 for (const name of (await readdir(ESSAYS)).filter((f) => f.endsWith(".md")).sort()) {
   const [meta, body] = frontMatter(await readFile(path.join(ESSAYS, name), "utf8"));
@@ -94,11 +93,71 @@ for (const name of (await readdir(ESSAYS)).filter((f) => f.endsWith(".md")).sort
 // Newest first — the reader wants the current thinking, not the oldest.
 essays.sort((a, b) => (a.date < b.date ? 1 : -1));
 
-const longDate = (iso) =>
-  new Date(`${iso}T00:00:00Z`).toLocaleDateString("en-GB", {
-    day: "numeric", month: "long", year: "numeric", timeZone: "UTC",
-  });
+/** The home page's Writing section — nothing at all when there are no essays. */
+function writingSection() {
+  if (!essays.length) return "";
+  const featured = essays.slice(0, 4);
+  const rows = featured
+    .map(
+      (e) =>
+        `${I}  <a\n${I}    href="/thoughts/${e.slug}/"\n` +
+        `${I}    class="flex items-baseline justify-between gap-4 py-3 border-b border-divider group"\n${I}  >\n` +
+        `${I}    <span class="flex-1 min-w-0">\n` +
+        `${I}      <span class="font-semibold underline underline-offset-4 decoration-foreground/20 group-hover:decoration-foreground">${attr(e.title)}</span>\n` +
+        `${I}      <span class="text-muted-foreground"> — ${attr(e.description)}</span>\n` +
+        `${I}    </span>\n` +
+        `${I}    <span class="text-xs text-muted-foreground shrink-0">${e.date.slice(0, 4)}</span>\n` +
+        `${I}  </a>`,
+    )
+    .join("\n");
 
+  const more =
+    essays.length > featured.length
+      ? `\n${I}<p class="text-xs text-muted-foreground mt-4">\n` +
+        `${I}  <a\n${I}    href="/thoughts/"\n` +
+        `${I}    class="underline underline-offset-2 decoration-foreground/20 hover:decoration-foreground text-foreground"\n` +
+        `${I}    >All ${essays.length} notes&nbsp;→</a\n${I}  >\n${I}</p>\n`
+      : "\n";
+
+  return (
+    `${I}<!-- ============ WRITING ============ -->\n` +
+    `${I}<h2 class="font-bold tracking-[-0.01em] mt-16 mb-2">Writing</h2>\n` +
+    `${I}<p class="text-xs text-muted-foreground mb-4">\n` +
+    `${I}  Where I think AI tooling is going.\n${I}</p>\n` +
+    `${I}<div class="border-t border-divider">\n${rows}\n${I}</div>\n${more}`
+  );
+}
+
+const writing = writingSection();
+
+// ----------------------------------------------------------------- pages
+for (const file of (await pageFiles(PAGES)).sort()) {
+  const raw = await readFile(file, "utf8");
+  const fm = raw.match(FRONT_MATTER);
+  if (!fm) throw new Error(`${path.relative(ROOT, file)}: missing front matter`);
+
+  const meta = JSON.parse(fm[1]);
+  for (const key of ["title", "description", "path"]) {
+    if (!meta[key]) throw new Error(`${path.relative(ROOT, file)}: missing "${key}"`);
+  }
+
+  // Article pages preload the body font too — they are the ones with enough
+  // running prose for a late swap to be visible.
+  const isArticle = (meta.ogType ?? "website") === "article";
+  const content = raw
+    .slice(fm[0].length)
+    .replace(/^[ \t]*\{\{writing\}\}[ \t]*\n/m, writing)
+    .replace(/\s+$/, "");
+
+  await emit(meta.path, render(layout, {
+    ...meta,
+    preloadBodyFont: isArticle,
+    width: meta.width ?? (isArticle ? "max-w-2xl" : "max-w-xl"),
+    content,
+  }));
+}
+
+// ----------------------------------------------------- essay pages + index
 for (const essay of essays) {
   const article =
     `${I}<article>\n` +
@@ -121,64 +180,73 @@ for (const essay of essays) {
     `${I}        <a href="/" class="text-link underline hover:decoration-2">Home</a>\n` +
     `${I}      </p>\n${I}    </footer>\n${I}  </div>\n${I}</article>`;
 
-  const html = layout
-    .replace(/\{\{title\}\}/g, attr(`${essay.title} — Séverin Marcombes`))
-    .replace(/\{\{description\}\}/g, attr(essay.description))
-    .replace(/\{\{url\}\}/g, `${SITE}/thoughts/${essay.slug}/`)
-    .replace(/\{\{ogType\}\}/g, "article")
-    .replace(/\{\{twitterCard\}\}/g, "summary")
-    .replace(/\{\{ogImage\}\}/g, "")
-    .replace(
-      /\{\{preloadBodyFont\}\}/g,
-      `    <link\n      rel="preload"\n      href="/fonts/source-sans-3-normal.woff2"\n      as="font"\n      type="font/woff2"\n      crossorigin\n    />\n`,
-    )
-    .replace(/\{\{width\}\}/g, "max-w-2xl")
-    .replace(/\{\{content\}\}/g, `\n${article}\n`);
-
-  const out = path.join(DIST, "thoughts", essay.slug, "index.html");
-  await mkdir(path.dirname(out), { recursive: true });
-  await writeFile(out, html);
-  written.push(path.relative(ROOT, out));
+  await emit(`/thoughts/${essay.slug}/`, render(layout, {
+    title: `${essay.title} — Séverin Marcombes`,
+    description: essay.description,
+    path: `/thoughts/${essay.slug}/`,
+    ogType: "article",
+    preloadBodyFont: true,
+    width: "max-w-2xl",
+    content: article,
+  }));
 }
 
-// The index over them.
-const rows = essays
-  .map(
-    (e) =>
-      `${I}  <a\n${I}    href="/thoughts/${e.slug}/"\n` +
-      `${I}    class="block py-4 border-b border-divider group"\n${I}  >\n` +
-      `${I}    <div class="flex items-baseline justify-between gap-4">\n` +
-      `${I}      <span class="font-semibold underline underline-offset-4 decoration-foreground/20 group-hover:decoration-foreground">${attr(e.title)}</span>\n` +
-      `${I}      <span class="text-xs text-muted-foreground shrink-0">${e.date}</span>\n` +
-      `${I}    </div>\n` +
-      `${I}    <p class="text-xs text-muted-foreground mt-1.5">${attr(e.description)}</p>\n` +
-      `${I}  </a>`,
-  )
-  .join("\n");
+if (essays.length) {
+  const rows = essays
+    .map(
+      (e) =>
+        `${I}  <a\n${I}    href="/thoughts/${e.slug}/"\n` +
+        `${I}    class="block py-4 border-b border-divider group"\n${I}  >\n` +
+        `${I}    <div class="flex items-baseline justify-between gap-4">\n` +
+        `${I}      <span class="font-semibold underline underline-offset-4 decoration-foreground/20 group-hover:decoration-foreground">${attr(e.title)}</span>\n` +
+        `${I}      <span class="text-xs text-muted-foreground shrink-0">${e.date}</span>\n` +
+        `${I}    </div>\n` +
+        `${I}    <p class="text-xs text-muted-foreground mt-1.5">${attr(e.description)}</p>\n` +
+        `${I}  </a>`,
+    )
+    .join("\n");
 
-const indexArticle =
-  `${I}<a\n${I}  href="/"\n` +
-  `${I}  class="inline-flex items-center gap-1 text-xs text-muted-foreground underline underline-offset-2 decoration-foreground/20 hover:text-foreground"\n` +
-  `${I}>\n${I}  ← Home\n${I}</a>\n\n` +
-  `${I}<h1 class="font-serif text-[2.5rem] leading-[1.1] tracking-[-0.02em] mt-10 mb-4">\n${I}  Writing\n${I}</h1>\n` +
-  `${I}<p class="text-muted-foreground mb-10 max-w-lg">\n` +
-  `${I}  Notes on where I think AI tooling is going, written between 2025 and\n` +
-  `${I}  2026. Most of what I am building now started as one of these.\n${I}</p>\n\n` +
-  `${I}<div class="border-t border-divider">\n${rows}\n${I}</div>`;
+  await emit("/thoughts/", render(layout, {
+    title: "Writing — Séverin Marcombes",
+    description: `${essays.length} notes on agents, tooling and the infrastructure AI actually needs.`,
+    path: "/thoughts/",
+    width: "max-w-xl",
+    content:
+      `${I}<a\n${I}  href="/"\n` +
+      `${I}  class="inline-flex items-center gap-1 text-xs text-muted-foreground underline underline-offset-2 decoration-foreground/20 hover:text-foreground"\n` +
+      `${I}>\n${I}  ← Home\n${I}</a>\n\n` +
+      `${I}<h1 class="font-serif text-[2.5rem] leading-[1.1] tracking-[-0.02em] mt-10 mb-4">\n${I}  Writing\n${I}</h1>\n` +
+      `${I}<p class="text-muted-foreground mb-10 max-w-lg">\n` +
+      `${I}  Where I think AI tooling is going.\n${I}</p>\n\n` +
+      `${I}<div class="border-t border-divider">\n${rows}\n${I}</div>`,
+  }));
+}
 
-await writeFile(
-  path.join(DIST, "thoughts", "index.html"),
-  layout
-    .replace(/\{\{title\}\}/g, "Writing — Séverin Marcombes")
-    .replace(/\{\{description\}\}/g, `${essays.length} notes on agents, tooling and the infrastructure AI actually needs.`)
-    .replace(/\{\{url\}\}/g, `${SITE}/thoughts/`)
-    .replace(/\{\{ogType\}\}/g, "website")
-    .replace(/\{\{twitterCard\}\}/g, "summary")
-    .replace(/\{\{ogImage\}\}/g, "")
-    .replace(/\{\{preloadBodyFont\}\}/g, "")
-    .replace(/\{\{width\}\}/g, "max-w-xl")
-    .replace(/\{\{content\}\}/g, `\n${indexArticle}\n`),
-);
-written.push("dist/thoughts/index.html");
+// ----------------------------------------------------------------- prune
+// dist/ is a build output, so a page deleted from src/ must disappear from it
+// rather than linger. A directory is prunable only if it *directly* holds an
+// index.html this run did not write; anything in NEVER_PRUNE is left alone, so
+// fonts, favicons and article media are safe.
+const pruned = [];
+async function prune(dir) {
+  const entries = await readdir(dir, { withFileTypes: true });
+  const index = path.join(dir, "index.html");
 
-console.log(`✓ rendered ${written.length} page(s)`);
+  if (entries.some((e) => e.isFile() && e.name === "index.html") && !written.has(index)) {
+    await rm(dir, { recursive: true, force: true });
+    pruned.push(path.relative(ROOT, dir));
+    return;
+  }
+  for (const entry of entries) {
+    if (entry.isDirectory() && !NEVER_PRUNE.has(entry.name)) {
+      await prune(path.join(dir, entry.name));
+    }
+  }
+}
+await prune(DIST);
+
+console.log(`✓ rendered ${written.size} page(s)`);
+if (pruned.length) {
+  console.log(`✓ pruned ${pruned.length} stale director(y/ies):`);
+  for (const p of pruned) console.log(`  ${p}`);
+}
