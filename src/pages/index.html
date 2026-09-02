@@ -63,8 +63,7 @@
               >). Provisioning infrastructure without human in the loop.
             </p>
             <p class="text-xs text-muted-foreground">
-              And a few more that aren't written down yet — 30+ services,
-              internal use for now.
+              30+ services, internal use for now.
             </p>
           </div>
 
@@ -164,23 +163,37 @@
                 rel="noreferrer"
                 class="hover:text-foreground transition-colors"
               >
-                <span class="font-semibold">🧩 open-widgets</span>
-                <span class="text-muted-foreground">
-                  — Describe a component, get a real one: installed,
-                  typechecked and bundled in a sandbox, embeddable anywhere
-                  behind one tag. Generated code never runs on your
-                  page.</span
-                >
+              <span class="font-semibold">🧩 open-widgets</span>
+              <span class="text-muted-foreground">
+                — Describe a component, get a real one: installed, typechecked and
+                bundled in a sandbox, embeddable anywhere behind one tag.
+                Generated code never runs on your page.</span
+              >
               </a>
             </div>
+            <span class="flex items-center gap-2.5 shrink-0">
             <a
               href="https://open-widgets.com"
               target="_blank"
               rel="noreferrer"
-              class="text-xs text-muted-foreground underline underline-offset-2 decoration-foreground/20 hover:text-foreground shrink-0"
+              title="Live"
+              aria-label="Live site"
+              class="text-muted-foreground hover:text-foreground transition-colors shrink-0"
             >
-              Live ↗
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.25"
+                aria-hidden="true"
+              >
+                <circle cx="8" cy="8" r="6.4" />
+                <path d="M1.6 8h12.8M8 1.6a9.6 9.6 0 0 1 0 12.8a9.6 9.6 0 0 1 0-12.8" />
+              </svg>
             </a>
+            </span>
           </div>
 
           <div
@@ -193,32 +206,59 @@
                 rel="noreferrer"
                 class="hover:text-foreground transition-colors"
               >
-                <span class="font-semibold">🦠 protean</span>
-                <span class="text-muted-foreground">
-                  — Self-evolving agent. Writes new tools for itself, modifies
-                  its own code, migrates across machines over P2P. No
-                  artificial constraints except budget.</span
-                >
+              <span class="font-semibold">🦠 protean</span>
+              <span class="text-muted-foreground">
+                — Self-evolving agent. Writes new tools for itself, modifies its own
+                code, migrates across machines over P2P. No artificial
+                constraints except budget.</span
+              >
               </a>
               <p class="mt-1.5 text-xs text-muted-foreground">
                 <span
                   class="font-mono text-[10px] uppercase tracking-[0.16em] text-foreground"
                   >Try</span
                 >
-                — create an agent, run the command on your own machine, then
-                ask it to photograph you by building the tool first, to spawn
-                itself a server with the AWS CLI, or to spread to a Raspberry
-                Pi on your network.
+                — create an agent, run the command on your own machine, then ask
+                it to photograph you by building the tool first, to spawn itself
+                a server with the AWS CLI, or to spread to a Raspberry Pi on
+                your network.
               </p>
             </div>
+            <span class="flex items-center gap-2.5 shrink-0">
             <a
               href="https://protean.interagentic.inc/"
               target="_blank"
               rel="noreferrer"
-              class="text-xs text-muted-foreground underline underline-offset-2 decoration-foreground/20 hover:text-foreground shrink-0"
+              title="Live"
+              aria-label="Live site"
+              class="text-muted-foreground hover:text-foreground transition-colors shrink-0"
             >
-              Live ↗
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.25"
+                aria-hidden="true"
+              >
+                <circle cx="8" cy="8" r="6.4" />
+                <path d="M1.6 8h12.8M8 1.6a9.6 9.6 0 0 1 0 12.8a9.6 9.6 0 0 1 0-12.8" />
+              </svg>
             </a>
+            <a
+              href="https://github.com/smarcombes/protean"
+              target="_blank"
+              rel="noreferrer"
+              title="Source"
+              aria-label="Source on GitHub"
+              class="text-muted-foreground hover:text-foreground transition-colors shrink-0"
+            >
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0016 8c0-4.42-3.58-8-8-8z" />
+              </svg>
+            </a>
+            </span>
           </div>
 
           <div
@@ -231,29 +271,46 @@
                 rel="noreferrer"
                 class="hover:text-foreground transition-colors"
               >
-                <span class="font-semibold">🌊 ux-morph</span>
-                <span class="text-muted-foreground">
-                  — An experiment in extending Next.js into a platform where
-                  visitors reshape the pages themselves. Chat → AI edits →
-                  hot-swap → a real Git commit on your own branch.</span
-                >
+              <span class="font-semibold">🌊 ux-morph</span>
+              <span class="text-muted-foreground">
+                — Give every user of your Next.js app their own editable copy of its
+                frontend. Mark a page <code>use morph</code> and each signed-in
+                user gets their own compiled copy: they describe a change in
+                plain language, it is typechecked, and the site rebuilds around
+                them. An experiment, not a product.</span
+              >
               </a>
               <p class="mt-1.5 text-xs text-muted-foreground">
                 <span
                   class="font-mono text-[10px] uppercase tracking-[0.16em] text-foreground"
                   >Try</span
                 >
-                — ask it to “Make this look like Win95”.
+                — pick any persona, then ask it to “Make this look like Win95”.
               </p>
             </div>
+            <span class="flex items-center gap-2.5 shrink-0">
             <a
               href="https://ux-morph.creative-robots.ai/welcome"
               target="_blank"
               rel="noreferrer"
-              class="text-xs text-muted-foreground underline underline-offset-2 decoration-foreground/20 hover:text-foreground shrink-0"
+              title="Live"
+              aria-label="Live site"
+              class="text-muted-foreground hover:text-foreground transition-colors shrink-0"
             >
-              Live ↗
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.25"
+                aria-hidden="true"
+              >
+                <circle cx="8" cy="8" r="6.4" />
+                <path d="M1.6 8h12.8M8 1.6a9.6 9.6 0 0 1 0 12.8a9.6 9.6 0 0 1 0-12.8" />
+              </svg>
             </a>
+            </span>
           </div>
 
           <div
@@ -262,13 +319,66 @@
             <div class="flex-1 min-w-0">
               <span class="font-semibold">🎭 design-system-stealer</span>
               <span class="text-muted-foreground">
-                — Point it at a domain. It reads the live DOM, infers the real
-                design system behind it, and generates a shadcn project that
-                replicates it. Tested against Doctolib, Linear and
-                Stripe.</span
+                — Point it at a domain. It reads the live DOM, infers the real design
+                system behind it, and generates a shadcn project that replicates
+                it. Tested against Doctolib, Linear and Stripe.</span
               >
             </div>
             <span class="text-xs text-muted-foreground shrink-0">(soon)</span>
+          </div>
+
+          <div
+            class="flex items-baseline justify-between gap-4 py-3 border-b border-divider"
+          >
+            <div class="flex-1 min-w-0">
+              <a
+                href="https://streambin.xyz"
+                target="_blank"
+                rel="noreferrer"
+                class="hover:text-foreground transition-colors"
+              >
+              <span class="font-semibold">📡 streambin</span>
+              <span class="text-muted-foreground">
+                — End-to-end encrypted streams, docs and files for agents and humans.
+                Zero-knowledge relay. Drop-in Firebase-style primitives.</span
+              >
+              </a>
+            </div>
+            <span class="flex items-center gap-2.5 shrink-0">
+            <a
+              href="https://streambin.xyz"
+              target="_blank"
+              rel="noreferrer"
+              title="Live"
+              aria-label="Live site"
+              class="text-muted-foreground hover:text-foreground transition-colors shrink-0"
+            >
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.25"
+                aria-hidden="true"
+              >
+                <circle cx="8" cy="8" r="6.4" />
+                <path d="M1.6 8h12.8M8 1.6a9.6 9.6 0 0 1 0 12.8a9.6 9.6 0 0 1 0-12.8" />
+              </svg>
+            </a>
+            <a
+              href="https://github.com/smarcombes/streambin"
+              target="_blank"
+              rel="noreferrer"
+              title="Source"
+              aria-label="Source on GitHub"
+              class="text-muted-foreground hover:text-foreground transition-colors shrink-0"
+            >
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0016 8c0-4.42-3.58-8-8-8z" />
+              </svg>
+            </a>
+            </span>
           </div>
 
           <div
@@ -288,109 +398,100 @@
           <div
             class="flex items-baseline justify-between gap-4 py-3 border-b border-divider"
           >
-            <a
-              href="https://github.com/smarcombes/tailwind-motion-native"
-              target="_blank"
-              rel="noreferrer"
-              class="flex-1 min-w-0 hover:text-foreground transition-colors"
-            >
+            <div class="flex-1 min-w-0">
+              <a
+                href="https://github.com/smarcombes/tailwind-motion-native"
+                target="_blank"
+                rel="noreferrer"
+                class="hover:text-foreground transition-colors"
+              >
               <span class="font-semibold">🎨 tailwind-motion-native</span>
               <span class="text-muted-foreground">
-                — Tailwind Motion animation primitives ported to React Native
-                via Moti.</span
+                — Tailwind Motion animation primitives ported to React Native via
+                Moti.</span
               >
-            </a>
+              </a>
+            </div>
+            <span class="flex items-center gap-2.5 shrink-0">
             <a
               href="https://github.com/smarcombes/tailwind-motion-native"
               target="_blank"
               rel="noreferrer"
-              class="text-xs text-muted-foreground underline underline-offset-2 decoration-foreground/20 hover:text-foreground shrink-0"
+              title="Source"
+              aria-label="Source on GitHub"
+              class="text-muted-foreground hover:text-foreground transition-colors shrink-0"
             >
-              GitHub ↗
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0016 8c0-4.42-3.58-8-8-8z" />
+              </svg>
             </a>
+            </span>
           </div>
 
           <div
             class="flex items-baseline justify-between gap-4 py-3 border-b border-divider"
           >
-            <a
-              href="https://github.com/smarcombes/streambin"
-              target="_blank"
-              rel="noreferrer"
-              class="flex-1 min-w-0 hover:text-foreground transition-colors"
-            >
-              <span class="font-semibold">📡 streambin</span>
-              <span class="text-muted-foreground">
-                — E2E-encrypted streams, docs &amp; files for agents and humans.
-                Zero-knowledge relay. Drop-in Firebase-style primitives.</span
+            <div class="flex-1 min-w-0">
+              <a
+                href="https://github.com/smarcombes/github-filesystem"
+                target="_blank"
+                rel="noreferrer"
+                class="hover:text-foreground transition-colors"
               >
-            </a>
-            <a
-              href="https://github.com/smarcombes/streambin"
-              target="_blank"
-              rel="noreferrer"
-              class="text-xs text-muted-foreground underline underline-offset-2 decoration-foreground/20 hover:text-foreground shrink-0"
-            >
-              GitHub ↗
-            </a>
-          </div>
-
-          <div
-            class="flex items-baseline justify-between gap-4 py-3 border-b border-divider"
-          >
-            <a
-              href="https://github.com/smarcombes/github-filesystem"
-              target="_blank"
-              rel="noreferrer"
-              class="flex-1 min-w-0 hover:text-foreground transition-colors"
-            >
               <span class="font-semibold">🗂️ github-filesystem</span>
               <span class="text-muted-foreground">
-                — GitHub repos as a Node.js
-                <code
-                  class="font-mono text-[0.85em] bg-white border border-divider px-1 py-px whitespace-nowrap"
-                  >fs</code
-                >.
-                <code
-                  class="font-mono text-[0.85em] bg-white border border-divider px-1 py-px whitespace-nowrap"
-                  >writeFile</code
-                >
+                — GitHub repos as a Node.js <code>fs</code>. <code>writeFile</code>
                 commits to Git. Agents treat remote repos like local disk.</span
               >
-            </a>
+              </a>
+            </div>
+            <span class="flex items-center gap-2.5 shrink-0">
             <a
               href="https://github.com/smarcombes/github-filesystem"
               target="_blank"
               rel="noreferrer"
-              class="text-xs text-muted-foreground underline underline-offset-2 decoration-foreground/20 hover:text-foreground shrink-0"
+              title="Source"
+              aria-label="Source on GitHub"
+              class="text-muted-foreground hover:text-foreground transition-colors shrink-0"
             >
-              GitHub ↗
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0016 8c0-4.42-3.58-8-8-8z" />
+              </svg>
             </a>
+            </span>
           </div>
 
           <div
             class="flex items-baseline justify-between gap-4 py-3 border-b border-divider"
           >
-            <a
-              href="https://github.com/smarcombes/react-electron"
-              target="_blank"
-              rel="noreferrer"
-              class="flex-1 min-w-0 hover:text-foreground transition-colors"
-            >
+            <div class="flex-1 min-w-0">
+              <a
+                href="https://github.com/smarcombes/react-electron"
+                target="_blank"
+                rel="noreferrer"
+                class="hover:text-foreground transition-colors"
+              >
               <span class="font-semibold">⚛️ react-electron</span>
               <span class="text-muted-foreground">
-                — Custom React 15 renderer for Electron. Managing multi-window
-                apps from a single component tree. (2017)</span
+                — Custom React 15 renderer for Electron. Managing multi-window apps
+                from a single component tree. (2017)</span
               >
-            </a>
+              </a>
+            </div>
+            <span class="flex items-center gap-2.5 shrink-0">
             <a
               href="https://github.com/smarcombes/react-electron"
               target="_blank"
               rel="noreferrer"
-              class="text-xs text-muted-foreground underline underline-offset-2 decoration-foreground/20 hover:text-foreground shrink-0"
+              title="Source"
+              aria-label="Source on GitHub"
+              class="text-muted-foreground hover:text-foreground transition-colors shrink-0"
             >
-              GitHub ↗
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0016 8c0-4.42-3.58-8-8-8z" />
+              </svg>
             </a>
+            </span>
           </div>
         </div>
 
