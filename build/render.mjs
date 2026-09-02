@@ -11,7 +11,8 @@
  * are being reworked in the writing-review tool and come back one at a time.
  *
  * Output is plain HTML with no runtime: dist/ stays committed and deployable
- * on its own.
+ * on its own. Fonts, favicons and article images are not rendered here — they
+ * are copied in from assets/ by build/copy-assets.mjs, which runs first.
  */
 import { readdir, readFile, writeFile, mkdir, rm } from "node:fs/promises";
 import path from "node:path";
@@ -27,7 +28,7 @@ const SITE = "https://severin-marcombes.com";
 const FRONT_MATTER = /^<!--(\{[\s\S]*?\})-->\n/;
 const I = " ".repeat(8);
 
-/** Directories under dist/ that hold hand-managed assets, never generated pages. */
+/** Directories under dist/ that hold copied assets, never generated pages. */
 const NEVER_PRUNE = new Set(["media", "fonts", ".vercel"]);
 
 async function pageFiles(dir) {
@@ -226,7 +227,7 @@ if (essays.length) {
 // dist/ is a build output, so a page deleted from src/ must disappear from it
 // rather than linger. A directory is prunable only if it *directly* holds an
 // index.html this run did not write; anything in NEVER_PRUNE is left alone, so
-// fonts, favicons and article media are safe.
+// the fonts and article media copied in from assets/ are safe.
 const pruned = [];
 async function prune(dir) {
   const entries = await readdir(dir, { withFileTypes: true });

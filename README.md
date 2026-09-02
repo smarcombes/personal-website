@@ -14,8 +14,10 @@ src/
   pages/**.html    page bodies + a JSON front-matter block
   content/thoughts/*.md   essays, as Markdown (currently empty — see below)
   input.css        Tailwind v4: @theme design tokens + @font-face rules
+assets/            fonts, favicons, article images — copied into dist/ verbatim
 build/
-  build.mjs        render → compile CSS → check
+  build.mjs        copy assets → render → compile CSS → check
+  copy-assets.mjs  assets/ → dist/
   render.mjs       src/ → dist/
   markdown.mjs     the small Markdown subset the essays use
   check-dist.mjs   dead links + stale styles.css
@@ -26,6 +28,19 @@ package.json
 
 Pages are generated, but `dist/` stays plain HTML with no runtime and is
 committed, so deploying still needs no build step.
+
+### `assets/` — everything that isn't rendered
+
+Fonts, favicons and article images are hand-managed source files. They live in
+`assets/`, and `npm run build` copies them into `dist/` before anything else
+runs. The tree mirrors the deployed layout exactly — `assets/fonts/x.woff2` is
+served at `/fonts/x.woff2` — so adding one is just dropping it in the matching
+folder and rebuilding.
+
+They used to sit in `dist/` directly, with nothing able to put them back. One
+stray deletion and every page shipped with dead references to its fonts and
+favicons, which `npm run check` could report but never fix. Now `dist/` heals
+itself: delete the whole lot and `npm run build` restores it.
 
 ### Adding a page
 
@@ -58,15 +73,18 @@ in and all three reappear.
 
 ```
 dist/
-├── index.html                 home page
-├── projects/lima/index.html   the Lima article — currently the only long page
-├── projects/lima/media/*.jpg  article images, beside the page that uses them
-├── thoughts/…                 only when src/content/thoughts/ has essays in it
-├── styles.css                 compiled Tailwind — committed, so no build to deploy
-├── fonts/*.woff2              self-hosted Newsreader + Source Sans 3
-├── site.webmanifest
-└── favicon.ico, apple-touch-icon.png, android-chrome-*.png, favicon-*.png
+├── index.html                 home page                     ← rendered
+├── projects/lima/index.html   the Lima article              ← rendered
+├── thoughts/…                 only when essays exist        ← rendered
+├── styles.css                 compiled Tailwind             ← build:css
+├── fonts/*.woff2              Newsreader + Source Sans 3    ← assets/
+├── projects/lima/media/*.jpg  article images                ← assets/
+├── site.webmanifest           PWA manifest                  ← assets/
+└── favicon.ico + 5 icon PNGs  apple-touch, android-chrome   ← assets/
 ```
+
+Everything in `dist/` is committed, so the folder deploys as-is — but nothing
+in it is authored there. Edit `src/` or `assets/` and rebuild.
 
 Pages use root-absolute paths (`/styles.css`, `/projects/lima/`), so the site
 must be served from a domain root.
@@ -93,7 +111,7 @@ Everything written for the site across its versions, kept so no copy is lost:
 npm install          # first time only
 npm run dev          # watch + recompile styles.css on change
 npm run serve        # http://localhost:4318
-npm run build        # compile styles.css, then verify dist/
+npm run build        # copy assets, render, compile styles.css, verify dist/
 npm run check        # verify dist/ only (dead links, stale styles.css)
 ```
 
@@ -108,7 +126,9 @@ markup.
 `render` also **prunes**: any directory under `dist/` holding a generated
 `index.html` that the run did not write is deleted. So removing a page from `src/`
 removes it from the site, and `dist/` can't accumulate pages nobody meant to ship.
-`fonts/`, `media/` and `.vercel/` are never touched.
+`fonts/`, `media/` and `.vercel/` are never touched. Assets are copied in
+*before* the render, so removing a page deletes its images in the same run
+instead of the copy re-creating them as orphans.
 
 ## Design
 

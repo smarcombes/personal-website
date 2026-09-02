@@ -2,7 +2,7 @@
   "name": "severin-marcombes-website",
   "version": "2.0.0",
   "private": true,
-  "description": "Personal website of Séverin Marcombes. Hand-written static HTML in dist/, Tailwind v4 design tokens in src/, build helpers in build/.",
+  "description": "Personal website of Severin Marcombes. Pages rendered from src/ into dist/, hand-managed fonts and images in assets/, build helpers in build/.",
   "homepage": "https://severin-marcombes.com",
   "repository": {
     "type": "git",
@@ -16,6 +16,7 @@
   },
   "scripts": {
     "build": "node build/build.mjs",
+    "copy:assets": "node build/copy-assets.mjs",
     "render": "node build/render.mjs",
     "build:css": "tailwindcss -i ./src/input.css -o ./dist/styles.css --minify",
     "watch:css": "tailwindcss -i ./src/input.css -o ./dist/styles.css --watch",

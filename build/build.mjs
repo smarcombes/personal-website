@@ -1,7 +1,10 @@
 /**
- * Full build: render pages, compile Tailwind, then sanity-check dist/.
+ * Full build: copy assets, render pages, compile Tailwind, then sanity-check
+ * dist/.
  *
- * Order matters — Tailwind scans the rendered HTML in dist/, so pages have to
+ * Order matters twice. Assets are copied before the render, so that pruning a
+ * page deletes its images in the same run instead of the copy re-creating them
+ * as orphans. And Tailwind scans the rendered HTML in dist/, so pages have to
  * exist before styles.css is compiled from them.
  *
  * dist/ is committed, so deploying never *requires* this — run it after
@@ -19,6 +22,7 @@ const run = (label, args) => {
   if (res.status !== 0) process.exit(res.status ?? 1);
 };
 
+run("copying assets", ["copy:assets"]);
 run("rendering pages", ["render"]);
 run("compiling styles.css", ["build:css"]);
 run("checking dist/", ["check"]);
