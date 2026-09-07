@@ -61,94 +61,344 @@
           can make a real difference for people in the field.
         </p>
 
-        <!-- ============ WHAT I'M BUILDING NOW ============ -->
-        <h2 class="font-bold tracking-[-0.01em] mt-16 mb-4">
-          What I'm building now
+        <!-- ============ WHAT I'M WORKING ON ============ -->
+        <h2 class="font-bold tracking-[-0.01em] mt-16 mb-3">
+          What I'm working on
         </h2>
+        <p class="text-xs text-muted-foreground mb-2">
+          Intelligence stopped being the bottleneck a while ago. The harness is
+          what's missing. Three theses follow from that, and everything I build
+          sits under one of them — the third is where the first two get tested.
+          All of it under
+          <a
+            href="https://creative-robots.ai"
+            target="_blank"
+            rel="noreferrer"
+            class="underline underline-offset-2 decoration-foreground/20 hover:decoration-foreground text-foreground"
+            >Creative Robots</a
+          >, the company I've been running since 2021.
+        </p>
+
+        <!-- ---------- THESIS I ---------- -->
+        <div
+          class="font-mono text-[10px] uppercase tracking-[0.16em] text-foreground mb-2 mt-12"
+        >
+          Thesis I
+        </div>
+        <h3 class="font-serif text-[1.35rem] leading-snug mb-2 text-balance">
+          Agents can reason. They can't act.
+        </h3>
+        <p class="text-xs text-muted-foreground mb-6">
+          Every layer of the world checks for a human — a signup form, a consent
+          screen, a credit card, a dashboard. An agent hits the same wall at
+          every level, so I've been building the levels. Identity, credentials,
+          knowledge, resources: bottom-up, and they plug into each other.
+        </p>
         <div class="space-y-4">
-          <!-- Slices -->
+          <!-- Identity -->
+          <div class="bg-white border border-black shadow-card px-4 py-3">
+            <div class="flex items-baseline gap-1.5 justify-between mb-2">
+              <div class="text-sm font-semibold leading-5">
+                Interagentic
+                <span class="font-normal text-muted-foreground"
+                  >— identity</span
+                >
+              </div>
+              <div class="text-xs text-muted-foreground shrink-0 ml-1">beta</div>
+            </div>
+            <p class="text-xs text-muted-foreground">
+              A machine signs a token with its own key and exchanges it for a
+              ten-minute one addressed to a single service. That service does
+              one JWKS check and learns four things: which machine is calling,
+              whether a human stands behind it, who that human is —
+              pseudonymously, a different string at every service — and what
+              they allowed. Identity is a keypair, not a name, so there is no
+              registry to squat and nothing to sign up for at 3am.
+            </p>
+          </div>
+
+          <!-- Credentials -->
+          <div class="bg-white border border-black shadow-card px-4 py-3">
+            <div class="flex items-baseline gap-1.5 justify-between mb-2">
+              <div class="text-sm font-semibold leading-5">
+                <a
+                  href="https://keychains.dev"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="underline underline-offset-4 decoration-foreground/20 hover:decoration-foreground"
+                  >Keychains</a
+                >
+                <span class="font-normal text-muted-foreground"
+                  >— credentials</span
+                >
+              </div>
+              <div class="text-xs text-muted-foreground shrink-0 ml-1">live</div>
+            </div>
+            <p class="text-xs text-muted-foreground">
+              Give the agent the keys, not the kingdom. It sends a
+              <code>{{OAUTH2_TOKEN}}</code> placeholder; the proxy resolves the
+              provider from the domain, injects the real token, forwards, and
+              streams the response back. The secret never enters the context
+              window, so a prompt injection has nothing to steal. Per-endpoint
+              OAuth scope inference across 6,000+ APIs, learned from ~1.88M
+              lines of scraped provider docs. Pay-per-call over x402, so an
+              agent can use an API with no account at all.
+            </p>
+          </div>
+
+          <!-- Knowledge -->
+          <div class="bg-white border border-black shadow-card px-4 py-3">
+            <div class="flex items-baseline gap-1.5 justify-between mb-2">
+              <div class="text-sm font-semibold leading-5">
+                OpenIntegrations
+                <span class="font-normal text-muted-foreground"
+                  >— knowledge</span
+                >
+              </div>
+              <div class="text-xs text-muted-foreground shrink-0 ml-1">
+                prototype
+              </div>
+            </div>
+            <p class="text-xs text-muted-foreground">
+              A registry of every API action in the world: ~7.9k providers and
+              ~18.7k actions, each with an input and output schema, the
+              TypeScript that runs it, the gotchas, and a run button. Call an
+              action nobody has implemented and an agent writes and tests it
+              mid-request — the first call takes a minute, the rest take
+              milliseconds. Reliability is measured rather than asserted:
+              documented → developed → tested → reliable, earned by real runs.
+            </p>
+          </div>
+
+          <!-- Resources -->
+          <div class="bg-white border border-black shadow-card px-4 py-3">
+            <div class="flex items-baseline gap-1.5 justify-between mb-2">
+              <div class="text-sm font-semibold leading-5">
+                <a
+                  href="https://extraorbital.dev"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="underline underline-offset-4 decoration-foreground/20 hover:decoration-foreground"
+                  >ExtraOrbital</a
+                >
+                <span class="font-normal text-muted-foreground"
+                  >— resources</span
+                >
+              </div>
+              <div class="text-xs text-muted-foreground shrink-0 ml-1">beta</div>
+            </div>
+            <p class="text-xs text-muted-foreground">
+              <code>npx extraorbital provision .</code> reads the project, finds
+              the environment variables the code actually references, creates
+              the real Mongo cluster, S3 bucket, Redis and model keys, and
+              writes them back to <code>.env.local</code>. No console, no card.
+              Every provision is idempotent on the project and resource, and
+              takes a lease before calling upstream — so an agent can run it
+              inside a retry loop, in CI, on restart, and never double-spend.
+            </p>
+          </div>
+        </div>
+        <p class="text-xs text-muted-foreground mt-4">
+          The first attempt at the knowledge layer was skills.dev — a registry
+          of proven, executable skills instead of an LLM rewriting the same
+          integration on every call. It predated Agent Skills; Anthropic
+          shipping them is the clearest validation the idea has had.
+        </p>
+
+        <!-- ---------- THESIS II ---------- -->
+        <div
+          class="font-mono text-[10px] uppercase tracking-[0.16em] text-foreground mb-2 mt-14"
+        >
+          Thesis II
+        </div>
+        <h3 class="font-serif text-[1.35rem] leading-snug mb-2 text-balance">
+          Determinism should come from software, not from more tokens.
+        </h3>
+        <p class="text-xs text-muted-foreground mb-6">
+          A model doing by inference what a compiler could do by construction is
+          slower, costlier and less reliable — and unlike the compiler, it has a
+          temperature. Every capability I've moved out of token space and into
+          software space got better on all three.
+        </p>
+        <div class="space-y-4">
+          <div class="bg-white border border-black shadow-card px-4 py-3">
+            <div class="flex items-baseline gap-1.5 justify-between mb-2">
+              <div class="text-sm font-semibold leading-5">
+                <a
+                  href="https://layouts.dev"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="underline underline-offset-4 decoration-foreground/20 hover:decoration-foreground"
+                  >Layouts.dev</a
+                >
+              </div>
+              <div class="text-xs text-muted-foreground shrink-0 ml-1">
+                2021 — 2025
+              </div>
+            </div>
+            <p class="text-xs text-muted-foreground">
+              A DSL up to 10× terser than React, compiling one parse tree to
+              Next.js and Expo. Concise enough for a designer to read in place
+              of Figma, constrained enough for a model to get right — the
+              grammar has no way to express a side effect or an infinite loop,
+              so validation is parsing rather than linting. 256 visual-test
+              fixtures keep the web and native output in step. We started it in
+              2021 because GPT-3 was hopeless at React; it turned out to be
+              better DX for humans too.
+            </p>
+          </div>
+
           <div class="bg-white border border-black shadow-card px-4 py-3">
             <div class="flex items-baseline gap-1.5 justify-between mb-2">
               <div class="text-sm font-semibold leading-5">Slices</div>
               <div class="text-xs text-muted-foreground shrink-0 ml-1">
-                (launching soon)
+                launching soon
               </div>
             </div>
             <p class="text-xs text-muted-foreground">
-              Better primitives for humans and agents working on Next.js.
+              Install features, not components. Every registry hands you a
+              beautiful table and wishes you luck — but a table is a view onto a
+              collection, and a collection means auth, an audit trail, a
+              database and a route that filters what each user may see. One
+              shadcn-compatible command writes all six into your repo, and it
+              stays yours. 27 patterns across 6 families; 8 service contracts
+              with 15 interchangeable implementations, each held to the same
+              conformance suite before it ships.
             </p>
           </div>
 
-          <!-- Interagentic -->
           <div class="bg-white border border-black shadow-card px-4 py-3">
             <div class="flex items-baseline gap-1.5 justify-between mb-2">
-              <a
-                href="https://interagentic.inc"
-                target="_blank"
-                rel="noreferrer"
-                class="text-sm font-semibold leading-5 underline underline-offset-4 decoration-foreground/20 hover:decoration-foreground"
-              >
-                Interagentic
-              </a>
-              <div class="text-xs text-muted-foreground shrink-0 ml-1">
-                2025 — now
+              <div class="text-sm font-semibold leading-5">
+                <a
+                  href="https://open-widgets.com"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="underline underline-offset-4 decoration-foreground/20 hover:decoration-foreground"
+                  >open-widgets</a
+                >
               </div>
+              <div class="text-xs text-muted-foreground shrink-0 ml-1">live</div>
+            </div>
+            <p class="text-xs text-muted-foreground">
+              Describe a component, get a real one — installed, typechecked and
+              bundled in a sandbox, embeddable anywhere behind one tag. The
+              generated code never runs on your page.
+            </p>
+          </div>
+        </div>
+
+        <!-- ---------- THESIS III ---------- -->
+        <div
+          class="font-mono text-[10px] uppercase tracking-[0.16em] text-foreground mb-2 mt-14"
+        >
+          Thesis III
+        </div>
+        <h3 class="font-serif text-[1.35rem] leading-snug mb-2 text-balance">
+          So take the human out, and watch what breaks.
+        </h3>
+        <p class="text-xs text-muted-foreground mb-6">
+          The first two theses are only worth anything if agents can actually
+          run unsupervised. These are the experiments that tell me where that
+          fails — and they run on everything above.
+        </p>
+        <div class="space-y-4">
+          <div class="bg-white border border-black shadow-card px-4 py-3">
+            <div class="flex items-baseline gap-1.5 justify-between mb-2">
+              <div class="text-sm font-semibold leading-5">
+                <a
+                  href="https://botparty.club"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="underline underline-offset-4 decoration-foreground/20 hover:decoration-foreground"
+                  >BotParty</a
+                >
+              </div>
+              <div class="text-xs text-muted-foreground shrink-0 ml-1">live</div>
+            </div>
+            <p class="text-xs text-muted-foreground">
+              Agents forming teams to build an entire company, with their own
+              computers, Slack, Trello and Notion. It's also the integration
+              test for Thesis I — it runs on the identity, credential and
+              provisioning layers at once. The question it answers: what do
+              agents do when nobody is prompting them, and at what point does
+              the output stop being trustworthy?
+            </p>
+          </div>
+
+          <div class="bg-white border border-black shadow-card px-4 py-3">
+            <div class="flex items-baseline gap-1.5 justify-between mb-2">
+              <div class="text-sm font-semibold leading-5">
+                <a
+                  href="https://protean.interagentic.inc/"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="underline underline-offset-4 decoration-foreground/20 hover:decoration-foreground"
+                  >protean</a
+                >
+              </div>
+              <span class="flex items-center gap-2.5 shrink-0">
+                <a
+                  href="https://github.com/smarcombes/protean"
+                  target="_blank"
+                  rel="noreferrer"
+                  title="Source"
+                  aria-label="Source on GitHub"
+                  class="text-muted-foreground hover:text-foreground transition-colors shrink-0"
+                >
+                  <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0016 8c0-4.42-3.58-8-8-8z" />
+                  </svg>
+                </a>
+              </span>
             </div>
             <p class="text-xs text-muted-foreground mb-2">
-              Infrastructure for agents that act without a human in the loop.
-              Authenticating an agent securely. Turning an action description
-              into an API that answers in ~30ms. Reaching any API without ever
-              holding the credentials
-              (<a
-                href="https://keychains.dev"
-                target="_blank"
-                rel="noreferrer"
-                class="underline underline-offset-2 decoration-foreground/20 hover:decoration-foreground text-foreground"
-                >keychains.dev</a
-              >). Provisioning infrastructure without human in the loop.
+              The extreme case. A self-evolving agent whose working directory is
+              its own source: it writes new tools for itself, edits its own
+              code, commits, and restarts into the new version. It migrates
+              across machines over P2P, carrying its state on a CRDT. The only
+              real constraint left is budget — which is why it needs a
+              supervisor and a crash ladder that walks back through git history
+              until it boots again, because it can and does brick itself.
             </p>
             <p class="text-xs text-muted-foreground">
-              30+ services, internal use for now.
-            </p>
-          </div>
-
-          <!-- skills.dev -->
-          <div class="bg-white border border-black shadow-card px-4 py-3">
-            <div class="flex items-baseline gap-1.5 justify-between mb-2">
-              <div class="text-sm font-semibold leading-5">skills.dev</div>
-              <div class="text-xs text-muted-foreground shrink-0 ml-1">
-                (pending refactoring)
-              </div>
-            </div>
-            <p class="text-xs text-muted-foreground">
-              An app store for agent capabilities: agents search a registry of
-              TypeScript skills, run them, or generate a new one when the
-              registry misses. Built before Claude's Agent Skills. Launch
-              postponed until we find a more distinctive naming and pitch.
-            </p>
-          </div>
-
-          <!-- BotParty -->
-          <div class="bg-white border border-black shadow-card px-4 py-3">
-            <div class="flex items-baseline gap-1.5 justify-between mb-2">
-              <a
-                href="https://botparty.club"
-                target="_blank"
-                rel="noreferrer"
-                class="text-sm font-semibold leading-5 underline underline-offset-4 decoration-foreground/20 hover:decoration-foreground"
+              <span
+                class="font-mono text-[10px] uppercase tracking-[0.16em] text-foreground"
+                >Try</span
               >
-                BotParty
-              </a>
-              <div class="text-xs text-muted-foreground shrink-0 ml-1">
-                2025 — now
+              — create an agent, run the command on your own machine, then ask
+              it to photograph you by building the tool first, to spawn itself a
+              server with the AWS CLI, or to spread to a Raspberry Pi on your
+              network.
+            </p>
+          </div>
+
+          <div class="bg-white border border-black shadow-card px-4 py-3">
+            <div class="flex items-baseline gap-1.5 justify-between mb-2">
+              <div class="text-sm font-semibold leading-5">
+                <a
+                  href="https://ux-morph.creative-robots.ai/welcome"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="underline underline-offset-4 decoration-foreground/20 hover:decoration-foreground"
+                  >ux-morph</a
+                >
               </div>
+              <div class="text-xs text-muted-foreground shrink-0 ml-1">live</div>
             </div>
+            <p class="text-xs text-muted-foreground mb-2">
+              Give every user of your Next.js app their own editable copy of its
+              frontend. Mark a page <code>use morph</code> and each signed-in
+              user gets their own compiled copy: they describe a change in plain
+              language, it is typechecked, and the site rebuilds around them. An
+              experiment, not a product.
+            </p>
             <p class="text-xs text-muted-foreground">
-              The playground. Agents forming teams to build an entire company,
-              with access to their own computers, Slack, Trello and Notion. An
-              experience to find out how they behave when the user doesn't even
-              need to prompt: agents compounding work on their own findings,
-              with human-in-the-loop no longer a constraint.
+              <span
+                class="font-mono text-[10px] uppercase tracking-[0.16em] text-foreground"
+                >Try</span
+              >
+              — pick any persona, then ask it to “Make this look like Win95”.
             </p>
           </div>
         </div>
@@ -176,20 +426,13 @@
               to trust, so I spent the two years after that on
               <em>rail-coding</em>: making AI generate large production
               applications deterministically, by composing reusable full-stack
-              capabilities instead of re-deriving them.
+              capabilities instead of re-deriving them. That's where Thesis II
+              comes from, and Layouts.dev is its main output.
             </p>
             <p class="text-xs text-muted-foreground">
-              Its main output is
-              <a
-                href="https://layouts.dev"
-                target="_blank"
-                rel="noreferrer"
-                class="underline underline-offset-2 decoration-foreground/20 hover:decoration-foreground text-foreground"
-                >Layouts.dev</a
-              >
-              — pure software that outputs complete Next.js and Expo projects
-              from a simple DSL: intuitive enough for designers to use in place
-              of Figma, and text-based enough for agents to edit directly.
+              Thesis I followed from the thing rail-coding couldn't fix: agents
+              that could write an entire system still couldn't put it online
+              without me. Everything above is the same company, still going.
             </p>
           </div>
         </div>
@@ -198,166 +441,6 @@
           Selected open source &amp; fun projects
         </h2>
         <div class="border-t border-divider">
-          <div
-            class="flex items-baseline justify-between gap-4 py-3 border-b border-divider"
-          >
-            <div class="flex-1 min-w-0">
-              <a
-                href="https://open-widgets.com"
-                target="_blank"
-                rel="noreferrer"
-                class="hover:text-foreground transition-colors"
-              >
-              <span class="font-semibold">🧩 open-widgets</span>
-              <span class="text-muted-foreground">
-                — Describe a component, get a real one: installed, typechecked and
-                bundled in a sandbox, embeddable anywhere behind one tag.
-                Generated code never runs on your page.</span
-              >
-              </a>
-            </div>
-            <span class="flex items-center gap-2.5 shrink-0">
-            <a
-              href="https://open-widgets.com"
-              target="_blank"
-              rel="noreferrer"
-              title="Live"
-              aria-label="Live site"
-              class="text-muted-foreground hover:text-foreground transition-colors shrink-0"
-            >
-              <svg
-                width="15"
-                height="15"
-                viewBox="0 0 16 16"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.25"
-                aria-hidden="true"
-              >
-                <circle cx="8" cy="8" r="6.4" />
-                <path d="M1.6 8h12.8M8 1.6a9.6 9.6 0 0 1 0 12.8a9.6 9.6 0 0 1 0-12.8" />
-              </svg>
-            </a>
-            </span>
-          </div>
-
-          <div
-            class="flex items-baseline justify-between gap-4 py-3 border-b border-divider"
-          >
-            <div class="flex-1 min-w-0">
-              <a
-                href="https://protean.interagentic.inc/"
-                target="_blank"
-                rel="noreferrer"
-                class="hover:text-foreground transition-colors"
-              >
-              <span class="font-semibold">🦠 protean</span>
-              <span class="text-muted-foreground">
-                — Self-evolving agent. Writes new tools for itself, modifies its own
-                code, migrates across machines over P2P. No artificial
-                constraints except budget.</span
-              >
-              </a>
-              <p class="mt-1.5 text-xs text-muted-foreground">
-                <span
-                  class="font-mono text-[10px] uppercase tracking-[0.16em] text-foreground"
-                  >Try</span
-                >
-                — create an agent, run the command on your own machine, then ask
-                it to photograph you by building the tool first, to spawn itself
-                a server with the AWS CLI, or to spread to a Raspberry Pi on
-                your network.
-              </p>
-            </div>
-            <span class="flex items-center gap-2.5 shrink-0">
-            <a
-              href="https://protean.interagentic.inc/"
-              target="_blank"
-              rel="noreferrer"
-              title="Live"
-              aria-label="Live site"
-              class="text-muted-foreground hover:text-foreground transition-colors shrink-0"
-            >
-              <svg
-                width="15"
-                height="15"
-                viewBox="0 0 16 16"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.25"
-                aria-hidden="true"
-              >
-                <circle cx="8" cy="8" r="6.4" />
-                <path d="M1.6 8h12.8M8 1.6a9.6 9.6 0 0 1 0 12.8a9.6 9.6 0 0 1 0-12.8" />
-              </svg>
-            </a>
-            <a
-              href="https://github.com/smarcombes/protean"
-              target="_blank"
-              rel="noreferrer"
-              title="Source"
-              aria-label="Source on GitHub"
-              class="text-muted-foreground hover:text-foreground transition-colors shrink-0"
-            >
-              <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0016 8c0-4.42-3.58-8-8-8z" />
-              </svg>
-            </a>
-            </span>
-          </div>
-
-          <div
-            class="flex items-baseline justify-between gap-4 py-3 border-b border-divider"
-          >
-            <div class="flex-1 min-w-0">
-              <a
-                href="https://ux-morph.creative-robots.ai/welcome"
-                target="_blank"
-                rel="noreferrer"
-                class="hover:text-foreground transition-colors"
-              >
-              <span class="font-semibold">🌊 ux-morph</span>
-              <span class="text-muted-foreground">
-                — Give every user of your Next.js app their own editable copy of its
-                frontend. Mark a page <code>use morph</code> and each signed-in
-                user gets their own compiled copy: they describe a change in
-                plain language, it is typechecked, and the site rebuilds around
-                them. An experiment, not a product.</span
-              >
-              </a>
-              <p class="mt-1.5 text-xs text-muted-foreground">
-                <span
-                  class="font-mono text-[10px] uppercase tracking-[0.16em] text-foreground"
-                  >Try</span
-                >
-                — pick any persona, then ask it to “Make this look like Win95”.
-              </p>
-            </div>
-            <span class="flex items-center gap-2.5 shrink-0">
-            <a
-              href="https://ux-morph.creative-robots.ai/welcome"
-              target="_blank"
-              rel="noreferrer"
-              title="Live"
-              aria-label="Live site"
-              class="text-muted-foreground hover:text-foreground transition-colors shrink-0"
-            >
-              <svg
-                width="15"
-                height="15"
-                viewBox="0 0 16 16"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.25"
-                aria-hidden="true"
-              >
-                <circle cx="8" cy="8" r="6.4" />
-                <path d="M1.6 8h12.8M8 1.6a9.6 9.6 0 0 1 0 12.8a9.6 9.6 0 0 1 0-12.8" />
-              </svg>
-            </a>
-            </span>
-          </div>
-
           <div
             class="flex items-baseline justify-between gap-4 py-3 border-b border-divider"
           >
@@ -597,7 +680,7 @@
                 Seafront — 0-to-1 product &amp; tech consultancy
               </div>
               <div class="text-xs text-muted-foreground shrink-0 ml-1">
-                2019 — 2022
+                2019 — 2021
               </div>
             </div>
             <p class="text-xs text-muted-foreground">
