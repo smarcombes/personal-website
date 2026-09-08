@@ -272,34 +272,82 @@
           </div>
         </div>
 
-        <!-- ============ HOW I GOT HERE ============ -->
-        <h2 class="font-bold tracking-[-0.01em] mt-16 mb-4">How I got here</h2>
-        <div class="space-y-4">
-          <div class="bg-white border border-black shadow-card px-4 py-3">
-            <div class="flex items-baseline gap-1.5 justify-between mb-2">
-              <a
-                href="https://creative-robots.ai"
-                target="_blank"
-                rel="noreferrer"
-                class="text-sm font-semibold leading-5 underline underline-offset-4 decoration-foreground/20 hover:decoration-foreground"
-              >
+        <!-- ============ EXPERIENCE ============ -->
+        <h2 class="font-bold tracking-[-0.01em] mt-16 mb-2">Experience</h2>
+        <div
+          class="relative flex flex-col space-y-4 border-l border-gray-300 py-4 ml-4 mt-6
+            before:h-6 before:w-px before:bg-gradient-to-t before:from-transparent before:to-background before:absolute before:-left-px before:top-0
+            after:h-6 after:w-px after:bg-gradient-to-b after:from-transparent after:to-background after:absolute after:-left-px after:bottom-0"
+        >
+          <a
+            href="https://creative-robots.ai"
+            target="_blank"
+            rel="noreferrer"
+            class="relative flex flex-col gap-2 px-3 py-2 ml-6 group cursor-pointer bg-white border border-black shadow-card hover:shadow-card-hover transition-all"
+          >
+            <div
+              class="absolute size-[7px] bg-gray-900 rounded-sm -left-[37px] top-[15px] outline outline-2 outline-background"
+            ></div>
+            <div class="flex items-baseline gap-1.5 justify-between">
+              <div class="text-sm truncate font-semibold leading-5">
                 Creative Robots
-              </a>
+                <span class="font-normal text-muted-foreground">— Founder</span>
+              </div>
               <div class="text-xs text-muted-foreground shrink-0 ml-1">
                 2021 — now
               </div>
             </div>
             <p class="text-xs text-muted-foreground">
-              A small research lab, one to four people, backed by Clément
-              Delangue (Hugging Face), Alban Denoyel (Sketchfab), Luke Miller
-              (ex-Vercel, Baseten), a Sequoia scout and others. One program in
-              three phases. Vibe-coding in 2021, a year before ChatGPT, which
-              taught us that generation without constraints doesn't hold.
-              Rail-coding from 2022, which taught us that primitives do. And
-              since 2025, agents that keep what they build. Each phase shipped;
-              each one's finding is the premise of the next.
+              A small research lab, one to four people, running the three lines
+              of research above. Backed by Clément Delangue (Hugging Face),
+              Alban Denoyel (Sketchfab), Luke Miller (ex-Vercel, Baseten), a
+              Sequoia scout and others.
+            </p>
+          </a>
+
+          <div class="relative flex flex-col gap-2 px-3 py-2 ml-6 bg-white border border-black shadow-card">
+            <div
+              class="absolute size-[7px] bg-gray-900 rounded-sm -left-[37px] top-[15px] outline outline-2 outline-background"
+            ></div>
+            <div class="flex items-baseline gap-1.5 justify-between">
+              <div class="text-sm truncate font-semibold leading-5">
+                Seafront
+                <span class="font-normal text-muted-foreground">— Founder</span>
+              </div>
+              <div class="text-xs text-muted-foreground shrink-0 ml-1">
+                2019 — 2021
+              </div>
+            </div>
+            <p class="text-xs text-muted-foreground">
+              0-to-1 product &amp; tech consultancy: diagnose the value
+              proposition, reset the strategy, ship the MVP in weeks. Clients
+              from Adok to Intuit.
             </p>
           </div>
+
+          <a
+            href="/projects/lima/"
+            class="relative flex flex-col gap-2 px-3 py-2 ml-6 group cursor-pointer bg-white border border-black shadow-card hover:shadow-card-hover transition-all"
+          >
+            <div
+              class="absolute size-[7px] bg-gray-900 rounded-sm -left-[37px] top-[15px] outline outline-2 outline-background"
+            ></div>
+            <div class="flex items-baseline gap-1.5 justify-between">
+              <div class="text-sm truncate font-semibold leading-5">
+                Lima
+                <span class="font-normal text-muted-foreground">— Co-founder &amp; CEO</span>
+              </div>
+              <div class="text-xs text-muted-foreground shrink-0 ml-1">
+                2011 — 2019
+              </div>
+            </div>
+            <p class="text-xs text-muted-foreground">
+              A unified, liquid personal cloud — file storage redesigned from
+              first principles. 6th biggest Kickstarter tech campaign of 2013,
+              80,000+ units shipped, a 30-person team. Gone now — this is the
+              recollection.
+            </p>
+          </a>
         </div>
 
         <h2 class="font-bold tracking-[-0.01em] mt-16 mb-2">
@@ -374,20 +422,6 @@
               </svg>
             </a>
             </span>
-          </div>
-
-          <div
-            class="flex items-baseline justify-between gap-4 py-3 border-b border-divider"
-          >
-            <div class="flex-1 min-w-0">
-              <span class="font-semibold">🎭 design-system-stealer</span>
-              <span class="text-muted-foreground">
-                — Point it at a domain. It reads the live DOM, infers the real design
-                system behind it, and generates a shadcn project that replicates
-                it. Tested against Doctolib, Linear and Stripe.</span
-              >
-            </div>
-            <span class="text-xs text-muted-foreground shrink-0">(soon)</span>
           </div>
 
           <div
@@ -551,73 +585,6 @@
         </div>
 
         {{writing}}
-        <!-- ============ IN A PREVIOUS LIFE ============ -->
-        <h2 class="font-bold tracking-[-0.01em] mt-16 mb-2">
-          In a previous life
-        </h2>
-        <div
-          class="relative flex flex-col space-y-4 border-l border-gray-300 py-4 ml-4 mt-6
-            before:h-6 before:w-px before:bg-gradient-to-t before:from-transparent before:to-background before:absolute before:-left-px before:top-0
-            after:h-6 after:w-px after:bg-gradient-to-b after:from-transparent after:to-background after:absolute after:-left-px after:bottom-0"
-        >
-          <a
-            href="/projects/lima/"
-            class="relative flex flex-col gap-2 px-3 py-2 ml-6 group cursor-pointer bg-white border border-black shadow-card hover:shadow-card-hover transition-all"
-          >
-            <div
-              class="absolute size-[7px] bg-gray-900 rounded-sm -left-[37px] top-[15px] outline outline-2 outline-background"
-            ></div>
-            <div class="flex items-baseline gap-1.5 justify-between">
-              <div class="text-sm truncate font-semibold leading-5">
-                Lima — unified, liquid personal cloud
-              </div>
-              <div class="text-xs text-muted-foreground shrink-0 ml-1">
-                2011 — 2019
-              </div>
-            </div>
-            <p class="text-xs text-muted-foreground">
-              A company I founded to redesign file storage from first
-              principles. 6th biggest Kickstarter tech campaign of 2013. Gone
-              now — this is the recollection.
-            </p>
-          </a>
-
-          <div class="relative flex flex-col gap-1 px-3 py-2 ml-6">
-            <div
-              class="absolute size-[7px] bg-gray-900 rounded-sm -left-[37px] top-[15px] outline outline-2 outline-background"
-            ></div>
-            <div class="flex items-baseline gap-1.5 justify-between">
-              <div class="text-xs font-semibold leading-5">
-                Marketing &amp; product mentoring — ESCP Europe
-              </div>
-              <div class="text-xs text-muted-foreground shrink-0 ml-1">
-                Paris
-              </div>
-            </div>
-            <p class="text-xs text-muted-foreground">
-              Mentoring at the ESCP Europe business school in Paris.
-            </p>
-          </div>
-
-          <div class="relative flex flex-col gap-1 px-3 py-2 ml-6">
-            <div
-              class="absolute size-[7px] bg-gray-900 rounded-sm -left-[37px] top-[15px] outline outline-2 outline-background"
-            ></div>
-            <div class="flex items-baseline gap-1.5 justify-between">
-              <div class="text-xs font-semibold leading-5">
-                Seafront — 0-to-1 product &amp; tech consultancy
-              </div>
-              <div class="text-xs text-muted-foreground shrink-0 ml-1">
-                2019 — 2021
-              </div>
-            </div>
-            <p class="text-xs text-muted-foreground">
-              Building startup products from 0-to-1, with clients as small as
-              Adok and as big as Intuit.
-            </p>
-          </div>
-        </div>
-
         <!-- ============ LET'S TALK ============ -->
         <h2 class="font-bold tracking-[-0.01em] mt-16 mb-4">Let's talk!</h2>
         <div class="flex flex-wrap gap-3">
