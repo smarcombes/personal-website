@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Séverin Marcombes</title>
+    <meta
+      name="description"
+      content="Séverin Marcombes — repeat founder and product builder. Models learn in training; the software I build learns at runtime, leaving behind runnable artifacts every agent starts from."
+    />
+    <link rel="canonical" href="https://severin-marcombes.com/v4/" />
+
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#f5f4ef" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Séverin Marcombes" />
+    <meta
+      property="og:description"
+      content="Séverin Marcombes — repeat founder and product builder. Models learn in training; the software I build learns at runtime, leaving behind runnable artifacts every agent starts from."
+    />
+    <meta property="og:url" content="https://severin-marcombes.com/v4/" />
+    <meta name="twitter:card" content="summary" />
+
+    <link
+      rel="preload"
+      href="/fonts/newsreader-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+
+  <body
+    class="bg-background text-foreground font-mono text-sm leading-5 antialiased"
+  >
+    <div class="p-4 md:p-12 overflow-hidden">
+      <div class="w-full max-w-xl">
+        <header
+          class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4"
+        >
+          <span>
+            <a href="/" class="text-3xl font-serif">Hey, I'm Séverin.</a>
+          </span>
+        </header>
+
+        <p class="mt-8 mb-6">
+          I'm a repeat founder and product builder.<br />
+          I've been building on language models since GPT-3's davinci.
+        </p>
+
+        <p
+          class="font-serif text-[18px] font-[500] leading-snug my-10 text-balance"
+        >
+          I don't make models. Models learn in training. The software I build
+          learns at runtime.
+        </p>
+
+        <!-- ============ WHAT I'M WORKING ON ============ -->
+        <h2 class="font-bold tracking-[-0.01em] mt-16 mb-3">
+          What I'm working on
+        </h2>
+        <p class="text-xs text-muted-foreground mb-2">
+          Since the davinci days, one obsession: the most value from a model,
+          with the fewest errors, from the fewest tokens. The answer I keep
+          arriving at is that an agent's work shouldn't evaporate when the
+          context window closes. Every action should leave behind a runnable,
+          tested artifact that the next agent starts from — so the system gets
+          better by being used, not by waiting for a bigger model. Three
+          lines of work follow from that, all under
+          <a
+            href="https://creative-robots.ai"
+            target="_blank"
+            rel="noreferrer"
+            class="underline underline-offset-2 decoration-foreground/20 hover:decoration-foreground text-foreground"
+            >Creative Robots</a
+          >, the company I've been running since 2021.
+        </p>
+
+        <!-- ---------- I ---------- -->
+        <div
+          class="font-mono text-[10px] uppercase tracking-[0.16em] text-foreground mb-2 mt-12"
+        >
+          I
+        </div>
+        <h3 class="font-serif text-[1.35rem] leading-snug mb-2 text-balance">
+          Capture what works, as code.
+        </h3>
+        <p class="text-xs text-muted-foreground mb-6">
+          Ask an agent to list your last ten emails and it rewrites the
+          integration from scratch, every time, and succeeds maybe 30–60% of
+          the time. The fix isn't a smarter model. It's remembering what
+          worked — as a file that runs, has tests, and can be shared with every
+          other agent. Muscle memory, in software.
+        </p>
+        <div class="space-y-4">
+          <div class="bg-white border border-black shadow-card px-4 py-3">
+            <div class="flex items-baseline gap-1.5 justify-between mb-2">
+              <div class="text-sm font-semibold leading-5">
+                OpenIntegrations
+                <span class="font-normal text-muted-foreground"
+                  >— formerly skills.dev</span
+                >
+              </div>
+              <div class="text-xs text-muted-foreground shrink-0 ml-1">
+                prototype
+              </div>
+            </div>
+            <p class="text-xs text-muted-foreground mb-2">
+              A registry of every API action in the world — ~7.9k providers,
+              ~18.7k actions — each with a schema, the TypeScript that runs it,
+              the gotchas, and a run button. Call an action nobody has
+              implemented and an agent writes and tests it mid-request; the
+              first call takes a minute, every call after takes milliseconds,
+              for everyone. Reliability is earned, not asserted: documented →
+              developed → tested → reliable, graded hourly from real runs, and
+              every proposed change is replayed against every benchmark before
+              it can land.
+            </p>
+            <p class="text-xs text-muted-foreground">
+              The first version, skills.dev (~288K LOC), predated Agent Skills.
+              Anthropic shipping them is the clearest validation the idea has
+              had; the domain has since gone to Vercel, and the work is being
+              rebuilt as this.
+            </p>
+          </div>
+
+          <div class="bg-white border border-black shadow-card px-4 py-3">
+            <div class="flex items-baseline gap-1.5 justify-between mb-2">
+              <div class="text-sm font-semibold leading-5">Slices</div>
+              <div class="text-xs text-muted-foreground shrink-0 ml-1">
+                launching soon
+              </div>
+            </div>
+            <p class="text-xs text-muted-foreground">
+              The same idea for a codebase. Every registry hands you a table
+              and wishes you luck — but a table is a view onto a collection,
+              and a collection means auth, an audit trail, a database and a
+              route that filters what each user may see. One shadcn-compatible
+              command writes all six into your repo, and it stays yours. 27
+              patterns, 6 families, 8 service contracts with 15 interchangeable
+              implementations, all held to one conformance suite. It's a waste
+              to burn a million tokens every time you need a sign-in screen.
+            </p>
+          </div>
+
+          <div class="bg-white border border-black shadow-card px-4 py-3">
+            <div class="flex items-baseline gap-1.5 justify-between mb-2">
+              <div class="text-sm font-semibold leading-5">
+                <a
+                  href="https://layouts.dev"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="underline underline-offset-4 decoration-foreground/20 hover:decoration-foreground"
+                  >Layouts.dev</a
+                >
+                <span class="font-normal text-muted-foreground"
+                  >— where it started</span
+                >
+              </div>
+              <div class="text-xs text-muted-foreground shrink-0 ml-1">
+                2021 — 2025
+              </div>
+            </div>
+            <p class="text-xs text-muted-foreground">
+              Artifacts are only reusable if a model can be trusted to edit
+              them. So: a DSL up to 10× terser than React, compiling one parse
+              tree to Next.js and Expo, whose grammar cannot express a side
+              effect or an infinite loop — validation is parsing, not linting.
+              Built in 2021 because davinci was hopeless at React; turned out to
+              be better DX for designers too. 256 visual-test fixtures keep web
+              and native output in step.
+            </p>
+          </div>
+        </div>
+
+        <!-- ---------- II ---------- -->
+        <div
+          class="font-mono text-[10px] uppercase tracking-[0.16em] text-foreground mb-2 mt-14"
+        >
+          II
+        </div>
+        <h3 class="font-serif text-[1.35rem] leading-snug mb-2 text-balance">
+          If the artifact is code, the software can rewrite itself.
+        </h3>
+        <p class="text-xs text-muted-foreground mb-6">
+          Once what an agent learns is stored as code, nothing stops the
+          system from changing its own tools, its own interface, or its own
+          source. These are the experiments in how far that goes.
+        </p>
+        <div class="space-y-4">
+          <div class="bg-white border border-black shadow-card px-4 py-3">
+            <div class="flex items-baseline gap-1.5 justify-between mb-2">
+              <div class="text-sm font-semibold leading-5">
+                <a
+                  href="https://protean.interagentic.inc/"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="underline underline-offset-4 decoration-foreground/20 hover:decoration-foreground"
+                  >protean</a
+                >
+              </div>
+              <span class="flex items-center gap-2.5 shrink-0">
+                <a
+                  href="https://github.com/smarcombes/protean"
+                  target="_blank"
+                  rel="noreferrer"
+                  title="Source"
+                  aria-label="Source on GitHub"
+                  class="text-muted-foreground hover:text-foreground transition-colors shrink-0"
+                >
+                  <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0016 8c0-4.42-3.58-8-8-8z" />
+                  </svg>
+                </a>
+              </span>
+            </div>
+            <p class="text-xs text-muted-foreground mb-2">
+              An agent whose working directory is its own source. Anything it
+              drops in <code>~/tools/</code> becomes a tool on the next turn —
+              so “I don't have a camera” is solved by writing one. It edits
+              its own code, commits, and restarts into the new version; it
+              migrates to other machines over P2P, carrying its state on a CRDT.
+              The only constraint left is budget, which is why it needs a
+              supervisor and a crash ladder that walks back through git history
+              until it boots again — because it can and does brick itself.
+            </p>
+            <p class="text-xs text-muted-foreground">
+              <span
+                class="font-mono text-[10px] uppercase tracking-[0.16em] text-foreground"
+                >Try</span
+              >
+              — create an agent, run the command on your own machine, then ask
+              it to photograph you by building the tool first, to spawn itself a
+              server with the AWS CLI, or to spread to a Raspberry Pi on your
+              network.
+            </p>
+          </div>
+
+          <div class="bg-white border border-black shadow-card px-4 py-3">
+            <div class="flex items-baseline gap-1.5 justify-between mb-2">
+              <div class="text-sm font-semibold leading-5">
+                <a
+                  href="https://ux-morph.creative-robots.ai/welcome"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="underline underline-offset-4 decoration-foreground/20 hover:decoration-foreground"
+                  >ux-morph</a
+                >
+              </div>
+              <div class="text-xs text-muted-foreground shrink-0 ml-1">live</div>
+            </div>
+            <p class="text-xs text-muted-foreground mb-2">
+              Interfaces are authored once, by the vendor, for an imaginary
+              average user. Mark a Next.js page <code>use morph</code> and each
+              signed-in user gets their own compiled copy: they describe a
+              change in plain language, it is typechecked, and the site
+              rebuilds around them. Feedback becoming interface. An experiment,
+              not a product.
+            </p>
+            <p class="text-xs text-muted-foreground">
+              <span
+                class="font-mono text-[10px] uppercase tracking-[0.16em] text-foreground"
+                >Try</span
+              >
+              — pick any persona, then ask it to “Make this look like Win95”.
+            </p>
+          </div>
+
+          <div class="bg-white border border-black shadow-card px-4 py-3">
+            <div class="flex items-baseline gap-1.5 justify-between mb-2">
+              <div class="text-sm font-semibold leading-5">
+                <a
+                  href="https://open-widgets.com"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="underline underline-offset-4 decoration-foreground/20 hover:decoration-foreground"
+                  >open-widgets</a
+                >
+              </div>
+              <div class="text-xs text-muted-foreground shrink-0 ml-1">live</div>
+            </div>
+            <p class="text-xs text-muted-foreground">
+              Describe a component, get a real one — installed, typechecked and
+              bundled in a sandbox, embeddable anywhere behind one tag. The
+              generated code never runs on your page. The smallest possible
+              unit of “a description became an artifact”.
+            </p>
+          </div>
+        </div>
+
+        <!-- ---------- III ---------- -->
+        <div
+          class="font-mono text-[10px] uppercase tracking-[0.16em] text-foreground mb-2 mt-14"
+        >
+          III
+        </div>
+        <h3 class="font-serif text-[1.35rem] leading-snug mb-2 text-balance">
+          A loop that stops for a human isn't a loop.
+        </h3>
+        <p class="text-xs text-muted-foreground mb-6">
+          None of the above compounds if the agent has to wake someone up to
+          sign in, fetch a key, or click through a console. Every layer of the
+          cloud checks for a human. These are the layers that don't — identity,
+          credentials, resources — and the place where they all get tested at
+          once.
+        </p>
+        <div class="space-y-4">
+          <div class="bg-white border border-black shadow-card px-4 py-3">
+            <div class="flex items-baseline gap-1.5 justify-between mb-2">
+              <div class="text-sm font-semibold leading-5">
+                Interagentic
+                <span class="font-normal text-muted-foreground"
+                  >— identity</span
+                >
+              </div>
+              <div class="text-xs text-muted-foreground shrink-0 ml-1">beta</div>
+            </div>
+            <p class="text-xs text-muted-foreground">
+              A machine signs a token with its own key and exchanges it for a
+              ten-minute one addressed to a single service. That service does
+              one JWKS check and learns which machine is calling, whether a
+              human stands behind it, who that human is — a different pseudonym
+              at every service — and what they allowed. Identity is a keypair,
+              not a name: nothing to register, nothing to sign up for at 3am.
+            </p>
+          </div>
+
+          <div class="bg-white border border-black shadow-card px-4 py-3">
+            <div class="flex items-baseline gap-1.5 justify-between mb-2">
+              <div class="text-sm font-semibold leading-5">
+                <a
+                  href="https://keychains.dev"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="underline underline-offset-4 decoration-foreground/20 hover:decoration-foreground"
+                  >Keychains</a
+                >
+                <span class="font-normal text-muted-foreground"
+                  >— credentials</span
+                >
+              </div>
+              <div class="text-xs text-muted-foreground shrink-0 ml-1">live</div>
+            </div>
+            <p class="text-xs text-muted-foreground">
+              Give the agent the keys, not the kingdom. It sends a
+              <code>{{OAUTH2_TOKEN}}</code> placeholder; the proxy resolves the
+              provider, injects the real token, forwards, and streams the
+              response back. The secret never enters the context window, so a
+              prompt injection has nothing to steal. Scope inference across
+              6,000+ APIs from ~1.88M lines of provider docs; pay-per-call over
+              x402 so an agent can use an API with no account at all.
+            </p>
+          </div>
+
+          <div class="bg-white border border-black shadow-card px-4 py-3">
+            <div class="flex items-baseline gap-1.5 justify-between mb-2">
+              <div class="text-sm font-semibold leading-5">
+                <a
+                  href="https://extraorbital.dev"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="underline underline-offset-4 decoration-foreground/20 hover:decoration-foreground"
+                  >ExtraOrbital</a
+                >
+                <span class="font-normal text-muted-foreground"
+                  >— resources</span
+                >
+              </div>
+              <div class="text-xs text-muted-foreground shrink-0 ml-1">beta</div>
+            </div>
+            <p class="text-xs text-muted-foreground">
+              <code>npx extraorbital provision .</code> reads the project, finds
+              the environment variables the code references, creates the real
+              Mongo cluster, S3 bucket, Redis and model keys, and writes them
+              back to <code>.env.local</code>. No console, no card. Every
+              provision is idempotent and takes a lease first, so an agent can
+              run it in a retry loop, in CI, on restart, and never double-spend.
+            </p>
+          </div>
+
+          <div class="bg-white border border-black shadow-card px-4 py-3">
+            <div class="flex items-baseline gap-1.5 justify-between mb-2">
+              <div class="text-sm font-semibold leading-5">
+                <a
+                  href="https://botparty.club"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="underline underline-offset-4 decoration-foreground/20 hover:decoration-foreground"
+                  >BotParty</a
+                >
+                <span class="font-normal text-muted-foreground"
+                  >— the test</span
+                >
+              </div>
+              <div class="text-xs text-muted-foreground shrink-0 ml-1">live</div>
+            </div>
+            <p class="text-xs text-muted-foreground">
+              Agents forming teams to build an entire company, with their own
+              computers, Slack, Trello and Notion, on top of the three layers
+              above. What do agents do when nobody is prompting them, and where
+              does the output stop being trustworthy?
+            </p>
+          </div>
+        </div>
+
+        <!-- ============ HOW I GOT HERE ============ -->
+        <h2 class="font-bold tracking-[-0.01em] mt-16 mb-4">How I got here</h2>
+        <div class="space-y-4">
+          <div class="bg-white border border-black shadow-card px-4 py-3">
+            <div class="flex items-baseline gap-1.5 justify-between mb-2">
+              <a
+                href="https://creative-robots.ai"
+                target="_blank"
+                rel="noreferrer"
+                class="text-sm font-semibold leading-5 underline underline-offset-4 decoration-foreground/20 hover:decoration-foreground"
+              >
+                Creative Robots
+              </a>
+              <div class="text-xs text-muted-foreground shrink-0 ml-1">
+                2021 — now
+              </div>
+            </div>
+            <p class="text-xs text-muted-foreground mb-2">
+              I built my first vibe-coding product before ChatGPT, when models
+              didn't reliably know how to emit valid JSON. It churned too much
+              to trust — the output evaporated as fast as it was generated — so
+              I spent the two years after that on <em>rail-coding</em>: a
+              grammar the model can't get wrong, and features instead of
+              components as the unit of reuse. That became Layouts.dev, then
+              Slices.
+            </p>
+            <p class="text-xs text-muted-foreground">
+              The agent work followed from the same instinct one level up: if a
+              model's output shouldn't evaporate, neither should what an agent
+              learns. Everything above is the same company, still going.
+            </p>
+          </div>
+        </div>
+
+        <h2 class="font-bold tracking-[-0.01em] mt-16 mb-2">
+          Selected open source &amp; fun projects
+        </h2>
+        <div class="border-t border-divider">
+          <div
+            class="flex items-baseline justify-between gap-4 py-3 border-b border-divider"
+          >
+            <div class="flex-1 min-w-0">
+              <span class="font-semibold">🎭 design-system-stealer</span>
+              <span class="text-muted-foreground">
+                — Point it at a domain. It reads the live DOM, infers the real design
+                system behind it, and generates a shadcn project that replicates
+                it. Tested against Doctolib, Linear and Stripe.</span
+              >
+            </div>
+            <span class="text-xs text-muted-foreground shrink-0">(soon)</span>
+          </div>
+
+          <div
+            class="flex items-baseline justify-between gap-4 py-3 border-b border-divider"
+          >
+            <div class="flex-1 min-w-0">
+              <a
+                href="https://streambin.xyz"
+                target="_blank"
+                rel="noreferrer"
+                class="hover:text-foreground transition-colors"
+              >
+              <span class="font-semibold">📡 streambin</span>
+              <span class="text-muted-foreground">
+                — End-to-end encrypted streams, docs and files for agents and humans.
+                Zero-knowledge relay. Drop-in Firebase-style primitives.</span
+              >
+              </a>
+            </div>
+            <span class="flex items-center gap-2.5 shrink-0">
+            <a
+              href="https://streambin.xyz"
+              target="_blank"
+              rel="noreferrer"
+              title="Live"
+              aria-label="Live site"
+              class="text-muted-foreground hover:text-foreground transition-colors shrink-0"
+            >
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.25"
+                aria-hidden="true"
+              >
+                <circle cx="8" cy="8" r="6.4" />
+                <path d="M1.6 8h12.8M8 1.6a9.6 9.6 0 0 1 0 12.8a9.6 9.6 0 0 1 0-12.8" />
+              </svg>
+            </a>
+            <a
+              href="https://github.com/smarcombes/streambin"
+              target="_blank"
+              rel="noreferrer"
+              title="Source"
+              aria-label="Source on GitHub"
+              class="text-muted-foreground hover:text-foreground transition-colors shrink-0"
+            >
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0016 8c0-4.42-3.58-8-8-8z" />
+              </svg>
+            </a>
+            </span>
+          </div>
+
+          <div
+            class="flex items-baseline justify-between gap-4 py-3 border-b border-divider"
+          >
+            <div class="flex-1 min-w-0">
+              <span class="font-semibold">🦙 ollama-pool</span>
+              <span class="text-muted-foreground">
+                — Distribute LLM inference across your machines. One
+                globally-accessible, OpenAI-compatible endpoint for all your
+                Ollama hardware.</span
+              >
+            </div>
+            <span class="text-xs text-muted-foreground shrink-0">(soon)</span>
+          </div>
+
+          <div
+            class="flex items-baseline justify-between gap-4 py-3 border-b border-divider"
+          >
+            <div class="flex-1 min-w-0">
+              <a
+                href="https://github.com/smarcombes/tailwind-motion-native"
+                target="_blank"
+                rel="noreferrer"
+                class="hover:text-foreground transition-colors"
+              >
+              <span class="font-semibold">🎨 tailwind-motion-native</span>
+              <span class="text-muted-foreground">
+                — Tailwind Motion animation primitives ported to React Native via
+                Moti.</span
+              >
+              </a>
+            </div>
+            <span class="flex items-center gap-2.5 shrink-0">
+            <a
+              href="https://github.com/smarcombes/tailwind-motion-native"
+              target="_blank"
+              rel="noreferrer"
+              title="Source"
+              aria-label="Source on GitHub"
+              class="text-muted-foreground hover:text-foreground transition-colors shrink-0"
+            >
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0016 8c0-4.42-3.58-8-8-8z" />
+              </svg>
+            </a>
+            </span>
+          </div>
+
+          <div
+            class="flex items-baseline justify-between gap-4 py-3 border-b border-divider"
+          >
+            <div class="flex-1 min-w-0">
+              <a
+                href="https://github.com/smarcombes/github-filesystem"
+                target="_blank"
+                rel="noreferrer"
+                class="hover:text-foreground transition-colors"
+              >
+              <span class="font-semibold">🗂️ github-filesystem</span>
+              <span class="text-muted-foreground">
+                — GitHub repos as a Node.js <code>fs</code>. <code>writeFile</code>
+                commits to Git. Agents treat remote repos like local disk.</span
+              >
+              </a>
+            </div>
+            <span class="flex items-center gap-2.5 shrink-0">
+            <a
+              href="https://github.com/smarcombes/github-filesystem"
+              target="_blank"
+              rel="noreferrer"
+              title="Source"
+              aria-label="Source on GitHub"
+              class="text-muted-foreground hover:text-foreground transition-colors shrink-0"
+            >
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0016 8c0-4.42-3.58-8-8-8z" />
+              </svg>
+            </a>
+            </span>
+          </div>
+
+          <div
+            class="flex items-baseline justify-between gap-4 py-3 border-b border-divider"
+          >
+            <div class="flex-1 min-w-0">
+              <a
+                href="https://github.com/smarcombes/react-electron"
+                target="_blank"
+                rel="noreferrer"
+                class="hover:text-foreground transition-colors"
+              >
+              <span class="font-semibold">⚛️ react-electron</span>
+              <span class="text-muted-foreground">
+                — Custom React 15 renderer for Electron. Managing multi-window apps
+                from a single component tree. (2017)</span
+              >
+              </a>
+            </div>
+            <span class="flex items-center gap-2.5 shrink-0">
+            <a
+              href="https://github.com/smarcombes/react-electron"
+              target="_blank"
+              rel="noreferrer"
+              title="Source"
+              aria-label="Source on GitHub"
+              class="text-muted-foreground hover:text-foreground transition-colors shrink-0"
+            >
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0016 8c0-4.42-3.58-8-8-8z" />
+              </svg>
+            </a>
+            </span>
+          </div>
+        </div>
+
+        <!-- ============ IN A PREVIOUS LIFE ============ -->
+        <h2 class="font-bold tracking-[-0.01em] mt-16 mb-2">
+          In a previous life
+        </h2>
+        <div
+          class="relative flex flex-col space-y-4 border-l border-gray-300 py-4 ml-4 mt-6
+            before:h-6 before:w-px before:bg-gradient-to-t before:from-transparent before:to-background before:absolute before:-left-px before:top-0
+            after:h-6 after:w-px after:bg-gradient-to-b after:from-transparent after:to-background after:absolute after:-left-px after:bottom-0"
+        >
+          <a
+            href="/projects/lima/"
+            class="relative flex flex-col gap-2 px-3 py-2 ml-6 group cursor-pointer bg-white border border-black shadow-card hover:shadow-card-hover transition-all"
+          >
+            <div
+              class="absolute size-[7px] bg-gray-900 rounded-sm -left-[37px] top-[15px] outline outline-2 outline-background"
+            ></div>
+            <div class="flex items-baseline gap-1.5 justify-between">
+              <div class="text-sm truncate font-semibold leading-5">
+                Lima — unified, liquid personal cloud
+              </div>
+              <div class="text-xs text-muted-foreground shrink-0 ml-1">
+                2011 — 2019
+              </div>
+            </div>
+            <p class="text-xs text-muted-foreground">
+              A company I founded to redesign file storage from first
+              principles. 6th biggest Kickstarter tech campaign of 2013. Gone
+              now — this is the recollection.
+            </p>
+          </a>
+
+          <div class="relative flex flex-col gap-1 px-3 py-2 ml-6">
+            <div
+              class="absolute size-[7px] bg-gray-900 rounded-sm -left-[37px] top-[15px] outline outline-2 outline-background"
+            ></div>
+            <div class="flex items-baseline gap-1.5 justify-between">
+              <div class="text-xs font-semibold leading-5">
+                Marketing &amp; product mentoring — ESCP Europe
+              </div>
+              <div class="text-xs text-muted-foreground shrink-0 ml-1">
+                Paris
+              </div>
+            </div>
+            <p class="text-xs text-muted-foreground">
+              Mentoring at the ESCP Europe business school in Paris.
+            </p>
+          </div>
+
+          <div class="relative flex flex-col gap-1 px-3 py-2 ml-6">
+            <div
+              class="absolute size-[7px] bg-gray-900 rounded-sm -left-[37px] top-[15px] outline outline-2 outline-background"
+            ></div>
+            <div class="flex items-baseline gap-1.5 justify-between">
+              <div class="text-xs font-semibold leading-5">
+                Seafront — 0-to-1 product &amp; tech consultancy
+              </div>
+              <div class="text-xs text-muted-foreground shrink-0 ml-1">
+                2019 — 2021
+              </div>
+            </div>
+            <p class="text-xs text-muted-foreground">
+              Building startup products from 0-to-1, with clients as small as
+              Adok and as big as Intuit.
+            </p>
+          </div>
+        </div>
+
+        <!-- ============ LET'S TALK ============ -->
+        <h2 class="font-bold tracking-[-0.01em] mt-16 mb-4">Let's talk!</h2>
+        <div class="flex flex-wrap gap-3">
+          <a
+            href="https://github.com/smarcombes"
+            target="_blank"
+            rel="noreferrer"
+            class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium px-3 py-1.5 bg-button text-button-foreground border border-button-foreground shadow-btn relative after:absolute after:inset-0.5 after:border after:border-dashed after:border-button-foreground after:pointer-events-none hover:bg-button-hover hover:text-black active:shadow-none active:translate-y-0.5 transition-colors"
+          >
+            GitHub
+          </a>
+          <a
+            href="https://x.com/severin__"
+            target="_blank"
+            rel="noreferrer"
+            class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium px-3 py-1.5 bg-button text-button-foreground border border-button-foreground shadow-btn relative after:absolute after:inset-0.5 after:border after:border-dashed after:border-button-foreground after:pointer-events-none hover:bg-button-hover hover:text-black active:shadow-none active:translate-y-0.5 transition-colors"
+          >
+            𝕏
+          </a>
+          <a
+            href="https://linkedin.com/in/marcombes"
+            target="_blank"
+            rel="noreferrer"
+            class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium px-3 py-1.5 bg-button text-button-foreground border border-button-foreground shadow-btn relative after:absolute after:inset-0.5 after:border after:border-dashed after:border-button-foreground after:pointer-events-none hover:bg-button-hover hover:text-black active:shadow-none active:translate-y-0.5 transition-colors"
+          >
+            LinkedIn
+          </a>
+        </div>
+
+        <footer>
+          <div
+            class="w-full flex flex-col md:flex-row justify-between py-6 items-baseline gap-4 border-t border-black mt-16"
+          >
+            <p class="font-serif text-lg">Séverin Marcombes</p>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </body>
+</html>
