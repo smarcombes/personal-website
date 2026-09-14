@@ -13,7 +13,7 @@ Not published. Source data for the `/press/` page on severin-marcombes.fr.
   - `url` — live URL if online; blank if print-only or the URL is dead
   - `type` — `online` or `print`
   - `language` — `en`, `fr`, etc.
-  - `person_or_company` — `severin-marcombes`, `lima`, or both (`;`-separated)
+  - `person_or_company` — `severin-marcombes`, `lima`, `forgetbox`, or a `;`-separated combination. ForgetBox's earlier file-transfer product is distinct from the Plug/Lima hardware.
   - `source` — how we found it: `web-search`, `rumeur-publique-email`, `direct`
   - `thread_id` — Gmail thread id, if found via a Rumeur Publique press-review email
   - `attachment_note` — filename of a print clipping attached to that email, if any (not yet downloaded)
@@ -31,4 +31,8 @@ Two sources, both logged in `source`:
 
 ## Status
 
-Being assembled. `confidence: mentioned` rows need a human check (open the thread / find the actual article) before they're solid enough to put on the public page.
+Being assembled. The public page uses the `hidden` column to select records. New additions must have verified links and matching article content; unresolved candidates stay outside the master list. Legacy `confidence: mentioned` rows still need verification.
+
+- `session-recap-and-research-plan.md` — unfinished work from the Claude session and a broader search plan for Layouts.dev / Keychains coverage and mentions.
+- `forgetbox-pending.md` — eight supplied references excluded from the master list and public page because verification remains incomplete.
+- Six verified ForgetBox-related references were added on 14 September 2026, including one about Plug (later Lima), tagged with both company names. All six include pre-translated titles in the page's 13 languages.

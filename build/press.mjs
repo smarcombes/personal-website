@@ -97,6 +97,8 @@ const PUB_DOMAIN = {
   "Rude Baguette": "rudebaguette.com",
   ZDNet: "zdnet.com",
   "J'aime les Startups": "jaimelesstartups.fr",
+  PCWorld: "pcworld.com",
+  "Google / Official Google Blog": "google.com",
 };
 
 /** Approximate brand colour per publication, for the fallback thumbnail. */
@@ -121,6 +123,8 @@ const PUB_COLOR = {
   "Rude Baguette": "#2B6CB0",
   ZDNet: "#C8161D",
   "J'aime les Startups": "#F5A623",
+  PCWorld: "#CC0000",
+  "Google / Official Google Blog": "#4285F4",
 };
 
 function logoUrl(publication, size = 64) {
