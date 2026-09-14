@@ -117,3 +117,13 @@ button:focus-visible {
   padding: 0 0.15em;
   white-space: nowrap;
 }
+
+/* Hides the scrollbar on the /press/ carousel rows; native scroll-snap
+   still handles touch, trackpad and keyboard scrolling underneath. */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}

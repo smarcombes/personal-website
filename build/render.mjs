@@ -18,6 +18,7 @@ import { readdir, readFile, writeFile, mkdir, rm } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { frontMatter, toHtml } from "./markdown.mjs";
+import { buildPressSection } from "./press.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const PAGES = path.join(ROOT, "src/pages");
@@ -130,6 +131,7 @@ function writingSection() {
 }
 
 const writing = writingSection();
+const press = await buildPressSection(path.join(ROOT, "press/articles.csv"));
 
 // ----------------------------------------------------------------- pages
 for (const file of (await pageFiles(PAGES)).sort()) {
@@ -147,6 +149,7 @@ for (const file of (await pageFiles(PAGES)).sort()) {
   const isArticle = (meta.ogType ?? "website") === "article";
   const content = raw
     .slice(fm[0].length)
+    .replace(/^[ \t]*\{\{press\}\}[ \t]*\n/m, press)
     .replace(/^[ \t]*\{\{writing\}\}[ \t]*\n/m, writing)
     .replace(/\s+$/, "");
 
