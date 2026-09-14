@@ -118,12 +118,23 @@ button:focus-visible {
   white-space: nowrap;
 }
 
-/* Hides the scrollbar on the /press/ carousel rows; native scroll-snap
-   still handles touch, trackpad and keyboard scrolling underneath. */
-.no-scrollbar {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+/*
+  Hand-written rather than the equivalent Tailwind grid and aspect-ratio
+  utilities: in this build, some arbitrary-value and multi-column responsive
+  utility classes fail to take effect even though their rule is present,
+  correctly formed, in the compiled stylesheet -- a cascade quirk that plain
+  unlayered CSS sidesteps. Used on the press page.
+*/
+.press-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
 }
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
+@media (min-width: 40rem) {
+  .press-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+.press-thumb {
+  aspect-ratio: 16 / 10;
 }

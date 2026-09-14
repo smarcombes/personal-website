@@ -18,7 +18,7 @@ import { readdir, readFile, writeFile, mkdir, rm } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { frontMatter, toHtml } from "./markdown.mjs";
-import { buildPressSection } from "./press.mjs";
+import { buildPressSection, buildTranslationsScript } from "./press.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const PAGES = path.join(ROOT, "src/pages");
@@ -28,6 +28,11 @@ const SITE = "https://severin-marcombes.com";
 
 const FRONT_MATTER = /^<!--(\{[\s\S]*?\})-->\n/;
 const I = " ".repeat(8);
+
+// Cache-busts styles.css on every build: without it, a returning visitor (or
+// an intermediary cache/proxy) can keep serving a pre-deploy copy of the CSS
+// indefinitely, since the URL itself never changes between deploys.
+const BUILD_ID = Date.now().toString(36);
 
 /** Directories under dist/ that hold copied assets, never generated pages. */
 const NEVER_PRUNE = new Set(["media", "fonts", ".vercel"]);
@@ -72,6 +77,7 @@ const render = (layout, over) =>
         : "",
     )
     .replace(/\{\{width\}\}/g, over.width)
+    .replace('href="/styles.css"', `href="/styles.css?v=${BUILD_ID}"`)
     .replace(/\{\{content\}\}/g, `\n${over.content}\n`);
 
 const layout = await readFile(path.join(ROOT, "src/layout.html"), "utf8");
@@ -132,6 +138,7 @@ function writingSection() {
 
 const writing = writingSection();
 const press = await buildPressSection(path.join(ROOT, "press/articles.csv"));
+const pressTranslations = await buildTranslationsScript(path.join(ROOT, "press/translations.json"));
 
 // ----------------------------------------------------------------- pages
 for (const file of (await pageFiles(PAGES)).sort()) {
@@ -150,6 +157,7 @@ for (const file of (await pageFiles(PAGES)).sort()) {
   const content = raw
     .slice(fm[0].length)
     .replace(/^[ \t]*\{\{press\}\}[ \t]*\n/m, press)
+    .replace(/^[ \t]*\{\{pressTranslations\}\}[ \t]*\n/m, pressTranslations)
     .replace(/^[ \t]*\{\{writing\}\}[ \t]*\n/m, writing)
     .replace(/\s+$/, "");
 

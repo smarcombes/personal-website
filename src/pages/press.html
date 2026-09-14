@@ -1,8 +1,9 @@
 <!--{
   "title": "Press — Séverin Marcombes",
-  "description": "Press coverage of Séverin Marcombes and Lima Technology, 2013–2022, online and in print.",
+  "description": "Séverin Marcombes and Lima Technology in the press — TechCrunch, MIT Technology Review, Forbes, Les Echos and more.",
   "path": "/press/",
   "ogType": "website",
+  "ogImage": "/press/media/og-card.png",
   "width": "max-w-3xl"
 }-->
         <a
@@ -17,20 +18,8 @@
         >
           Press
         </h1>
-        <p class="text-xs text-muted-foreground mb-1 max-w-2xl">
-          Coverage of Lima Technology (2011–2019) and more recent work —
-          assembled from Lima's press-agency archive and web search. Mostly
-          French press; the Kickstarter-campaign year (2013) is thinner than
-          the rest, since the agency's own records only start in 2014.
-        </p>
-        <p class="text-xs text-muted-foreground mb-6 max-w-2xl">
-          🌐 online · 🗞️ print or broadcast, from a clipping that never had a
-          URL ·
-          <span
-            class="inline-block font-mono text-[8px] uppercase tracking-[0.1em] border border-dashed border-divider text-muted-foreground px-1 py-0.5 align-middle"
-            >unverified</span
-          >
-          referenced in an email but not independently confirmed yet.
+        <p class="text-xs text-muted-foreground mb-8 max-w-2xl">
+          A selection of some articles about me or my work.
         </p>
 
         <!-- ============ LANGUAGE ============ -->
@@ -63,12 +52,14 @@
             <option value="hi">Hindi</option>
           </select>
           <span class="text-[11px] text-muted-foreground">
-            — click a card to open it, translated through Google Translate if
-            it isn't already in this language.
+            — titles switch to this language right away; opening an article
+            translates it too, if it isn't already in this language.
           </span>
         </div>
 
         {{press}}
+
+        {{pressTranslations}}
 
         <!-- ============ SCRIPT ============ -->
         <script>
@@ -77,6 +68,22 @@
             var select = document.getElementById("press-lang");
             if (!select) return;
 
+            var table = {};
+            try {
+              var node = document.getElementById("press-translations");
+              if (node) table = JSON.parse(node.textContent);
+            } catch (e) {}
+
+            function applyLanguage(lang) {
+              document.querySelectorAll(".press-card-title").forEach(function (title) {
+                var id = title.closest("a.press-card").getAttribute("data-id");
+                var original = title.getAttribute("data-original");
+                var entry = table[id];
+                var text = lang !== "none" && entry && entry[lang] ? entry[lang] : original;
+                title.textContent = text;
+              });
+            }
+
             try {
               var saved = localStorage.getItem(KEY);
               if (saved && [].some.call(select.options, function (o) { return o.value === saved; })) {
@@ -84,10 +91,13 @@
               }
             } catch (e) {}
 
+            applyLanguage(select.value);
+
             select.addEventListener("change", function () {
               try {
                 localStorage.setItem(KEY, select.value);
               } catch (e) {}
+              applyLanguage(select.value);
             });
 
             document.querySelectorAll("a.press-card").forEach(function (card) {
@@ -103,15 +113,6 @@
                   "&u=" +
                   encodeURIComponent(url);
                 window.open(translated, "_blank", "noopener,noreferrer");
-              });
-            });
-
-            document.querySelectorAll(".press-nav").forEach(function (btn) {
-              btn.addEventListener("click", function () {
-                var row = document.getElementById(btn.getAttribute("data-target"));
-                if (!row) return;
-                var dir = btn.getAttribute("data-dir") === "prev" ? -1 : 1;
-                row.scrollBy({ left: dir * row.clientWidth * 0.8, behavior: "smooth" });
               });
             });
           })();
