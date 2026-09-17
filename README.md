@@ -132,6 +132,20 @@ instead of the copy re-creating them as orphans.
 
 ## Design
 
+The section navigator uses `assets/section-nav.js`. Desktop shows the left-hand
+outline; below 768px a bottom scrubber previews sections while dragging and
+scrolls on release or after one second without horizontal movement. Pointer
+cancellation abandons the pending jump, and reduced-motion preferences disable
+smooth scrolling. The native range input supports keyboard and assistive input.
+
+Tick sounds are synthesized locally with Web Audio, opt-in through the sound
+button, and only play for user selection changes. Haptics use `navigator.vibrate`
+where supported, with a best-effort native-switch fallback for older WebKit.
+Recent iOS versions can block that fallback; continuous drag haptics cannot be
+guaranteed across Safari and iOS browsers. Physical-device haptics and audio
+still need device testing. Interaction regression checks:
+`node --test tests/section-nav.test.mjs`.
+
 Same "scientific lab notebook" look across every version — warm paper
 background, monospace UI text, serif titles, hard 1-bit offset shadows, almost
 no border radius, minimal color. All tokens live in the `@theme` block of

@@ -78,6 +78,7 @@ const render = (layout, over) =>
     )
     .replace(/\{\{width\}\}/g, over.width)
     .replace('href="/styles.css"', `href="/styles.css?v=${BUILD_ID}"`)
+    .replace('src="/section-nav.js"', `src="/section-nav.js?v=${BUILD_ID}"`)
     .replace(/\{\{content\}\}/g, `\n${over.content}\n`);
 
 const layout = await readFile(path.join(ROOT, "src/layout.html"), "utf8");
