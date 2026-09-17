@@ -138,12 +138,17 @@ scrolls on release or after one second without horizontal movement. Pointer
 cancellation abandons the pending jump, and reduced-motion preferences disable
 smooth scrolling. The native range input supports keyboard and assistive input.
 
-Tick sounds are synthesized locally with Web Audio, opt-in through the sound
-button, and only play for user selection changes. Haptics use `navigator.vibrate`
-where supported, with a best-effort native-switch fallback for older WebKit.
-Recent iOS versions can block that fallback; continuous drag haptics cannot be
-guaranteed across Safari and iOS browsers. Physical-device haptics and audio
-still need device testing. Interaction regression checks:
+On mobile, the content scrolls in its own grid row above an opaque bottom bar;
+no text passes behind it. The bar collapses to 44px of bars when idle and expands
+to show titles and a hint on touch or keyboard focus.
+
+Tick sounds are synthesized locally with Web Audio, enabled on the first
+scrubber gesture without a toggle. Audio Session playback routing is requested
+where available; device volume and browser restrictions still apply. Haptics use
+`navigator.vibrate` where supported. iPhone Chrome/Safari cannot produce
+scripted haptics on every drag selection; the ineffective switch fallback has
+been removed. Physical-device audio and haptics still need device testing.
+Interaction regression checks:
 `node --test tests/section-nav.test.mjs`.
 
 Same "scientific lab notebook" look across every version — warm paper

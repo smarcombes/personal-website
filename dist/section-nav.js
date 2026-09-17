@@ -68,78 +68,63 @@
   help.id = 'section-scrubber-help';
   help.className = 'section-scrubber-help';
   help.textContent = 'Slide to explore · release or hold to jump';
-  const controls = document.createElement('div');
-  controls.className = 'section-scrubber-controls';
-  const sound = document.createElement('button');
-  sound.type = 'button';
-  sound.className = 'section-scrubber-sound';
-  sound.textContent = 'Sound off';
-  sound.setAttribute('aria-label', 'Enable section tick sounds');
-  sound.setAttribute('aria-pressed', 'false');
-  controls.append(help, sound);
-  mobile.append(title, count, track, controls);
+  mobile.append(title, count, track, help);
   document.body.append(mobile);
-
+  const content = document.querySelector('.site-content');
+  const mobileQuery = matchMedia('(max-width: 767px)');
   let audio;
-  let soundEnabled = false;
+  let audioReady;
+  let collapseTimer;
+  function expand() {
+    clearTimeout(collapseTimer);
+    mobile.classList.add('is-expanded');
+  }
+  function collapseLater() {
+    clearTimeout(collapseTimer);
+    collapseTimer = setTimeout(() => mobile.classList.remove('is-expanded'), 900);
+  }
+  function unlockAudio() {
+    try {
+      const Audio = window.AudioContext || window.webkitAudioContext;
+      if (!Audio) return;
+      // Playback routing avoids WebKit's ambient/silent-switch audio category
+      // where Audio Session is available. Hardware volume still applies.
+      if (navigator.audioSession) navigator.audioSession.type = 'playback';
+      audio ||= new Audio();
+      audioReady = audio.resume().catch(() => {});
+    } catch { /* Navigation also works without Web Audio. */ }
+  }
   function audioTick() {
-    if (!soundEnabled || !audio || audio.state !== 'running') return;
-    // A short, quiet pulse with a steep pitch drop, like a click wheel detent.
+    if (!audio) return;
+    if (audio.state !== 'running') {
+      audioReady?.then(() => { if (audio.state === 'running') audioTick(); });
+      return;
+    }
     const oscillator = audio.createOscillator();
     const gain = audio.createGain();
     const now = audio.currentTime;
     oscillator.type = 'triangle';
-    oscillator.frequency.setValueAtTime(1800, now);
-    oscillator.frequency.exponentialRampToValueAtTime(550, now + 0.018);
+    oscillator.frequency.setValueAtTime(2200, now);
+    oscillator.frequency.exponentialRampToValueAtTime(700, now + 0.025);
     gain.gain.setValueAtTime(0, now);
-    gain.gain.linearRampToValueAtTime(0.055, now + 0.001);
-    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.025);
+    gain.gain.linearRampToValueAtTime(0.18, now + 0.002);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.04);
     oscillator.connect(gain);
     gain.connect(audio.destination);
     oscillator.start(now);
-    oscillator.stop(now + 0.03);
+    oscillator.stop(now + 0.045);
     oscillator.onended = () => { oscillator.disconnect(); gain.disconnect(); };
   }
-  sound.addEventListener('click', async () => {
-    soundEnabled = !soundEnabled;
-    try {
-      if (soundEnabled) {
-        const Audio = window.AudioContext || window.webkitAudioContext;
-        if (!Audio) throw new Error('Audio unavailable');
-        audio ||= new Audio();
-        await audio.resume();
-        if (audio.state !== 'running') soundEnabled = false;
-      }
-    } catch { soundEnabled = false; }
-    sound.textContent = soundEnabled ? 'Sound on' : 'Sound off';
-    sound.setAttribute('aria-pressed', String(soundEnabled));
-    sound.setAttribute('aria-label', soundEnabled ? 'Mute section tick sounds' : 'Enable section tick sounds');
-    audioTick();
-  });
-
-  // Native vibration on supporting browsers; older WebKit versions can tick
-  // a native switch. Newer iOS versions may suppress this fallback entirely.
-  // Never play audio or interfere with the scrub gesture to simulate haptics.
-  let hapticLabel;
+  // iOS does not expose drag-triggered haptics. Do not overlay an unrelated
+  // native switch: that would consume the gesture without providing ticks.
   function tickHaptic() {
-    try {
-      if (typeof navigator.vibrate === 'function' && navigator.vibrate(8)) return;
-      if (!hapticLabel) {
-        const input = document.createElement('input');
-        input.type = 'checkbox';
-        if (!('switch' in input)) return;
-        input.setAttribute('switch', '');
-        input.tabIndex = -1;
-        hapticLabel = document.createElement('label');
-        hapticLabel.className = 'section-haptic';
-        hapticLabel.setAttribute('aria-hidden', 'true');
-        hapticLabel.append(input);
-        document.body.append(hapticLabel);
-      }
-      hapticLabel.click();
-    } catch { /* Haptic support must never block navigation. */ }
+    try { navigator.vibrate?.(8); } catch { /* Optional hardware feedback. */ }
   }
-
+  slider.addEventListener('touchstart', unlockAudio, { passive: true });
+  slider.addEventListener('touchend', unlockAudio, { passive: true });
+  slider.addEventListener('keydown', () => { unlockAudio(); expand(); });
+  slider.addEventListener('focus', expand);
+  slider.addEventListener('blur', collapseLater);
   let selected = 0;
   let pointer = null;
   let holdTimer;
@@ -194,7 +179,9 @@
     lastX = event.clientX;
     lastJump = -1;
     slider.setPointerCapture(pointer);
-    if (soundEnabled && audio?.state === 'suspended') audio.resume().catch(() => {});
+    unlockAudio();
+    expand();
+    audioTick();
     mobile.classList.add('is-scrubbing');
     preview(lastX);
   });
@@ -210,6 +197,7 @@
     const captured = pointer;
     pointer = null;
     mobile.classList.remove('is-scrubbing');
+    collapseLater();
     if (slider.hasPointerCapture(captured)) slider.releasePointerCapture(captured);
     schedule();
   }
@@ -219,7 +207,10 @@
   // Native range semantics preserve keyboard and screen-reader adjustment.
   slider.addEventListener('input', () => {
     if (pointer !== null) return;
+    unlockAudio();
+    expand();
     paint(Number(slider.value), true);
+    collapseLater();
     lastJump = -1;
     jump();
   });
@@ -234,6 +225,7 @@
   });
   matchMedia('(min-width: 768px)').addEventListener('change', cancelGesture);
   addEventListener('scrollend', finishScroll);
+  content.addEventListener('scrollend', finishScroll);
   document.addEventListener('pointerdown', event => {
     if (!mobile.contains(event.target)) finishScroll();
   }, { passive: true });
@@ -242,10 +234,13 @@
   function update() {
     pending = false;
     let active = 0;
+    const viewHeight = mobileQuery.matches ? content.clientHeight : innerHeight;
+    const offset = mobileQuery.matches ? content.scrollTop : scrollY;
+    const totalHeight = mobileQuery.matches ? content.scrollHeight : document.documentElement.scrollHeight;
     headings.forEach((heading, index) => {
-      if (heading.getBoundingClientRect().top <= innerHeight * 0.25) active = index;
+      if (heading.getBoundingClientRect().top <= viewHeight * 0.25) active = index;
     });
-    if (scrollY + innerHeight >= document.documentElement.scrollHeight - 2) active = headings.length - 1;
+    if (offset + viewHeight >= totalHeight - 2) active = headings.length - 1;
     links.forEach((link, index) => {
       const distance = Math.abs(index - active);
       link.style.setProperty('--bar-width', `${distance === 0 ? 24 : distance === 1 ? 16 : distance === 2 ? 10 : 6}px`);
@@ -258,6 +253,7 @@
     if (!pending) { pending = true; requestAnimationFrame(update); }
   }
   addEventListener('scroll', schedule, { passive: true });
+  content.addEventListener('scroll', schedule, { passive: true });
   addEventListener('resize', schedule);
   new ResizeObserver(schedule).observe(document.querySelector('.site-content'));
   paint(0);
