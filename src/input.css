@@ -7,6 +7,79 @@
    build. Only re-run `npm run build:css` after editing the HTML or these tokens. */
 @source "../dist/**/*.html";
 
+/* Keep browser controls and automatic darkening aligned with the paper theme. */
+:root { color-scheme: only light; }
+html, body { background-color: #f5f4ef; color: #000; }
+
+.section-target { scroll-margin-top: 32px; }
+.section-nav {
+  position: fixed;
+  z-index: 50;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: none;
+  flex-direction: column;
+  padding: 8px 0;
+  max-height: 80dvh;
+}
+.section-nav a {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 40px;
+  height: 22px;
+  min-height: 6px;
+  padding-left: 7px;
+  outline-offset: -2px;
+}
+.section-nav-bar {
+  display: block;
+  width: var(--bar-width, 6px);
+  height: 2px;
+  background: #c9c8c2;
+  transition: width 180ms ease, background-color 180ms ease;
+}
+.section-nav [aria-current] .section-nav-bar { background: #403e37; }
+.section-nav a:hover .section-nav-bar,
+.section-nav a:focus-visible .section-nav-bar { width: 28px; background: #000; }
+.section-nav-tooltip {
+  position: absolute;
+  left: 42px;
+  top: 50%;
+  transform: translate(4px, -50%);
+  width: max-content;
+  max-width: min(300px, calc(100vw - 76px));
+  padding: 10px 14px;
+  border: 1px solid #e5e4dc;
+  border-radius: 12px;
+  background: #fff;
+  color: #403e37;
+  box-shadow: 0 4px 12px #0000000d;
+  font: 12px/1.5 var(--font-sans);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 140ms ease, transform 140ms ease, visibility 140ms;
+}
+.section-nav a:hover .section-nav-tooltip,
+.section-nav a:focus-visible .section-nav-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(0, -50%);
+}
+@media (min-width: 768px) {
+  .has-section-nav .site-content { padding-left: 72px; padding-right: 72px; }
+  .section-nav { display: flex; left: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .section-nav-bar, .section-nav-tooltip { transition: none; }
+}
+@media print {
+  .section-nav { display: none; }
+  .has-section-nav .site-content { padding-left: 16px; }
+}
+
 /*
   Design tokens for the "scientific lab notebook" look ported from www-2:
   warm paper background, monospace UI text, serif titles, hard 1-bit offset
