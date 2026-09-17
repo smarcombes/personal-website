@@ -72,16 +72,26 @@
   document.body.append(mobile);
   const content = document.querySelector('.site-content');
   const mobileQuery = matchMedia('(max-width: 767px)');
+  function sizeDock() {
+    document.body.style.setProperty('--section-dock-height', `${mobile.getBoundingClientRect().height}px`);
+  }
+  new ResizeObserver(sizeDock).observe(mobile);
+  sizeDock();
   let audio;
   let audioReady;
   let collapseTimer;
   function expand() {
     clearTimeout(collapseTimer);
     mobile.classList.add('is-expanded');
+    sizeDock();
   }
   function collapseLater() {
     clearTimeout(collapseTimer);
-    collapseTimer = setTimeout(() => mobile.classList.remove('is-expanded'), 900);
+    collapseTimer = setTimeout(() => {
+      if (pointer !== null || navigating) { collapseLater(); return; }
+      mobile.classList.remove('is-expanded');
+      sizeDock();
+    }, 900);
   }
   function unlockAudio() {
     try {
@@ -158,10 +168,13 @@
     navigating = true;
     clearTimeout(settleTimer);
     history.replaceState(null, '', `#${headings[selected].id}`);
-    headings[selected].scrollIntoView({
-      behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
-      block: 'start',
-    });
+    const target = headings[selected];
+    const behavior = matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth';
+    if (mobileQuery.matches) {
+      // Scroll only the content viewport, never the overflow-hidden body.
+      const top = content.scrollTop + target.getBoundingClientRect().top - content.getBoundingClientRect().top - 32;
+      content.scrollTo({ top: Math.max(0, top), behavior });
+    } else target.scrollIntoView({ behavior, block: 'start' });
     // scrollend is not available in every mobile browser.
     settleTimer = setTimeout(finishScroll, 1500);
   }

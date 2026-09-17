@@ -20,11 +20,12 @@ function fixture({ reducedMotion = false, mobile = false } = {}) {
     removeAttribute(key) { delete this.attributes[key]; }
     addEventListener(name, callback) { this.events.set(name, callback); }
     emit(name, values = {}) { return this.events.get(name)?.({ pointerId: 1, isPrimary: true, button: 0, clientX: 10, preventDefault() {}, ...values }); }
-    getBoundingClientRect() { return { left: 0, width: 400, top: this.top ?? 0 }; }
+    getBoundingClientRect() { return { left: 0, width: 400, height: 45, top: this.top ?? 0 }; }
     setPointerCapture(id) { this.capture = id; }
     hasPointerCapture(id) { return this.capture === id; }
     releasePointerCapture() { this.capture = null; }
     scrollIntoView(options) { jumps.push({ id: this.id, options }); }
+    scrollTo(options) { jumps.push({ scroller: this, options }); }
     focus() {}
     contains(el) { return this === el || this.children.some(child => child.contains(el)); }
   }
@@ -142,7 +143,7 @@ test('audio starts on the first gesture without a toggle and ticks on new select
   assert.equal(f.elements.filter(el => el.tag === 'button').length, 0);
 });
 
-test('bar expands during interaction and collapses after release', () => {
+test('bar stays expanded until navigation finishes, then collapses', () => {
   const f = fixture();
   const bar = f.elements.find(el => el.className === 'section-scrubber');
   f.slider.emit('pointerdown');
@@ -151,7 +152,21 @@ test('bar expands during interaction and collapses after release', () => {
   assert.ok(bar.classes.has('is-expanded'));
   f.slider.emit('pointerup');
   f.advance(900);
+  assert.ok(bar.classes.has('is-expanded'));
+  f.content.emit('scrollend');
+  f.advance(900);
   assert.ok(!bar.classes.has('is-expanded'));
+});
+
+test('mobile jumps scroll only the content viewport with a heading offset', () => {
+  const f = fixture({ mobile: true });
+  f.content.scrollTop = 200;
+  f.slider.emit('pointerdown', { clientX: 270 });
+  f.slider.emit('pointerup');
+  assert.equal(f.jumps.length, 1);
+  assert.equal(f.jumps[0].scroller, f.content);
+  assert.equal(f.jumps[0].options.top, 2168);
+  assert.equal(f.jumps[0].options.behavior, 'smooth');
 });
 
 test('mobile position follows the content scroller rather than the window', () => {

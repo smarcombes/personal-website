@@ -138,9 +138,11 @@ scrolls on release or after one second without horizontal movement. Pointer
 cancellation abandons the pending jump, and reduced-motion preferences disable
 smooth scrolling. The native range input supports keyboard and assistive input.
 
-On mobile, the content scrolls in its own grid row above an opaque bottom bar;
+On mobile, the content scrolls in an explicitly bounded viewport above an opaque bottom bar;
 no text passes behind it. The bar collapses to 44px of bars when idle and expands
-to show titles and a hint on touch or keyboard focus.
+to show titles and a hint on touch or keyboard focus. Its height changes only
+between states, after navigation settles; it does not animate the scrollport size.
+The content has its own paint layer to avoid stale blank tiles on WebKit.
 
 Tick sounds are synthesized locally with Web Audio, enabled on the first
 scrubber gesture without a toggle. Audio Session playback routing is requested

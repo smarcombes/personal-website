@@ -90,9 +90,9 @@ html, body { background-color: #f5f4ef; color: #000; }
   max-height: 0;
   opacity: 0;
   overflow: hidden;
-  transition: max-height 220ms ease, padding 220ms ease, opacity 160ms ease;
+  transition: opacity 160ms ease;
 }
-.section-scrubber.is-expanded .section-scrubber-title { max-height: 100px; padding-top: 12px; opacity: 1; }
+.section-scrubber.is-expanded .section-scrubber-title { height: 72px; max-height: 72px; padding-top: 12px; opacity: 1; }
 .section-scrubber-count {
   position: absolute;
   right: max(20px, env(safe-area-inset-right, 0px));
@@ -125,13 +125,25 @@ html, body { background-color: #f5f4ef; color: #000; }
   max-height: 0;
   opacity: 0;
   overflow: hidden;
-  transition: max-height 220ms ease, padding 220ms ease, opacity 160ms ease;
+  transition: opacity 160ms ease;
 }
 .section-scrubber.is-expanded .section-scrubber-help { max-height: 40px; padding-bottom: 10px; opacity: 1; }
 @media (max-width: 767px) {
-  body.has-section-nav { height: 100dvh; overflow: hidden; display: grid; grid-template-rows: minmax(0, 1fr) auto; }
-  .has-section-nav .site-content { min-height: 0; overflow-y: auto; overscroll-behavior-y: contain; padding-bottom: 24px; }
-  .section-scrubber { display: block; }
+  body.has-section-nav { height: 100dvh; overflow: hidden; }
+  /* Explicit bounds avoid a resizing grid scrollport. Give the scrolling
+     contents their own paint layer so WebKit doesn't reuse stale blank tiles. */
+  .has-section-nav .site-content {
+    position: fixed;
+    inset: 0 0 var(--section-dock-height, calc(45px + env(safe-area-inset-bottom, 0px)));
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    overflow-anchor: none;
+    padding-bottom: 24px;
+    isolation: isolate;
+  }
+  .has-section-nav .site-content > div { transform: translateZ(0); }
+  .section-scrubber { display: block; position: fixed; bottom: 0; left: 0; right: 0; }
 }
 @media (prefers-reduced-motion: reduce) {
   .section-nav-bar, .section-nav-tooltip, .section-scrubber *, .section-scrubber { transition: none; }
@@ -139,7 +151,8 @@ html, body { background-color: #f5f4ef; color: #000; }
 @media print {
   .section-nav, .section-scrubber { display: none; }
   body.has-section-nav { display: block; height: auto; overflow: visible; }
-  .has-section-nav .site-content { overflow: visible; padding-left: 16px; }
+  .has-section-nav .site-content { position: static; overflow: visible; padding-left: 16px; }
+  .has-section-nav .site-content > div { transform: none; }
 }
 
 /*
